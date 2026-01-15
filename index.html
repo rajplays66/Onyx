@@ -373,10 +373,13 @@
 
         @media (max-width: 768px) {
     .video-banner {
-        height: 85vh !important;
-        min-height: 450px !important;
-        margin-bottom: 20px !important; /* Add space below banner */
+    height: 85vh !important;
+    min-height: 500px !important;
+    padding-top: 60px; /* Space for fixed nav */
     }
+      .banner-overlay {
+    padding-top: 20px; /* Push content down */
+      }      
     
     .banner-video {
         object-fit: cover !important;
@@ -389,10 +392,12 @@
     }
     
     .banner-nav {
-        padding: 12px 15px !important;
-        flex-direction: column;
-        gap: 12px;
-        text-align: center;
+    padding: 10px 15px !important;
+    flex-direction: row !important; /* Keep logo and menu in row */
+    gap: 10px;
+    text-align: left;
+    height: auto;
+    min-height: 60px;
     }
     
     /* SMALLER TITLE */

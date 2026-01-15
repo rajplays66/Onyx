@@ -470,8 +470,13 @@ html, body {
     <section class="video-banner" id="home">
         <!-- Your video banner -->
         <video autoplay muted loop playsinline class="banner-video">
-            <source src="banner-video.mp4" type="video/mp4">
-            Your browser does not support the video tag.
+    <!-- Desktop version (16:9 landscape) -->
+    <source src="banner-desktop.mp4" media="(min-width: 769px)" type="video/mp4">
+    
+    <!-- Mobile version (9:16 portrait) -->
+    <source src="banner-mobile.mp4" media="(max-width: 768px)" type="video/mp4">
+    
+    Your browser does not support the video tag.
         </video>
         
         <!-- Banner Navigation -->

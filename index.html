@@ -5,23 +5,420 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Welcome to RJSyncro - The best tech blog">
     <meta name="keywords" content="tech products,Trust,tech platform,technology, RJSyncro">
-<meta name="author" content="Your Name">
-<meta property="og:title" content="RJSyncro | Best Tech Blog">
-<meta property="og:description" content="Welcome to the best tech web - Exploring technology and innovation.">
-<meta property="og:image" content="https://your-logo-url.png">
+    <meta name="author" content="Your Name">
+    <meta property="og:title" content="RJSyncro | Best Tech Blog">
+    <meta property="og:description" content="Welcome to the best tech web - Exploring technology and innovation.">
+    <meta property="og:image" content="https://your-logo-url.png">
     <title>RJSyncro | Welcome to the best tech web</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+    
+    <!-- Video Banner CSS -->
+    <style>
+        /* ====== ANIMATED VIDEO BANNER ====== */
+        .video-banner {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            min-height: 600px;
+            overflow: hidden;
+        }
+
+        .banner-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: cover;
+            z-index: 1;
+            filter: brightness(0.8);
+        }
+
+        /* Dark overlay for better text readability */
+        .banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Navigation Bar on Banner */
+        .banner-nav {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            padding: 25px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 3;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .banner-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .banner-logo-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #ffd700;
+            transition: all 0.3s ease;
+        }
+
+        .banner-logo:hover .banner-logo-img {
+            transform: rotate(15deg) scale(1.1);
+            box-shadow: 0 0 20px #ffd700;
+        }
+
+        .banner-logo-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: white;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .banner-menu {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .banner-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 10px 20px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .banner-menu a:hover {
+            background: rgba(255, 215, 0, 0.2);
+            color: #ffd700;
+            transform: translateY(-3px);
+            text-shadow: 0 0 10px #ffd700;
+        }
+
+        .banner-menu a i {
+            font-size: 1.2rem;
+        }
+
+        .banner-nav-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ffd700;
+        }
+
+        /* Welcome Text Content */
+        .banner-content {
+            text-align: center;
+            z-index: 3;
+            padding: 0 20px;
+            max-width: 900px;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .banner-title {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.7);
+        }
+
+        .banner-title .highlight {
+            color: #ffd700;
+            text-shadow: 0 0 40px #ffd700;
+            animation: textGlow 2s infinite alternate;
+        }
+
+        @keyframes textGlow {
+            from { text-shadow: 0 0 30px #ffd700; }
+            to { text-shadow: 0 0 50px #ffed4e; }
+        }
+
+        .banner-subtitle {
+            font-size: 1.5rem;
+            color: #e6e6e6;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        /* Banner Buttons */
+        .banner-buttons {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+        }
+
+        .banner-btn {
+            padding: 16px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .banner-btn-primary {
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            color: #000000;
+            box-shadow: 0 5px 25px rgba(255, 215, 0, 0.4);
+        }
+
+        .banner-btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.6);
+            background: linear-gradient(135deg, #ffed4e, #fff9c4);
+        }
+
+        .banner-btn-secondary {
+            background: rgba(255, 215, 0, 0.1);
+            color: #ffd700;
+            border: 2px solid #ffd700;
+            backdrop-filter: blur(10px);
+        }
+
+        .banner-btn-secondary:hover {
+            background: rgba(255, 215, 0, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Stats Section */
+        .banner-stats {
+            display: flex;
+            gap: 50px;
+            justify-content: center;
+            flex-wrap: wrap;
+            z-index: 3;
+            animation: fadeInUp 1.5s ease-out 0.5s both;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            min-width: 180px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-10px);
+            border-color: #ffd700;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 3rem;
+            font-weight: 800;
+            color: #ffd700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover .stat-number {
+            color: #ffed4e;
+            transform: scale(1.1);
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #e6e6e6;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        /* Floating particles animation */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: #ffd700;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #ffd700;
+            animation: floatParticle 20s infinite linear;
+        }
+
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive Design for Video Banner */
+        @media (max-width: 992px) {
+            .banner-title {
+                font-size: 3rem;
+            }
+            
+            .banner-subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .banner-menu {
+                gap: 15px;
+            }
+            
+            .banner-menu a {
+                padding: 8px 15px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .video-banner {
+                height: 90vh;
+            }
+            
+            .banner-nav {
+                padding: 20px;
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .banner-title {
+                font-size: 2.5rem;
+            }
+            
+            .banner-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .banner-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .banner-btn {
+                width: 250px;
+                justify-content: center;
+            }
+            
+            .banner-stats {
+                gap: 20px;
+            }
+            
+            .stat-item {
+                min-width: 140px;
+                padding: 20px;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .banner-title {
+                font-size: 2rem;
+            }
+            
+            .banner-subtitle {
+                font-size: 1rem;
+            }
+            
+            .stat-item {
+                min-width: 120px;
+                padding: 15px;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Navigation -->
+    <!-- Main Navigation (Keep your original) -->
     <nav class="navbar">
         <div class="container nav-container">
-          <a href="#" class="logo">
-    <img src="https://i.ibb.co/LX9S1d4Z/Gemini-Generated-Image-oyxvr1oyxvr1oyxv-Picsart-Background-Remover.png" alt="RJSyncro Logo" class="custom-logo">
-    <span>RJSyncro</span>
-          </a>
+            <a href="#" class="logo">
+                <img src="https://i.ibb.co/LX9S1d4Z/Gemini-Generated-Image-oyxvr1oyxvr1oyxv-Picsart-Background-Remover.png" alt="RJSyncro Logo" class="custom-logo">
+                <span>RJSyncro</span>
+            </a>
             <button class="menu-toggle" id="menuToggle">
                 <i class="fas fa-bars"></i>
             </button>
@@ -39,47 +436,82 @@
             </ul>
         </div>
     </nav>
-<!-- Hero Section -->
-<section class="hero" id="home">
-    <div class="container">
-        <div class="hero-content">
-            <h1 class="hero-title">
-                <div class="typewriter-container">
-                    <div class="typewriter-text">
-    Welcome to <span class="highlight" style="background: transparent !important;">RJSyncro</span>
-                    </div>
+
+    <!-- NEW: Animated Video Banner (Replaces old hero section) -->
+    <section class="video-banner" id="home">
+        <!-- Your video banner -->
+        <video autoplay muted loop playsinline class="banner-video">
+            <source src="https://drive.google.com/uc?export=download&id=1q2mYBj92XEzJbHnu-idrchx4hZKE9rdk" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        
+        <!-- Banner Navigation -->
+        <nav class="banner-nav">
+            <a href="#" class="banner-logo">
+                <img src="https://i.ibb.co/LX9S1d4Z/Gemini-Generated-Image-oyxvr1oyxvr1oyxv-Picsart-Background-Remover.png" 
+                     alt="RJSyncro Logo" class="banner-logo-img">
+                <span class="banner-logo-text">RJSyncro</span>
+            </a>
+            
+            <ul class="banner-menu">
+                <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#blog"><i class="fas fa-wrench"></i> Tech</a></li>
+                <li><a href="#about"><i class="fas fa-user"></i> About</a></li>
+                <li><a href="syncro-chat.html">
+                    <img src="https://i.ibb.co/bgcqhbsW/unnamed-removebg-preview.png" class="banner-nav-icon" alt="AI Icon">
+                    Syncro AI
+                </a></li>
+                <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </nav>
+        
+        <!-- Dark overlay for better readability -->
+        <div class="banner-overlay">
+            <!-- Welcome Content -->
+            <div class="banner-content">
+                <h1 class="banner-title">
+                    Welcome to <span class="highlight">RJSyncro</span>
+                </h1>
+                
+                <p class="banner-subtitle">
+                    Syncing ideas across technology, design, and creative life.
+                </p>
+                
+                <!-- Action Buttons -->
+                <div class="banner-buttons">
+                    <a href="#blog" class="banner-btn banner-btn-primary">
+                        <i class="fas fa-book-reader"></i> Read Tech Updates
+                    </a>
+                    <a href="#contact" class="banner-btn banner-btn-secondary">
+                        <i class="fas fa-paper-plane"></i> Get in Touch
+                    </a>
                 </div>
-            </h1>
-            <p class="hero-subtitle">
-    Syncing ideas across technology, design, and creative life.
-            </p>
-            <div class="hero-buttons">
-                <a href="#blog" class="btn btn-primary">
-                    <i class="fas fa-book-reader"></i> Read techupdates
-                </a>
-                <a href="#contact" class="btn btn-secondary">
-                    <i class="fas fa-paper-plane"></i> Get in Touch
-                </a>
+                
+                <!-- Stats Section -->
+                <div class="banner-stats">
+                    <a href="#articles" class="stat-item">
+                        <span class="stat-number">42+</span>
+                        <span class="stat-label">Articles Published</span>
+                    </a>
+                    
+                    <a href="#readers" class="stat-item">
+                        <span class="stat-number">5K+</span>
+                        <span class="stat-label">Monthly Readers</span>
+                    </a>
+                    
+                    <a href="#experience" class="stat-item">
+                        <span class="stat-number">3</span>
+                        <span class="stat-label">Years Writing</span>
+                    </a>
+                </div>
             </div>
         </div>
         
-        <!-- Stats with floating effect -->
-        <div class="hero-stats">
-            <div class="stat">
-                <h3>42+</h3>
-                <p>Articles Published</p>
-            </div>
-            <div class="stat">
-                <h3>5K+</h3>
-                <p>Monthly Readers</p>
-            </div>
-            <div class="stat">
-                <h3>3</h3>
-                <p>Years Writing</p>
-            </div>
-        </div>
-    </div>
-</section>
+        <!-- Floating Particles -->
+        <div class="particles" id="particles"></div>
+    </section>
+
+    <!-- KEEP ALL YOUR EXISTING CONTENT BELOW -->
     <!-- Blog Section -->
     <section class="blog-section" id="blog">
         <div class="container">
@@ -165,8 +597,8 @@
             
             <div class="about-content">
                 <div class="about-image">
-    <img src="https://i.ibb.co/JWR2tqNG/Gemini-Generated-Image-mamvmlmamvmlmamv.png" alt="RJ">
-</div>
+                    <img src="https://i.ibb.co/JWR2tqNG/Gemini-Generated-Image-mamvmlmamvmlmamv.png" alt="RJ">
+                </div>
                 <div class="about-text">
                     <h3>Hey, I'm Raj</h3>
                     <p>I'm a software developer,tech researcher with a passion for exploring the intersection of technology,design and creative life. I've been researching about tech and Productivity for 2 years.</p>
@@ -270,35 +702,34 @@
             <div class="footer-content">
                 <div class="footer-logo">
                     <a href="#" class="logo">
-    <img src="https://i.ibb.co/LX9S1d4Z/Gemini-Generated-Image-oyxvr1oyxvr1oyxv-Picsart-Background-Remover.png" alt="RJSyncro Logo" class="custom-logo">
-    <span>RJSyncro</span>
+                        <img src="https://i.ibb.co/LX9S1d4Z/Gemini-Generated-Image-oyxvr1oyxvr1oyxv-Picsart-Background-Remover.png" alt="RJSyncro Logo" class="custom-logo">
+                        <span>RJSyncro</span>
                     </a>
                     <p>Syncing technology, creativity, and thoughts.</p>
                 </div>
                 
                 <div class="footer-links">
-    <h4>Quick Links</h4>
-    <ul>
-        <li><a href="#home" class="footer-link">
-            <i class="fas fa-home"></i> Home
-        </a></li>
-        
-        <li><a href="#blog" class="footer-link">
-            <i class="fas fa-wrench"></i> Tech
-        </a></li>
-        
-        <li><a href="#about" class="footer-link">
-            <i class="fas fa-info-circle"></i> About
-        </a></li>
-                       <li><a href="syncro-chat.html" class="ai-link">
-                        <img src="https://i.ibb.co/bgcqhbsW/unnamed-removebg-preview.png" 
-       alt="Syncro AI" 
-       class="footer-ai-icon">
-  Syncro AI
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home" class="footer-link">
+                            <i class="fas fa-home"></i> Home
+                        </a></li>
+                        
+                        <li><a href="#blog" class="footer-link">
+                            <i class="fas fa-wrench"></i> Tech
+                        </a></li>
+                        
+                        <li><a href="#about" class="footer-link">
+                            <i class="fas fa-info-circle"></i> About
+                        </a></li>
+                        <li><a href="syncro-chat.html" class="ai-link">
+                            <img src="https://i.ibb.co/bgcqhbsW/unnamed-removebg-preview.png" alt="Syncro AI" class="footer-ai-icon">
+                            Syncro AI
+                        </a></li>
                         <li><a href="#contact" class="footer-link">
-            <i class="fas fa-envelope"></i> Contact
-        </a></li>
-    </ul>
+                            <i class="fas fa-envelope"></i> Contact
+                        </a></li>
+                    </ul>
                 </div>
                 <div class="footer-newsletter">
                     <h4>Newsletter</h4>
@@ -311,7 +742,7 @@
             </div>
             
             <div class="footer-bottom">
-               <p>&copy; 2024 RJSyncro. All rights reserved.</p>
+                <p>&copy; 2024 RJSyncro. All rights reserved.</p>
                 <p>Designed with <i class="fas fa-heart"></i> and best service in mind.</p>
             </div>
         </div>
@@ -323,5 +754,72 @@
     </button>
 
     <script src="script.js"></script>
+    
+    <!-- Video Banner JavaScript -->
+    <script>
+        // Create floating particles
+        document.addEventListener('DOMContentLoaded', function() {
+            const particlesContainer = document.getElementById('particles');
+            if (particlesContainer) {
+                const particleCount = 30;
+                
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    
+                    // Random position
+                    const left = Math.random() * 100;
+                    const top = Math.random() * 100;
+                    const size = Math.random() * 3 + 1;
+                    const duration = Math.random() * 15 + 10;
+                    const delay = Math.random() * 5;
+                    
+                    particle.style.left = left + '%';
+                    particle.style.top = top + '%';
+                    particle.style.width = size + 'px';
+                    particle.style.height = size + 'px';
+                    particle.style.opacity = Math.random() * 0.5 + 0.3;
+                    particle.style.animation = `floatParticle ${duration}s infinite linear ${delay}s`;
+                    
+                    particlesContainer.appendChild(particle);
+                }
+            }
+            
+            // Video play assurance
+            const video = document.querySelector('.banner-video');
+            if (video) {
+                video.play().catch(e => {
+                    console.log("Autoplay prevented, showing fallback");
+                    // If autoplay is blocked, add a play button overlay
+                    const playButton = document.createElement('button');
+                    playButton.innerHTML = '<i class="fas fa-play"></i> Play Video';
+                    playButton.style.cssText = `
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        background: rgba(255, 215, 0, 0.8);
+                        color: black;
+                        border: none;
+                        padding: 15px 30px;
+                        border-radius: 50px;
+                        font-size: 1.2rem;
+                        cursor: pointer;
+                        z-index: 10;
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                    `;
+                    
+                    playButton.addEventListener('click', () => {
+                        video.play();
+                        playButton.remove();
+                    });
+                    
+                    document.querySelector('.video-banner').appendChild(playButton);
+                });
+            }
+        });
+    </script>
 </body>
-</html>
+    </html>

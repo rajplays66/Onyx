@@ -215,17 +215,21 @@
             overflow: hidden;
         }
 
-        .banner-btn-primary {
-            background: linear-gradient(135deg, #ffd700, #ffed4e);
-            color: #000000;
-            box-shadow: 0 5px 25px rgba(255, 215, 0, 0.4);
-        }
+        /* Banner Buttons */
+.banner-btn-primary {
+    background: linear-gradient(135deg, #ffd700, #ffed4e);
+    color: #000000 !important; /* FORCE BLACK TEXT */
+    box-shadow: 0 5px 25px rgba(255, 215, 0, 0.4);
+    font-weight: 700; /* Make text bold */
+    text-shadow: none !important; /* Remove any text shadows */
+}
 
-        .banner-btn-primary:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.6);
-            background: linear-gradient(135deg, #ffed4e, #fff9c4);
-        }
+.banner-btn-primary:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.6);
+    background: linear-gradient(135deg, #ffed4e, #fff9c4);
+    color: #000000 !important; /* Keep black on hover */
+}
 
         .banner-btn-secondary {
             background: rgba(255, 215, 0, 0.1);

@@ -1039,12 +1039,10 @@ custom
 
 /* 3. GLOWING HERO SECTION */
 .hero-title .highlight {
-    background: linear-gradient(90deg, #ffd700, #ffed4e, #ffd700);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    color: #ffd700; /* Gold text color */
     text-shadow: 0 0 30px rgba(255, 215, 0, 0.7);
     animation: text-glow 2s infinite alternate;
+    background: none !important; /* Force no background */
 }
 
 @keyframes text-glow {

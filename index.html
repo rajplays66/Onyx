@@ -38,6 +38,9 @@
             object-fit: cover;
             z-index: 1;
             filter: brightness(0.8);
+            playsinline: true;
+    webkit-playsinline: true;
+    -webkit-touch-callout: none;
         }
 
         /* Dark overlay for better text readability */
@@ -349,67 +352,92 @@
             }
         }
 
-        @media (max-width: 768px) {
-            .video-banner {
-                height: 90vh;
-            }
-            
-            .banner-nav {
-                padding: 20px;
-                flex-direction: column;
-                gap: 20px;
-            }
-            
-            .banner-title {
-                font-size: 2.5rem;
-            }
-            
-            .banner-subtitle {
-                font-size: 1.1rem;
-            }
-            
-            .banner-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .banner-btn {
-                width: 250px;
-                justify-content: center;
-            }
-            
-            .banner-stats {
-                gap: 20px;
-            }
-            
-            .stat-item {
-                min-width: 140px;
-                padding: 20px;
-            }
-            
-            .stat-number {
-                font-size: 2.5rem;
-            }
-        }
+ @media (max-width: 768px) {
+    .video-banner {
+        height: 90vh !important;
+        min-height: 500px !important;
+    }
+    
+    .banner-video {
+        object-fit: cover !important;
+        width: 100% !important;
+        height: 100% !important;
+        top: 0 !important;
+        left: 0 !important;
+        transform: none !important;
+    }
+    
+    .banner-nav {
+        padding: 15px !important;
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .banner-title {
+        font-size: 2rem !important;
+        padding: 0 15px;
+        margin-bottom: 15px !important;
+    }
+    
+    .banner-subtitle {
+        font-size: 1rem !important;
+        padding: 0 20px;
+        margin-bottom: 30px !important;
+    }
+    
+    .banner-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 40px !important;
+    }
+    
+    .banner-btn {
+        width: 250px !important;
+        justify-content: center;
+        padding: 14px 25px !important;
+    }
+    
+    .banner-stats {
+        gap: 15px;
+        padding: 0 10px;
+    }
+    
+    .stat-item {
+        min-width: 120px;
+        padding: 15px;
+    }
+    
+    .stat-number {
+        font-size: 2rem !important;
+    }
+    
+    .stat-label {
+        font-size: 0.8rem !important;
+    }
+ }
+        /* ====== CRITICAL MOBILE FIXES ====== */
+/* Prevent horizontal scrolling */
+html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+}
 
-        @media (max-width: 480px) {
-            .banner-title {
-                font-size: 2rem;
-            }
-            
-            .banner-subtitle {
-                font-size: 1rem;
-            }
-            
-            .stat-item {
-                min-width: 120px;
-                padding: 15px;
-            }
-            
-            .stat-number {
-                font-size: 2rem;
-            }
-        }
+/* Mobile touch improvements */
+@media (max-width: 768px) {
+    .banner-btn,
+    .stat-item,
+    .banner-menu a {
+        min-height: 44px; /* Apple's recommended touch target size */
+    }
+    
+    /* Force mobile compatibility */
+    .banner-video {
+        object-fit: cover !important;
+        object-position: center center !important;
+    }
+}
     </style>
 </head>
 <body>

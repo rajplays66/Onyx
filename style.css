@@ -1126,3 +1126,16 @@ input:focus, textarea:focus {
     border-right: 3px solid #ffd700;
     box-shadow: 0 0 10px #ffd700;
 }
+/* Add this at the end of your CSS file */
+.hero-title .highlight {
+    background: transparent !important;
+    background-color: transparent !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
+}
+
+/* Also check if there's a gradient background on the text */
+.hero-title {
+    background: none !important;
+    -webkit-text-fill-color: unset !important;
+}

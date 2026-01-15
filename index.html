@@ -215,20 +215,35 @@
             overflow: hidden;
         }
 
-        /* Banner Buttons */
+        /* Banner Buttons - Updated */
 .banner-btn-primary {
     background: linear-gradient(135deg, #ffd700, #ffed4e);
-    color: #000000 !important; /* FORCE BLACK TEXT */
+    color: #000000 !important;
     box-shadow: 0 5px 25px rgba(255, 215, 0, 0.4);
-    font-weight: 700; /* Make text bold */
-    text-shadow: none !important; /* Remove any text shadows */
+    font-weight: 700;
+    text-shadow: none !important;
+}
+
+/* MAKE ICONS BLACK TOO */
+.banner-btn-primary i,
+.banner-btn-primary .fas,
+.banner-btn-primary .fa-book-reader {
+    color: #000000 !important;
+    text-shadow: none !important;
 }
 
 .banner-btn-primary:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 30px rgba(255, 215, 0, 0.6);
     background: linear-gradient(135deg, #ffed4e, #fff9c4);
-    color: #000000 !important; /* Keep black on hover */
+    color: #000000 !important;
+}
+
+/* Keep icons black on hover too */
+.banner-btn-primary:hover i,
+.banner-btn-primary:hover .fas,
+.banner-btn-primary:hover .fa-book-reader {
+    color: #000000 !important;
 }
 
         .banner-btn-secondary {

@@ -58,107 +58,48 @@
             align-items: center;
         }
 
-        /* Navigation Bar on Banner */
-        .banner-nav {
-            position: absolute;
-            top: 0;
-            width: 100%;
-            padding: 25px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 3;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
-        }
-
-        .banner-logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            text-decoration: none;
-        }
-
-        .banner-logo-img {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #ffd700;
-            transition: all 0.3s ease;
-        }
-
-        .banner-logo:hover .banner-logo-img {
-            transform: rotate(15deg) scale(1.1);
-            box-shadow: 0 0 20px #ffd700;
-        }
-
-        .banner-logo-text {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: white;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-        }
-
-        .banner-menu {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .banner-menu a {
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            padding: 10px 20px;
-            border-radius: 30px;
-            transition: all 0.3s ease;
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .banner-menu a:hover {
-            background: rgba(255, 215, 0, 0.2);
-            color: #ffd700;
-            transform: translateY(-3px);
-            text-shadow: 0 0 10px #ffd700;
-        }
-
-        .banner-menu a i {
-            font-size: 1.2rem;
-        }
-
-        .banner-nav-icon {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #ffd700;
-        }
-
         /* Welcome Text Content */
         .banner-content {
             text-align: center;
             z-index: 3;
             padding: 0 20px;
             max-width: 900px;
-            animation: fadeInUp 1.5s ease-out;
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        /* TYPEWRITER EFFECT */
+        .typewriter-container {
+            display: inline-block;
+            position: relative;
+        }
+
+        .typewriter-text {
+            overflow: hidden;
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: 0.15em;
+            animation: typing 3.5s steps(40, end) forwards;
+        }
+
+        /* Blinking cursor that disappears */
+        .typewriter-text::after {
+            content: '|';
+            display: inline-block;
+            animation: blink-caret 0.75s step-end infinite, 
+                       hide-cursor 0.1s 3.4s forwards;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        @keyframes hide-cursor {
+            to { opacity: 0; visibility: hidden; }
         }
 
         .banner-title {
@@ -188,6 +129,18 @@
             margin-left: auto;
             margin-right: auto;
             line-height: 1.6;
+            animation: fadeInUp 1s ease-out 3.8s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Banner Buttons */
@@ -197,6 +150,7 @@
             justify-content: center;
             margin-bottom: 60px;
             flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 4s both;
         }
 
         .banner-btn {
@@ -215,36 +169,29 @@
             overflow: hidden;
         }
 
-        /* Banner Buttons - Updated */
-.banner-btn-primary {
-    background: linear-gradient(135deg, #ffd700, #ffed4e);
-    color: #000000 !important;
-    box-shadow: 0 5px 25px rgba(255, 215, 0, 0.4);
-    font-weight: 700;
-    text-shadow: none !important;
-}
+        .banner-btn-primary {
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            color: #000000 !important;
+            box-shadow: 0 5px 25px rgba(255, 215, 0, 0.4);
+            font-weight: 700;
+            text-shadow: none !important;
+        }
 
-/* MAKE ICONS BLACK TOO */
-.banner-btn-primary i,
-.banner-btn-primary .fas,
-.banner-btn-primary .fa-book-reader {
-    color: #000000 !important;
-    text-shadow: none !important;
-}
+        .banner-btn-primary i {
+            color: #000000 !important;
+            text-shadow: none !important;
+        }
 
-.banner-btn-primary:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.6);
-    background: linear-gradient(135deg, #ffed4e, #fff9c4);
-    color: #000000 !important;
-}
+        .banner-btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.6);
+            background: linear-gradient(135deg, #ffed4e, #fff9c4);
+            color: #000000 !important;
+        }
 
-/* Keep icons black on hover too */
-.banner-btn-primary:hover i,
-.banner-btn-primary:hover .fas,
-.banner-btn-primary:hover .fa-book-reader {
-    color: #000000 !important;
-}
+        .banner-btn-primary:hover i {
+            color: #000000 !important;
+        }
 
         .banner-btn-secondary {
             background: rgba(255, 215, 0, 0.1);
@@ -259,14 +206,14 @@
             box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
         }
 
-        /* Stats Section */
+        /* Stats Section with FLOATING EFFECT */
         .banner-stats {
             display: flex;
             gap: 50px;
             justify-content: center;
             flex-wrap: wrap;
             z-index: 3;
-            animation: fadeInUp 1.5s ease-out 0.5s both;
+            animation: fadeInUp 1s ease-out 4.2s both;
         }
 
         .stat-item {
@@ -281,6 +228,17 @@
             cursor: pointer;
             text-decoration: none;
             display: block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Staggered floating animation */
+        .stat-item:nth-child(1) { animation-delay: 0s; }
+        .stat-item:nth-child(2) { animation-delay: 0.5s; }
+        .stat-item:nth-child(3) { animation-delay: 1s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
         }
 
         .stat-item:hover {
@@ -288,6 +246,7 @@
             border-color: #ffd700;
             box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
             background: rgba(0, 0, 0, 0.8);
+            animation-play-state: paused;
         }
 
         .stat-number {
@@ -360,162 +319,108 @@
             .banner-subtitle {
                 font-size: 1.3rem;
             }
-            
-            .banner-menu {
-                gap: 15px;
-            }
-            
-            .banner-menu a {
-                padding: 8px 15px;
-                font-size: 1rem;
-            }
         }
 
         @media (max-width: 768px) {
-    .video-banner {
-    height: 85vh !important;
-    min-height: 500px !important;
-    padding-top: 60px; /* Space for fixed nav */
-    }
-      .banner-overlay {
-    padding-top: 20px; /* Push content down */
-      }      
-    
-    .banner-video {
-        object-fit: cover !important;
-        width: 100% !important;
-        height: 100% !important;
-        top: 0 !important;
-        left: 0 !important;
-        transform: none !important;
-        object-position: center center !important;
-    }
-    
-    .banner-nav {
-    padding: 10px 15px !important;
-    flex-direction: row !important; /* Keep logo and menu in row */
-    gap: 10px;
-    text-align: left;
-    height: auto;
-    min-height: 60px;
-    }
-    
-    /* SMALLER TITLE */
-    .banner-title {
-        font-size: 1.8rem !important;
-        padding: 0 15px;
-        margin-bottom: 10px !important;
-        line-height: 1.2 !important;
-    }
-    
-    /* SMALLER SUBTITLE */
-    .banner-subtitle {
-        font-size: 0.9rem !important;
-        padding: 0 20px;
-        margin-bottom: 25px !important;
-        line-height: 1.4 !important;
-    }
-    
-    /* FIX BUTTON SPACING */
-    .banner-buttons {
-        flex-direction: column;
-        align-items: center;
-        gap: 12px;
-        margin-bottom: 30px !important;
-        padding: 0 15px;
-    }
-    
-    .banner-btn {
-        width: 220px !important; /* Smaller width */
-        justify-content: center;
-        padding: 12px 20px !important; /* Smaller padding */
-        min-height: 42px;
-        font-size: 0.95rem !important; /* Smaller font */
-    }
-    
-    /* SMALLER STATS */
-    .banner-stats {
-        gap: 10px;
-        padding: 0 10px;
-        margin-top: 10px !important;
-    }
-    
-    .stat-item {
-        min-width: 100px;
-        padding: 12px;
-        min-height: 40px;
-    }
-    
-    .stat-number {
-        font-size: 1.7rem !important;
-        margin-bottom: 5px !important;
-    }
-    
-    .stat-label {
-        font-size: 0.7rem !important;
-        letter-spacing: 1px;
-    }
-    
-    /* SMALLER NAV ITEMS */
-    .banner-menu a {
-        min-height: 40px;
-        padding: 6px 12px;
-        font-size: 0.85rem !important;
-    }
-    
-    .banner-logo-text {
-        font-size: 1.3rem !important;
-    }
-    
-    .banner-logo-img {
-        width: 50px !important;
-        height: 50px !important;
-    }
-}
-
-/* EXTRA SMALL PHONES */
-@media (max-width: 480px) {
-    .banner-title {
-        font-size: 1.6rem !important;
-        margin-bottom: 8px !important;
-    }
-    
-    .banner-subtitle {
-        font-size: 0.85rem !important;
-        margin-bottom: 20px !important;
-    }
-    
-    .banner-btn {
-        width: 200px !important;
-        padding: 10px 18px !important;
-        font-size: 0.9rem !important;
-    }
-    
-    .stat-item {
-        min-width: 90px;
-        padding: 10px;
-    }
-    
-    .stat-number {
-        font-size: 1.5rem !important;
-    }
-    
-    .stat-label {
-        font-size: 0.65rem !important;
-    }
-    
-    .video-banner {
-        height: 80vh !important;
-        min-height: 400px !important;
-    }
-}
-
-        @media (max-width: 480px) {
+            .video-banner {
+                height: 85vh !important;
+                min-height: 500px !important;
+            }
+            
+            .banner-video {
+                object-fit: cover !important;
+                width: 100% !important;
+                height: 100% !important;
+                top: 0 !important;
+                left: 0 !important;
+                transform: none !important;
+                object-position: center center !important;
+            }
+            
             .banner-title {
-                font-size: 1.8rem !important;
+                font-size: 2rem !important;
+                padding: 0 15px;
+                margin-bottom: 15px !important;
+                line-height: 1.2 !important;
+            }
+            
+            .typewriter-text {
+                white-space: normal;
+                text-align: center;
+            }
+            
+            .typewriter-text::after {
+                display: none; /* Hide cursor on mobile for better UX */
             }
             
             .banner-subtitle {
+                font-size: 1rem !important;
+                padding: 0 20px;
+                margin-bottom: 30px !important;
+                line-height: 1.4 !important;
+            }
+            
+            .banner-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+                margin-bottom: 40px !important;
+                padding: 0 15px;
+            }
+            
+            .banner-btn {
+                width: 220px !important;
+                justify-content: center;
+                padding: 14px 25px !important;
+                min-height: 44px;
+                font-size: 0.95rem !important;
+            }
+            
+            .banner-stats {
+                gap: 15px;
+                padding: 0 10px;
+            }
+            
+            .stat-item {
+                min-width: 120px;
+                padding: 15px;
+                animation: float-mobile 4s ease-in-out infinite;
+            }
+            
+            @keyframes float-mobile {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-10px); }
+            }
+            
+            .stat-item:nth-child(1) { animation-delay: 0s; }
+            .stat-item:nth-child(2) { animation-delay: 0.3s; }
+            .stat-item:nth-child(3) { animation-delay: 0.6s; }
+            
+            .stat-number {
+                font-size: 2rem !important;
+                margin-bottom: 8px !important;
+            }
+            
+            .stat-label {
+                font-size: 0.8rem !important;
+                letter-spacing: 1.5px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .banner-title {
+                font-size: 1.7rem !important;
+                margin-bottom: 12px !important;
+            }
+            
+            .banner-subtitle {
+                font-size: 0.9rem !important;
+                margin-bottom: 25px !important;
+            }
+            
+            .banner-btn {
+                width: 200px !important;
+                padding: 12px 20px !important;
                 font-size: 0.9rem !important;
             }
             
@@ -527,6 +432,15 @@
             .stat-number {
                 font-size: 1.8rem !important;
             }
+            
+            .stat-label {
+                font-size: 0.7rem !important;
+            }
+            
+            .video-banner {
+                height: 80vh !important;
+                min-height: 450px !important;
+            }
         }
 
         /* Desktop optimization */
@@ -535,53 +449,47 @@
                 object-fit: cover !important;
             }
         }
+
         /* ====== PREVENT SECTION OVERLAPPING ====== */
-/* Ensure blog section starts AFTER video banner */
-.blog-section {
-    position: relative;
-    z-index: 5;
-    margin-top: 0 !important;
-    padding-top: 40px !important;
-}
+        .blog-section {
+            position: relative;
+            z-index: 5;
+            margin-top: 0 !important;
+            padding-top: 40px !important;
+        }
 
-/* Add spacing between sections */
-section {
-    scroll-margin-top: 80px; /* Helps with anchor links */
-}
+        section {
+            scroll-margin-top: 80px;
+        }
 
-/* Make sure video banner doesn't cover content */
-.video-banner {
-    position: relative;
-    z-index: 10;
-}
+        .video-banner {
+            position: relative;
+            z-index: 10;
+        }
 
-/* Fix for small screens */
-@media (max-width: 768px) {
-    .blog-section {
-        padding-top: 30px !important;
-    }
-    
-    /* Add more space after banner */
-    .video-banner {
-        margin-bottom: 30px;
-    }
-    
-    /* Prevent navbar from covering content */
-    .navbar {
-        position: fixed;
-        width: 100%;
-        z-index: 1000;
-    }
-    
-    /* Add padding to body for fixed navbar */
-    body {
-        padding-top: 70px;
-    }
-}
+        @media (max-width: 768px) {
+            .blog-section {
+                padding-top: 30px !important;
+            }
+            
+            .video-banner {
+                margin-bottom: 30px;
+            }
+            
+            .navbar {
+                position: fixed;
+                width: 100%;
+                z-index: 1000;
+            }
+            
+            body {
+                padding-top: 70px;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Main Navigation (Keep your original) -->
+    <!-- Main Navigation -->
     <nav class="navbar">
         <div class="container nav-container">
             <a href="#" class="logo">
@@ -606,7 +514,7 @@ section {
         </div>
     </nav>
 
-    <!-- NEW: Animated Video Banner (Replaces old hero section) -->
+    <!-- Animated Video Banner -->
     <section class="video-banner" id="home">
         <!-- Your video banner -->
         <video autoplay muted loop playsinline class="banner-video">
@@ -619,32 +527,16 @@ section {
             Your browser does not support the video tag.
         </video>
         
-        <!-- Banner Navigation -->
-        <nav class="banner-nav">
-            <a href="#" class="banner-logo">
-                <img src="https://i.ibb.co/LX9S1d4Z/Gemini-Generated-Image-oyxvr1oyxvr1oyxv-Picsart-Background-Remover.png" 
-                     alt="RJSyncro Logo" class="banner-logo-img">
-                <span class="banner-logo-text">RJSyncro</span>
-            </a>
-            
-            <ul class="banner-menu">
-                <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="#blog"><i class="fas fa-wrench"></i> Tech</a></li>
-                <li><a href="#about"><i class="fas fa-user"></i> About</a></li>
-                <li><a href="syncro-chat.html">
-                    <img src="https://i.ibb.co/bgcqhbsW/unnamed-removebg-preview.png" class="banner-nav-icon" alt="AI Icon">
-                    Syncro AI
-                </a></li>
-                <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
-            </ul>
-        </nav>
-        
         <!-- Dark overlay for better readability -->
         <div class="banner-overlay">
             <!-- Welcome Content -->
             <div class="banner-content">
                 <h1 class="banner-title">
-                    Welcome to <span class="highlight">RJSyncro</span>
+                    <div class="typewriter-container">
+                        <div class="typewriter-text">
+                            Welcome to <span class="highlight">RJSyncro</span>
+                        </div>
+                    </div>
                 </h1>
                 
                 <p class="banner-subtitle">
@@ -996,4 +888,4 @@ section {
         });
     </script>
 </body>
-    </html>
+                            </html>

@@ -6,17 +6,22 @@
 }
 
 :root {
-    /* Dark Theme Variables */
-    --bg-primary: #0f0f23;
-    --bg-secondary: #1a1a2e;
-    --bg-tertiary: #2d2d44;
-    --text-primary: #e0e0e0;
-    --text-secondary: #a0a0b0;
-    --text-muted: #6c6c8a;
-    --accent-color: #06b6d4;    /* Cyan color */
-    --accent-hover: #22d3ee;    /* Brighter cyan for hover */
-    --border-color: #3a3a5a;
-    --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    /* GLOWING GOLDEN THEME */
+    --bg-primary: #000000;          /* Pure black for maximum contrast */
+    --bg-secondary: #0a0a0a;        /* Near-black */
+    --bg-tertiary: #111111;         /* Dark charcoal */
+    --text-primary: #ffffff;        /* Pure white for readability */
+    --text-secondary: #e6e6e6;      /* Soft white */
+    --text-muted: #aaaaaa;          /* Light gray */
+    
+    /* GLOWING GOLD COLORS */
+    --accent-color: #ffd700;        /* Bright gold */
+    --accent-glow: #ffed4e;         /* Glowing gold */
+    --accent-hover: #fff9c4;        /* Light gold for hover */
+    --gold-shadow: rgba(255, 215, 0, 0.5); /* Gold shadow */
+    
+    --border-color: #222222;        /* Very dark borders */
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
     --transition: all 0.3s ease;
     --border-radius: 12px;
     --container-width: 1200px;
@@ -24,16 +29,17 @@
 
 /* Light Theme Variables */
 .light-theme {
-    --bg-primary: #f8f9fa;
+    --bg-primary: #f5f5f5;
     --bg-secondary: #ffffff;
-    --bg-tertiary: #e9ecef;
-    --text-primary: #212529;
-    --text-secondary: #495057;
-    --text-muted: #6c757d;
-    --accent-color: #0891b2;    /* Darker cyan for light theme */
-    --accent-hover: #0e7490;    /* Even darker cyan */
-    --border-color: #dee2e6;
-    --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    --bg-tertiary: #f0f0f0;
+    --text-primary: #222222;
+    --text-secondary: #444444;
+    --text-muted: #666666;
+    --accent-color: #d4af37;        /* Rich gold */
+    --accent-glow: #e6c158;
+    --accent-hover: #f8d568;
+    --gold-shadow: rgba(212, 175, 55, 0.4);
+    --border-color: #dddddd;
 }
 
 html {
@@ -976,4 +982,149 @@ custom
         margin-bottom: 20px !important;
         max-width: 95% !important;
     }
+}
+/* ====== GLOWING GOLDEN EFFECTS ====== */
+
+/* 1. GLOWING BUTTONS */
+.btn-primary {
+    background: linear-gradient(135deg, #ffd700, #ffed4e);
+    color: #000000 !important; /* Black text on gold */
+    font-weight: 700;
+    border: none;
+    box-shadow: 
+        0 0 15px var(--gold-shadow),
+        0 5px 20px rgba(255, 215, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #ffed4e, #fff9c4);
+    box-shadow: 
+        0 0 25px rgba(255, 237, 78, 0.7),
+        0 8px 25px rgba(255, 215, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    transform: translateY(-3px);
+}
+
+/* Gold pulse animation for buttons */
+@keyframes gold-pulse {
+    0%, 100% { box-shadow: 0 0 15px rgba(255, 215, 0, 0.5); }
+    50% { box-shadow: 0 0 25px rgba(255, 237, 78, 0.8); }
+}
+
+.btn-primary {
+    animation: gold-pulse 3s infinite;
+}
+
+/* 2. GLOWING NAVIGATION */
+.nav-menu a {
+    position: relative;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+    color: var(--accent-glow);
+    text-shadow: 0 0 10px rgba(255, 237, 78, 0.8);
+}
+
+.nav-menu a.active::after {
+    background: linear-gradient(90deg, transparent, #ffd700, transparent);
+    height: 3px;
+    bottom: -5px;
+    box-shadow: 0 0 10px #ffd700;
+}
+
+/* 3. GLOWING HERO SECTION */
+.hero-title .highlight {
+    background: linear-gradient(90deg, #ffd700, #ffed4e, #ffd700);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 30px rgba(255, 215, 0, 0.7);
+    animation: text-glow 2s infinite alternate;
+}
+
+@keyframes text-glow {
+    from { text-shadow: 0 0 20px rgba(255, 215, 0, 0.5); }
+    to { text-shadow: 0 0 30px rgba(255, 237, 78, 0.9); }
+}
+
+/* 4. GLOWING CARDS */
+.blog-card, .contact-item, .skill-tag {
+    border: 1px solid #222222;
+    background: var(--bg-tertiary);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.blog-card:hover, .contact-item:hover {
+    border-color: #ffd700;
+    box-shadow: 
+        0 5px 20px rgba(0, 0, 0, 0.8),
+        0 0 15px rgba(255, 215, 0, 0.3);
+}
+
+/* 5. GLOWING LINKS */
+a:not(.btn) {
+    color: var(--accent-color);
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+    transition: all 0.3s ease;
+}
+
+a:not(.btn):hover {
+    color: var(--accent-glow);
+    text-shadow: 0 0 15px rgba(255, 237, 78, 0.8);
+}
+
+/* 6. GLOWING ICONS */
+.fa-moon, .fa-laptop-code, .fa-robot, 
+.fa-book-reader, .fa-paper-plane, 
+.fa-home, .fa-sun, .fa-user, .fa-arrow-right {
+    color: var(--accent-color);
+    filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.6));
+    transition: all 0.3s ease;
+}
+
+.fa-moon:hover, .fa-laptop-code:hover, .fa-robot:hover {
+    color: var(--accent-glow);
+    filter: drop-shadow(0 0 10px rgba(255, 237, 78, 0.9));
+}
+
+/* 7. GOLD SCROLLBAR */
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #ffd700, #ffed4e);
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+/* 8. GLOWING FORM ELEMENTS */
+input:focus, textarea:focus {
+    border-color: #ffd700;
+    box-shadow: 
+        0 0 10px rgba(255, 215, 0, 0.4),
+        inset 0 0 5px rgba(255, 215, 0, 0.2);
+    outline: none;
+}
+
+/* 9. GOLD SELECTION */
+::selection {
+    background-color: rgba(255, 215, 0, 0.5);
+    color: #000000;
+    text-shadow: none;
+}
+
+/* 10. STATS GLOW */
+.hero-stats .stat h3 {
+    color: #ffd700;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+    font-weight: 800;
+}
+
+/* 11. TYPEWRITER CURSOR GLOW */
+.typewriter-text {
+    border-right: 3px solid #ffd700;
+    box-shadow: 0 0 10px #ffd700;
 }

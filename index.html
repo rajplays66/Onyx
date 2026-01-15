@@ -372,77 +372,138 @@
         }
 
         @media (max-width: 768px) {
-            .video-banner {
-                height: 90vh !important;
-                min-height: 500px !important;
-            }
-            
-            .banner-video {
-                object-fit: cover !important;
-                width: 100% !important;
-                height: 100% !important;
-                top: 0 !important;
-                left: 0 !important;
-                transform: none !important;
-                object-position: center center !important;
-            }
-            
-            .banner-nav {
-                padding: 15px !important;
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
-            }
-            
-            .banner-title {
-                font-size: 2rem !important;
-                padding: 0 15px;
-                margin-bottom: 15px !important;
-            }
-            
-            .banner-subtitle {
-                font-size: 1rem !important;
-                padding: 0 20px;
-                margin-bottom: 30px !important;
-            }
-            
-            .banner-buttons {
-                flex-direction: column;
-                align-items: center;
-                gap: 15px;
-                margin-bottom: 40px !important;
-            }
-            
-            .banner-btn {
-                width: 250px !important;
-                justify-content: center;
-                padding: 14px 25px !important;
-                min-height: 44px;
-            }
-            
-            .banner-stats {
-                gap: 15px;
-                padding: 0 10px;
-            }
-            
-            .stat-item {
-                min-width: 120px;
-                padding: 15px;
-                min-height: 44px;
-            }
-            
-            .stat-number {
-                font-size: 2rem !important;
-            }
-            
-            .stat-label {
-                font-size: 0.8rem !important;
-            }
-            
-            .banner-menu a {
-                min-height: 44px;
-            }
-        }
+    .video-banner {
+        height: 85vh !important;
+        min-height: 450px !important;
+        margin-bottom: 20px !important; /* Add space below banner */
+    }
+    
+    .banner-video {
+        object-fit: cover !important;
+        width: 100% !important;
+        height: 100% !important;
+        top: 0 !important;
+        left: 0 !important;
+        transform: none !important;
+        object-position: center center !important;
+    }
+    
+    .banner-nav {
+        padding: 12px 15px !important;
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+    
+    /* SMALLER TITLE */
+    .banner-title {
+        font-size: 1.8rem !important;
+        padding: 0 15px;
+        margin-bottom: 10px !important;
+        line-height: 1.2 !important;
+    }
+    
+    /* SMALLER SUBTITLE */
+    .banner-subtitle {
+        font-size: 0.9rem !important;
+        padding: 0 20px;
+        margin-bottom: 25px !important;
+        line-height: 1.4 !important;
+    }
+    
+    /* FIX BUTTON SPACING */
+    .banner-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 30px !important;
+        padding: 0 15px;
+    }
+    
+    .banner-btn {
+        width: 220px !important; /* Smaller width */
+        justify-content: center;
+        padding: 12px 20px !important; /* Smaller padding */
+        min-height: 42px;
+        font-size: 0.95rem !important; /* Smaller font */
+    }
+    
+    /* SMALLER STATS */
+    .banner-stats {
+        gap: 10px;
+        padding: 0 10px;
+        margin-top: 10px !important;
+    }
+    
+    .stat-item {
+        min-width: 100px;
+        padding: 12px;
+        min-height: 40px;
+    }
+    
+    .stat-number {
+        font-size: 1.7rem !important;
+        margin-bottom: 5px !important;
+    }
+    
+    .stat-label {
+        font-size: 0.7rem !important;
+        letter-spacing: 1px;
+    }
+    
+    /* SMALLER NAV ITEMS */
+    .banner-menu a {
+        min-height: 40px;
+        padding: 6px 12px;
+        font-size: 0.85rem !important;
+    }
+    
+    .banner-logo-text {
+        font-size: 1.3rem !important;
+    }
+    
+    .banner-logo-img {
+        width: 50px !important;
+        height: 50px !important;
+    }
+}
+
+/* EXTRA SMALL PHONES */
+@media (max-width: 480px) {
+    .banner-title {
+        font-size: 1.6rem !important;
+        margin-bottom: 8px !important;
+    }
+    
+    .banner-subtitle {
+        font-size: 0.85rem !important;
+        margin-bottom: 20px !important;
+    }
+    
+    .banner-btn {
+        width: 200px !important;
+        padding: 10px 18px !important;
+        font-size: 0.9rem !important;
+    }
+    
+    .stat-item {
+        min-width: 90px;
+        padding: 10px;
+    }
+    
+    .stat-number {
+        font-size: 1.5rem !important;
+    }
+    
+    .stat-label {
+        font-size: 0.65rem !important;
+    }
+    
+    .video-banner {
+        height: 80vh !important;
+        min-height: 400px !important;
+    }
+}
 
         @media (max-width: 480px) {
             .banner-title {
@@ -469,6 +530,49 @@
                 object-fit: cover !important;
             }
         }
+        /* ====== PREVENT SECTION OVERLAPPING ====== */
+/* Ensure blog section starts AFTER video banner */
+.blog-section {
+    position: relative;
+    z-index: 5;
+    margin-top: 0 !important;
+    padding-top: 40px !important;
+}
+
+/* Add spacing between sections */
+section {
+    scroll-margin-top: 80px; /* Helps with anchor links */
+}
+
+/* Make sure video banner doesn't cover content */
+.video-banner {
+    position: relative;
+    z-index: 10;
+}
+
+/* Fix for small screens */
+@media (max-width: 768px) {
+    .blog-section {
+        padding-top: 30px !important;
+    }
+    
+    /* Add more space after banner */
+    .video-banner {
+        margin-bottom: 30px;
+    }
+    
+    /* Prevent navbar from covering content */
+    .navbar {
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+    }
+    
+    /* Add padding to body for fixed navbar */
+    body {
+        padding-top: 70px;
+    }
+}
     </style>
 </head>
 <body>

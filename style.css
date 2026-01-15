@@ -197,21 +197,12 @@ h1, h2, h3, h4 {
 /* Hero Section */
 .hero {
     padding: 180px 0 100px;
-    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    background: transparent; /* <-- CHANGE THIS LINE */
     position: relative;
     overflow: hidden;
 }
 
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 40%;
-    height: 100%;
-    background: radial-gradient(circle at center, var(--accent-color) 0%, transparent 70%);
-    opacity: 0.1;
-}
+
 
 .hero-content {
     max-width: 800px;

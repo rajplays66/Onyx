@@ -486,6 +486,123 @@
                 padding-top: 70px;
             }
         }
+        /* ====== GOLDEN EXPERTISE TAGS ====== */
+
+/* Update existing skill tags to match golden theme */
+.skill-tag {
+    background: linear-gradient(135deg, #ffd700, #ffed4e) !important;
+    color: #000000 !important;
+    border: none !important;
+    padding: 10px 20px !important;
+    border-radius: 25px !important;
+    font-weight: 700 !important;
+    font-size: 0.95rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    box-shadow: 
+        0 4px 15px rgba(255, 215, 0, 0.3),
+        0 0 10px rgba(255, 215, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4) !important;
+    transition: all 0.3s ease !important;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2) !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+/* Golden pulse animation for tags */
+@keyframes tag-glow {
+    0%, 100% { 
+        box-shadow: 
+            0 4px 15px rgba(255, 215, 0, 0.3),
+            0 0 10px rgba(255, 215, 0, 0.2),
+            inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    }
+    50% { 
+        box-shadow: 
+            0 4px 20px rgba(255, 215, 0, 0.5),
+            0 0 15px rgba(255, 237, 78, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    }
+}
+
+.skill-tag {
+    animation: tag-glow 3s infinite ease-in-out !important;
+}
+
+/* Stagger the animation for multiple tags */
+.skill-tag:nth-child(1) { animation-delay: 0s; }
+.skill-tag:nth-child(2) { animation-delay: 0.2s; }
+.skill-tag:nth-child(3) { animation-delay: 0.4s; }
+.skill-tag:nth-child(4) { animation-delay: 0.6s; }
+.skill-tag:nth-child(5) { animation-delay: 0.8s; }
+.skill-tag:nth-child(6) { animation-delay: 1s; }
+
+/* Hover effects */
+.skill-tag:hover {
+    transform: translateY(-5px) scale(1.05) !important;
+    background: linear-gradient(135deg, #ffed4e, #fff9c4) !important;
+    box-shadow: 
+        0 8px 25px rgba(255, 215, 0, 0.5),
+        0 0 20px rgba(255, 237, 78, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
+    animation-play-state: paused !important;
+}
+
+/* Add golden corner accents */
+.skill-tag::before,
+.skill-tag::after {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border: 2px solid rgba(255, 215, 0, 0.5);
+    opacity: 0.3;
+}
+
+.skill-tag::before {
+    top: 5px;
+    left: 5px;
+    border-right: none;
+    border-bottom: none;
+}
+
+.skill-tag::after {
+    bottom: 5px;
+    right: 5px;
+    border-left: none;
+    border-top: none;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .skill-tag {
+        padding: 8px 16px !important;
+        font-size: 0.85rem !important;
+        letter-spacing: 0.5px !important;
+    }
+    
+    .skill-tag::before,
+    .skill-tag::after {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+/* Make the section title match too */
+.skills h4 {
+    color: #ffd700 !important;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5) !important;
+    margin-bottom: 20px !important;
+    font-size: 1.5rem !important;
+}
+
+/* Optional: Add a subtle gold border to the skills container */
+.skills {
+    padding: 20px;
+    border-radius: 15px;
+    background: rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 215, 0, 0.1);
+}
     </style>
 </head>
 <body>
@@ -754,7 +871,7 @@
                         </div>
                         
                         <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-paper-plane"></i> Send Message
+                            <i class="fas fa-paper-plane" style="color: #000000 !important;"></i> Send Message
                         </button>
                     </form>
                 </div>
@@ -802,7 +919,9 @@
                     <p>Subscribe to get the latest updates in your dm directly.</p>
                     <form class="newsletter-form">
                         <input type="email" placeholder="Your email address" required>
-                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                        <button type="submit" style="background: linear-gradient(135deg, #ffd700, #ffed4e) !important;">
+    <i class="fas fa-paper-plane" style="color: #000000 !important;"></i>
+                        </button>
                     </form>
                 </div>
             </div>

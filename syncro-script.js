@@ -174,20 +174,39 @@ async function sendToAI(message) {
 // Add message to chat
 function addMessage(text, sender) {
     const messageDiv = document.createElement('div');
-    messageDiv.className = `${sender}-message`;
+    messageDiv.className = `message ${sender}-message`;
     
-    const senderLabel = document.createElement('strong');
-    senderLabel.textContent = sender === 'user' ? 'You' : 'Syncro';
+    // Create avatar
+    const avatarDiv = document.createElement('div');
+    avatarDiv.className = 'message-avatar';
     
-    const textDiv = document.createElement('div');
-    textDiv.className = 'message-content';
+    if (sender === 'ai') {
+        avatarDiv.textContent = '🤖';
+        avatarDiv.style.background = 'linear-gradient(135deg, #ffd700 0%, #ffaa00 100%)';
+        avatarDiv.style.color = '#000000';
+    } else {
+        avatarDiv.textContent = '👤';
+        avatarDiv.style.background = 'var(--user-bubble)';
+        avatarDiv.style.color = 'white';
+    }
+    
+    // Create content
+    const contentDiv = document.createElement('div');
+    contentDiv.className = 'message-content';
     
     // Process text to make URLs clickable
     const processedText = makeLinksClickable(text);
-    textDiv.innerHTML = processedText;
+    contentDiv.innerHTML = processedText;
     
-    messageDiv.appendChild(senderLabel);
-    messageDiv.appendChild(textDiv);
+    // Assemble message
+    if (sender === 'user') {
+        messageDiv.appendChild(contentDiv);
+        messageDiv.appendChild(avatarDiv);
+    } else {
+        messageDiv.appendChild(avatarDiv);
+        messageDiv.appendChild(contentDiv);
+    }
+    
     chatMessages.appendChild(messageDiv);
     
     // Scroll to bottom
@@ -243,49 +262,58 @@ userInput.addEventListener('keypress', (e) => {
     }
 });
 
-// Add CSS for links
-const linkCSS = `
-.chat-link {
-    color: #06b6d4;
-    text-decoration: underline;
-    font-weight: 500;
-    word-break: break-all;
-    transition: color 0.2s;
-}
-
-.chat-link:hover {
-    color: #22d3ee;
-    text-decoration: none;
-}
-
-/* Mobile friendly */
-@media (max-width: 768px) {
-    .chat-link {
-        font-size: 15px;
-        padding: 1px 0;
+// Theme color updater - FIXED VERSION
+function updateThemeColors() {
+    const goldColor = getComputedStyle(document.documentElement)
+        .getPropertyValue('--gold-color').trim() || '#FFD700';
+    
+    // Update typing animation dots
+    document.querySelectorAll('.typing-indicator span').forEach(dot => {
+        dot.style.backgroundColor = goldColor;
+    });
+    
+    // Update bot avatars in messages
+    document.querySelectorAll('.bot-message .message-avatar').forEach(avatar => {
+        avatar.style.background = `linear-gradient(135deg, ${goldColor} 0%, ${goldColor}99 100%)`;
+        avatar.style.border = `2px solid ${goldColor}`;
+    });
+    
+    // Update header bot avatar
+    const headerAvatar = document.querySelector('.bot-avatar');
+    if (headerAvatar) {
+        headerAvatar.style.background = `linear-gradient(135deg, ${goldColor} 0%, ${goldColor}99 100%)`;
+        headerAvatar.style.border = `2px solid ${goldColor}`;
+    }
+    
+    // Update send button
+    if (sendButton) {
+        sendButton.style.background = `linear-gradient(135deg, ${goldColor}, ${goldColor}99)`;
     }
 }
-`;
 
-// Inject CSS
-if (!document.querySelector('#chat-link-styles')) {
-    const style = document.createElement('style');
-    style.id = 'chat-link-styles';
-    style.textContent = linkCSS;
-    document.head.appendChild(style);
-}
-
-// Initialize chat on load
+// Initialize on load
 document.addEventListener('DOMContentLoaded', () => {
+    // Focus input
     if (userInput) {
         userInput.focus();
     }
     
+    // Apply gold theme
+    updateThemeColors();
+    
+    // Add initial welcome message
     setTimeout(() => {
         if (chatMessages && chatMessages.children.length === 0) {
             addMessage("Hello! I'm Syncro, AI assistant for RJSyncro. I know everything about our 42+ tech articles, 4 premium products, and our founder Raj. How can I help you explore RJSyncro today?", 'ai');
         }
     }, 800);
+    
+    // Watch for theme changes
+    const observer = new MutationObserver(updateThemeColors);
+    observer.observe(document.documentElement, { 
+        attributes: true, 
+        attributeFilter: ['class', 'style', 'data-theme'] 
+    });
 });
 
 // Handle external link clicks
@@ -296,7 +324,7 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// EXPORT for easy updates (optional)
+// EXPORT for easy updates
 window.updateWebsiteKnowledge = function(newData) {
     Object.assign(WEBSITE_KNOWLEDGE, newData);
     console.log("Website knowledge updated!");
@@ -305,26 +333,6 @@ window.updateWebsiteKnowledge = function(newData) {
 window.getCurrentKnowledge = function() {
     return WEBSITE_KNOWLEDGE;
 };
-// Add this to your theme initialization script
-document.addEventListener('DOMContentLoaded', function() {
-    // Force update all dynamic elements
-    const updateThemeColors = () => {
-        const goldColor = getComputedStyle(document.documentElement)
-            .getPropertyValue('--gold-color').trim() || '#FFD700';
-        
-        // Update typing animation
-        document.querySelectorAll('.typing-indicator, .typing-dot').forEach(el => {
-            el.style.backgroundColor = goldColor;
-        });
-        
-        // Update chat avatars
-        document.querySelectorAll('.ai-avatar, .syncro-avatar').forEach(avatar => {
-            avatar.style.background = `linear-gradient(135deg, ${goldColor} 0%, ${goldColor}99 100%)`;
-        });
-    };
-    
-    // Run on load and when theme changes
-    updateThemeColors();
-    new MutationObserver(updateThemeColors)
-        .observe(document.documentElement, { attributes: true, attributeFilter: ['class', 'style'] });
-});
+
+// Force gold theme on all elements
+setInterval(updateThemeColors, 1000);

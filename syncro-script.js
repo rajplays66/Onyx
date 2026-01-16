@@ -1,7 +1,7 @@
 // Syncro AI Chat - Dynamic Website Knowledge
 const API_URL = '/api/chat';
 
-// DYNAMIC WEBSITE KNOWLEDGE - Easy to update!
+// WEBSITE KNOWLEDGE - Easy to update!
 const WEBSITE_KNOWLEDGE = {
     products: [
         {
@@ -71,11 +71,11 @@ const WEBSITE_KNOWLEDGE = {
     }
 };
 
-// Function to build dynamic system instruction
+// Build system instruction
 function buildSystemInstruction() {
     let instruction = `You are Syncro, AI assistant for RJSyncro.\n\n`;
     
-    // Add company info
+    // Company info
     instruction += `=== WEBSITE KNOWLEDGE ===\n\n`;
     instruction += `COMPANY: ${WEBSITE_KNOWLEDGE.companyInfo.name}\n`;
     instruction += `Tagline: "${WEBSITE_KNOWLEDGE.companyInfo.tagline}"\n`;
@@ -85,14 +85,14 @@ function buildSystemInstruction() {
     instruction += `Email: ${WEBSITE_KNOWLEDGE.companyInfo.email}\n`;
     instruction += `Stats: ${WEBSITE_KNOWLEDGE.companyInfo.stats.articles} articles, ${WEBSITE_KNOWLEDGE.companyInfo.stats.readers} readers, ${WEBSITE_KNOWLEDGE.companyInfo.stats.years}\n\n`;
     
-    // Add products
+    // Products
     instruction += `PRODUCTS OFFERED:\n`;
     WEBSITE_KNOWLEDGE.products.forEach(product => {
         instruction += `- ${product.name}: ${product.price} - ${product.description}\n`;
     });
     instruction += `\n`;
     
-    // Add blog posts
+    // Blog posts
     instruction += `BLOG CONTENT:\n`;
     instruction += `Categories: Technology, Design, Productivity\n\n`;
     instruction += `LATEST POSTS:\n`;
@@ -101,10 +101,10 @@ function buildSystemInstruction() {
     });
     instruction += `\n`;
     
-    // Add expertise
+    // Expertise
     instruction += `EXPERTISE AREAS: ${WEBSITE_KNOWLEDGE.companyInfo.expertise.join(", ")}\n\n`;
     
-    // Add role instructions
+    // Role instructions
     instruction += `=== YOUR ROLE ===\n\n`;
     instruction += `You are the official AI assistant embedded on RJSyncro website.\n`;
     instruction += `You have access to ALL website knowledge above.\n\n`;
@@ -116,21 +116,14 @@ function buildSystemInstruction() {
     instruction += `4. When asked about the founder, mention Raj (RJ) and his background\n`;
     instruction += `5. When contact is needed, share email: rajplays66@gmail.com\n`;
     instruction += `6. Emphasize trust, quality, and 5K+ reader community\n`;
-    instruction += `7. Be professional, friendly, and helpful\n\n`;
-    
-    instruction += `EXAMPLE RESPONSES:\n`;
-    instruction += `- "What products do you offer?": List all 4 products with prices\n`;
-    instruction += `- "Tell me about RJSyncro": Mention founder, stats, mission\n`;
-    instruction += `- "What tech topics do you cover?": List categories and latest posts\n`;
-    instruction += `- "How to contact?": Provide email and mention 24-hour response\n`;
+    instruction += `7. Be professional, friendly, and helpful\n`;
     
     return instruction;
 }
 
-// Create the system instruction
 const SYSTEM_INSTRUCTION = buildSystemInstruction();
 
-// Chat elements
+// DOM Elements
 const chatMessages = document.getElementById('chatMessages');
 const userInput = document.getElementById('userInput');
 const sendButton = document.getElementById('sendButton');
@@ -149,13 +142,11 @@ async function sendToAI(message) {
             })
         });
         
-        if (!response.ok) {
-            throw new Error(`API error: ${response.status}`);
-        }
+        if (!response.ok) throw new Error(`API error: ${response.status}`);
         
         const data = await response.json();
         
-        if (data.candidates && data.candidates[0] && data.candidates[0].content) {
+        if (data.candidates?.[0]?.content?.parts?.[0]?.text) {
             return data.candidates[0].content.parts[0].text;
         } else if (data.error) {
             return `API Error: ${data.error}`;
@@ -176,39 +167,37 @@ function addMessage(text, sender) {
     const messageDiv = document.createElement('div');
     messageDiv.className = `message ${sender}-message`;
     
-    // Create avatar
+    // Create avatar container
     const avatarDiv = document.createElement('div');
     avatarDiv.className = 'message-avatar';
     
     if (sender === 'ai') {
-        avatarDiv.textContent = '🤖';
-        avatarDiv.style.background = 'linear-gradient(135deg, #ffd700 0%, #ffaa00 100%)';
-        avatarDiv.style.color = '#000000';
-        avatarDiv.style.border = '2px solid #ffd700';
+        // Bot avatar with logo
+        const avatarImg = document.createElement('img');
+        avatarImg.src = 'https://i.ibb.co/JWxk510V/Gemini-Generated-Image-ag7dhdag7dhdag7d-removebg-preview.png';
+        avatarImg.alt = 'Syncro AI';
+        avatarImg.className = 'ai-logo';
+        avatarDiv.appendChild(avatarImg);
     } else {
+        // User avatar with emoji
         avatarDiv.textContent = '👤';
-        avatarDiv.style.background = 'var(--user-bubble)';
-        avatarDiv.style.color = 'white';
     }
     
     // Create content container
     const contentDiv = document.createElement('div');
     contentDiv.className = 'message-content';
     
-    // Process text (make links clickable)
+    // Make links clickable
     const processedText = makeLinksClickable(text);
-    contentDiv.innerHTML = processedText;
     
-    // Assemble based on sender
-    if (sender === 'user') {
-        // User message: content on left, avatar on right
-        messageDiv.appendChild(contentDiv);
-        messageDiv.appendChild(avatarDiv);
-    } else {
-        // AI message: avatar on left, content on right
-        messageDiv.appendChild(avatarDiv);
-        messageDiv.appendChild(contentDiv);
-    }
+    // Create paragraph for text
+    const textParagraph = document.createElement('p');
+    textParagraph.innerHTML = processedText;
+    contentDiv.appendChild(textParagraph);
+    
+    // Assemble message - FIXED ORDER
+    messageDiv.appendChild(avatarDiv);
+    messageDiv.appendChild(contentDiv);
     
     chatMessages.appendChild(messageDiv);
     
@@ -222,10 +211,7 @@ function makeLinksClickable(text) {
     
     return text.replace(urlRegex, url => {
         const cleanUrl = url.replace(/[.,;:!?)]+$/, '');
-        return `<a href="${cleanUrl}" target="_blank" rel="noopener noreferrer" 
-                class="chat-link">
-                ${cleanUrl}
-               </a>`;
+        return `<a href="${cleanUrl}" target="_blank" rel="noopener noreferrer" class="chat-link">${cleanUrl}</a>`;
     });
 }
 
@@ -244,17 +230,25 @@ function hideTyping() {
     }
 }
 
-// Send message when button clicked
+// Send message handler
 sendButton.addEventListener('click', async () => {
     const message = userInput.value.trim();
     if (!message) return;
     
-    addMessage(message, 'user');
+    // Clear input immediately
     userInput.value = '';
-    userInput.focus();
     
+    // Add user message
+    addMessage(message, 'user');
+    
+    // Get AI response
     const reply = await sendToAI(message);
+    
+    // Add AI message
     addMessage(reply, 'ai');
+    
+    // Refocus input
+    userInput.focus();
 });
 
 // Enter key support
@@ -265,35 +259,6 @@ userInput.addEventListener('keypress', (e) => {
     }
 });
 
-// Theme color updater - FIXED VERSION
-function updateThemeColors() {
-    const goldColor = getComputedStyle(document.documentElement)
-        .getPropertyValue('--gold-color').trim() || '#FFD700';
-    
-    // Update typing animation dots
-    document.querySelectorAll('.typing-indicator span').forEach(dot => {
-        dot.style.backgroundColor = goldColor;
-    });
-    
-    // Update bot avatars in messages
-    document.querySelectorAll('.bot-message .message-avatar').forEach(avatar => {
-        avatar.style.background = `linear-gradient(135deg, ${goldColor} 0%, ${goldColor}99 100%)`;
-        avatar.style.border = `2px solid ${goldColor}`;
-    });
-    
-    // Update header bot avatar
-    const headerAvatar = document.querySelector('.bot-avatar');
-    if (headerAvatar) {
-        headerAvatar.style.background = `linear-gradient(135deg, ${goldColor} 0%, ${goldColor}99 100%)`;
-        headerAvatar.style.border = `2px solid ${goldColor}`;
-    }
-    
-    // Update send button
-    if (sendButton) {
-        sendButton.style.background = `linear-gradient(135deg, ${goldColor}, ${goldColor}99)`;
-    }
-}
-
 // Initialize on load
 document.addEventListener('DOMContentLoaded', () => {
     // Focus input
@@ -301,22 +266,17 @@ document.addEventListener('DOMContentLoaded', () => {
         userInput.focus();
     }
     
-    // Apply gold theme
-    updateThemeColors();
-    
-    // Add initial welcome message
+    // Add welcome message if chat is empty
     setTimeout(() => {
-    if (chatMessages && chatMessages.children.length === 0) {
-        addMessage("Hello! I'm Syncro, AI assistant for RJSyncro. I know everything about our 42+ tech articles, 4 premium products, and our founder Raj. How can I help you explore RJSyncro today?", 'ai');
-    }
-}, 800);
-    
-    // Watch for theme changes
-    const observer = new MutationObserver(updateThemeColors);
-    observer.observe(document.documentElement, { 
-        attributes: true, 
-        attributeFilter: ['class', 'style', 'data-theme'] 
-    });
+        if (chatMessages && chatMessages.children.length === 0) {
+            addMessage(
+                "Hello! I'm Syncro, the AI assistant for RJSyncro. 👋\n\n" +
+                "You can ask me general questions, or ask about this tech web, its topics, " +
+                "products, sales, creator and more. How can I help you today?",
+                'ai'
+            );
+        }
+    }, 500);
 });
 
 // Handle external link clicks
@@ -327,7 +287,7 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// EXPORT for easy updates
+// Export for updates
 window.updateWebsiteKnowledge = function(newData) {
     Object.assign(WEBSITE_KNOWLEDGE, newData);
     console.log("Website knowledge updated!");
@@ -336,6 +296,3 @@ window.updateWebsiteKnowledge = function(newData) {
 window.getCurrentKnowledge = function() {
     return WEBSITE_KNOWLEDGE;
 };
-
-// Force gold theme on all elements
-setInterval(updateThemeColors, 1000);

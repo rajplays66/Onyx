@@ -666,7 +666,64 @@ a:focus, button:focus, input:focus {
         padding: 1px 0;
     }
 }
+/* FIX MESSAGE BUBBLES URGENT */
+.message {
+    display: flex !important;
+    align-items: flex-end !important;
+    margin-bottom: 20px !important;
+    max-width: 85% !important;
+}
 
+.user-message {
+    align-self: flex-end !important;
+    flex-direction: row-reverse !important;
+}
+
+.bot-message {
+    align-self: flex-start !important;
+}
+
+.message-avatar {
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+    margin: 0 12px !important;
+    font-size: 18px !important;
+    background: linear-gradient(135deg, #ffd700 0%, #ffaa00 100%) !important;
+    border: 2px solid #ffd700 !important;
+}
+
+.message-content {
+    padding: 15px 20px !important;
+    border-radius: 18px !important;
+    line-height: 1.5 !important;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2) !important;
+    max-width: calc(100% - 60px) !important;
+    word-wrap: break-word !important;
+}
+
+.user-message .message-content {
+    background-color: #1e3a8a !important;
+    color: white !important;
+    border-bottom-right-radius: 5px !important;
+}
+
+.bot-message .message-content {
+    background-color: #2d2d44 !important;
+    color: #e0e0e0 !important;
+    border-bottom-left-radius: 5px !important;
+}
+
+/* Force visible avatars */
+.bot-avatar {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
 /* REMOVE CONFLICTING/DUPLICATE RULES BELOW THIS LINE */
 /* ====== REMOVE THIS ENTIRE SECTION ====== */
 /* Delete everything from "MATCH MAIN WEBSITE GOLDEN THEME" to the end */

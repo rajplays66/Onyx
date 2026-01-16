@@ -92,20 +92,29 @@ a, button, .btn, input[type="submit"], input[type="button"] {
     background: linear-gradient(135deg, rgba(10, 10, 10, 0.9), rgba(20, 20, 20, 0.9)) !important; /* ADDED: Dark gradient */
 }
 
-/* Bot Avatar with Gold Gradient */
+/* Bot Avatar with Gold Gradient - UPDATED FOR LOGO */
 .bot-avatar {
-    background: linear-gradient(135deg, var(--gold-color) 0%, var(--gold-secondary) 100%) !important; /* CHANGED: Gold gradient */
+    background: linear-gradient(135deg, var(--gold-color) 0%, var(--gold-secondary) 100%) !important;
     width: 50px;
     height: 50px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.8rem;
     margin-right: 15px;
-    color: #000000; /* CHANGED: Black text for gold background */
-    border: 2px solid var(--gold-color) !important; /* ADDED: Gold border */
-    box-shadow: 0 0 15px rgba(255, 215, 0, 0.3) !important; /* ADDED: Gold glow */
+    border: 2px solid var(--gold-color) !important;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5) !important;
+    padding: 3px !important; /* Space for logo */
+    overflow: hidden; /* Ensures logo stays within circle */
+}
+
+.bot-avatar img.ai-logo {
+    width: 44px !important; /* Slightly smaller than container */
+    height: 44px !important;
+    border-radius: 50% !important;
+    object-fit: contain !important;
+    filter: drop-shadow(0 0 3px #000000) !important;
+    background: transparent !important; /* Remove any background */
 }
 
 .bot-info h2 {
@@ -176,23 +185,50 @@ a, button, .btn, input[type="submit"], input[type="button"] {
     align-self: flex-start;
 }
 
-/* Bot Avatar in Messages - GOLD */
+/* Bot Avatar in Messages - GOLD WITH LOGO */
 .bot-message .message-avatar {
-    background: linear-gradient(135deg, var(--gold-color) 0%, var(--gold-secondary) 100%) !important; /* CHANGED: Gold gradient */
-    color: #000000 !important; /* CHANGED: Black text */
-    border: 2px solid var(--gold-color) !important; /* ADDED: Gold border */
+    background: linear-gradient(135deg, var(--gold-color) 0%, var(--gold-secondary) 100%) !important;
+    border: 2px solid var(--gold-color) !important;
+    padding: 2px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+}
+
+.bot-message .message-avatar img {
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 50% !important;
+    object-fit: contain !important;
+    filter: brightness(0.95) contrast(1.1) !important;
 }
 
 .message-avatar {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    margin: 0 12px;
-    font-size: 1rem;
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+    margin: 0 12px !important;
+    overflow: hidden !important;
+}
+
+/* User avatar (no image, just emoji) */
+.user-message .message-avatar {
+    background-color: var(--user-bubble) !important;
+    color: white !important;
+    font-size: 18px !important;
+    border: 2px solid var(--user-bubble) !important;
+}
+
+/* Bot avatar (for logo image) */
+.bot-message .message-avatar {
+    background: linear-gradient(135deg, #ffd700 0%, #ffaa00 100%) !important;
+    border: 2px solid #ffd700 !important;
+    padding: 2px !important;
 }
 
 .user-message .message-avatar {

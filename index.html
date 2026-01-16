@@ -603,6 +603,36 @@
     background: rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(255, 215, 0, 0.1);
 }
+        /* ====== FIX TYPEWRITER GOLD CURSOR ====== */
+.typewriter-text::after {
+    color: #ffd700 !important;
+    text-shadow: 0 0 10px #ffd700, 0 0 20px #ffed4e !important;
+    font-weight: bold !important;
+    opacity: 1 !important;
+}
+
+/* Force cursor visibility during animation */
+@keyframes blink-caret {
+    0%, 50% { 
+        opacity: 1 !important;
+        color: #ffd700 !important;
+    }
+    51%, 100% { 
+        opacity: 0.4 !important;
+        color: #ffed4e !important;
+    }
+}
+
+/* Make sure cursor doesn't hide prematurely */
+.typewriter-text::after {
+    animation: blink-caret 0.75s step-end infinite !important;
+}
+
+/* Override any hiding styles */
+.typewriter-text::after {
+    visibility: visible !important;
+    display: inline-block !important;
+}
     </style>
 </head>
 <body>

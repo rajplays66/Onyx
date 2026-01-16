@@ -305,3 +305,26 @@ window.updateWebsiteKnowledge = function(newData) {
 window.getCurrentKnowledge = function() {
     return WEBSITE_KNOWLEDGE;
 };
+// Add this to your theme initialization script
+document.addEventListener('DOMContentLoaded', function() {
+    // Force update all dynamic elements
+    const updateThemeColors = () => {
+        const goldColor = getComputedStyle(document.documentElement)
+            .getPropertyValue('--gold-color').trim() || '#FFD700';
+        
+        // Update typing animation
+        document.querySelectorAll('.typing-indicator, .typing-dot').forEach(el => {
+            el.style.backgroundColor = goldColor;
+        });
+        
+        // Update chat avatars
+        document.querySelectorAll('.ai-avatar, .syncro-avatar').forEach(avatar => {
+            avatar.style.background = `linear-gradient(135deg, ${goldColor} 0%, ${goldColor}99 100%)`;
+        });
+    };
+    
+    // Run on load and when theme changes
+    updateThemeColors();
+    new MutationObserver(updateThemeColors)
+        .observe(document.documentElement, { attributes: true, attributeFilter: ['class', 'style'] });
+});

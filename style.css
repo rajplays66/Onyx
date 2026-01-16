@@ -887,7 +887,7 @@ custom
   height: 60px;     /* NEW SIZE */
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid #00ffff;
+  border: 3px solid #ffd700;
   margin-right: 15px;
   transition: all 0.3s ease;
 }
@@ -904,14 +904,14 @@ custom
   object-fit: cover;
   vertical-align: middle;
   margin-right: 10px;
-  border: 2px solid #00ffff;
+  border: 2px solid #ffd700;
 }
 /* Footer AI Link Styling */
 .footer-ai-icon {
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    border: 2px solid #00ffff;
+    border: 2px solid #ffd700;
     object-fit: cover;
     margin-right: 8px;
     vertical-align: middle;
@@ -921,12 +921,12 @@ custom
     display: flex;
     align-items: center;
     gap: 8px;
-    color: #00ffff;
+    color: #ffd700;
     font-weight: 600;
 }
 
 .ai-link:hover {
-    color: #ffffff;
+    color: #ffd700;
 }
 
 .ai-link:hover .footer-ai-icon {

@@ -171,7 +171,7 @@ async function sendToAI(message) {
     }
 }
 
-// Add message to chat
+// Add message to chat - FIXED VERSION
 function addMessage(text, sender) {
     const messageDiv = document.createElement('div');
     messageDiv.className = `message ${sender}-message`;
@@ -184,25 +184,28 @@ function addMessage(text, sender) {
         avatarDiv.textContent = '🤖';
         avatarDiv.style.background = 'linear-gradient(135deg, #ffd700 0%, #ffaa00 100%)';
         avatarDiv.style.color = '#000000';
+        avatarDiv.style.border = '2px solid #ffd700';
     } else {
         avatarDiv.textContent = '👤';
         avatarDiv.style.background = 'var(--user-bubble)';
         avatarDiv.style.color = 'white';
     }
     
-    // Create content
+    // Create content container
     const contentDiv = document.createElement('div');
     contentDiv.className = 'message-content';
     
-    // Process text to make URLs clickable
+    // Process text (make links clickable)
     const processedText = makeLinksClickable(text);
     contentDiv.innerHTML = processedText;
     
-    // Assemble message
+    // Assemble based on sender
     if (sender === 'user') {
+        // User message: content on left, avatar on right
         messageDiv.appendChild(contentDiv);
         messageDiv.appendChild(avatarDiv);
     } else {
+        // AI message: avatar on left, content on right
         messageDiv.appendChild(avatarDiv);
         messageDiv.appendChild(contentDiv);
     }
@@ -303,10 +306,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Add initial welcome message
     setTimeout(() => {
-        if (chatMessages && chatMessages.children.length === 0) {
-            addMessage("Hello! I'm Syncro, AI assistant for RJSyncro. I know everything about our 42+ tech articles, 4 premium products, and our founder Raj. How can I help you explore RJSyncro today?", 'ai');
-        }
-    }, 800);
+    if (chatMessages && chatMessages.children.length === 0) {
+        addMessage("Hello! I'm Syncro, AI assistant for RJSyncro. I know everything about our 42+ tech articles, 4 premium products, and our founder Raj. How can I help you explore RJSyncro today?", 'ai');
+    }
+}, 800);
     
     // Watch for theme changes
     const observer = new MutationObserver(updateThemeColors);

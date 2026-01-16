@@ -696,3 +696,51 @@ h2, .bot-info h2 {
 .submit-btn i {
     color: #000000 !important;
 }
+/* 1. Fix chat page background color */
+.rjsyncro-chat-page,
+.chat-container,
+.chat-interface {
+    background-color: var(--current-bg-color, #0a0a0f) !important;
+}
+
+/* 2. Fix Syncro logo background in chat */
+.syncro-avatar,
+.ai-avatar,
+.chat-avatar[data-ai="true"] {
+    background: linear-gradient(135deg, var(--gold-color, #FFD700) 0%, var(--gold-secondary, #FFAA00) 100%) !important;
+    border: 2px solid var(--gold-color, #FFD700) !important;
+}
+
+/* 3. Fix mobile navigation logo spacing */
+@media (max-width: 768px) {
+    .mobile-nav .logo-container {
+        padding: 0 12px !important;
+        gap: 8px !important;
+    }
+    
+    .mobile-nav .logo-text {
+        margin-left: 8px !important;
+        letter-spacing: 0.5px !important;
+    }
+    
+    .mobile-nav .ai-badge {
+        margin-left: 4px !important;
+    }
+}
+
+/* 4. Fix typing animation color */
+.typing-indicator {
+    background-color: var(--gold-color, #FFD700) !important;
+}
+
+.typing-indicator span {
+    background-color: var(--gold-color, #FFD700) !important;
+}
+
+/* 5. Ensure all interactive elements use gold */
+.chat-input:focus,
+.send-button:hover,
+.menu-button.active {
+    border-color: var(--gold-color, #FFD700) !important;
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.3) !important;
+}

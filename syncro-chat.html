@@ -4,19 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Syncro AI | RJSyncro</title>
-    <link rel="stylesheet" href="syncro-style.css">
+    <link rel="stylesheet" href="syncro-chat.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="https://i.ibb.co/JWxk510V/Gemini-Generated-Image-ag7dhdag7dhdag7d-removebg-preview.png">
+    <style>
+        /* Force gold theme */
+        body {
+            background: #000000 !important;
+            background: linear-gradient(135deg, #000000, #0a0a0a, #111111) !important;
+        }
+    </style>
 </head>
 <body>
     <div class="chat-container">
         <!-- Chat Header -->
-        <div class="bot-avatar">
-    <img src="https://i.ibb.co/JWxk510V/Gemini-Generated-Image-ag7dhdag7dhdag7d-removebg-preview.png" 
-         alt="Syncro AI" 
-         class="ai-logo">
-        </div>
+        <div class="chat-header">
+            <div class="bot-avatar">
+                <img src="https://i.ibb.co/JWxk510V/Gemini-Generated-Image-ag7dhdag7dhdag7d-removebg-preview.png" 
+                     alt="Syncro AI" 
+                     class="ai-logo">
+            </div>
             <div class="bot-info">
                 <h2>Syncro AI</h2>
                 <p class="bot-tagline">Your AI assistant for RJSyncro</p>
@@ -27,28 +35,16 @@
         </div>
 
         <!-- Chat Messages Area -->
-<div class="chat-messages" id="chatMessages">
-    <!-- Initial Bot Message -->
-    <div class="message bot-message">
-        <div class="message-avatar">
-            <img src="https://i.ibb.co/JWxk510V/Gemini-Generated-Image-ag7dhdag7dhdag7d-removebg-preview.png" 
-                 alt="Syncro" 
-                 class="ai-logo">
+        <div class="chat-messages" id="chatMessages">
+            <!-- Messages will be added by JavaScript -->
         </div>
-        <div class="message-content">
-            <p>Hello! I'm <strong>Syncro</strong>, the AI assistant for <strong>RJSyncro</strong>. 👋</p>
-            <p>You can ask me general questions, or ask about this tech web, it's topics, products, sales, creator and more. How can I help you today?</p>
-        </div>
-    </div>
-</div>
 
         <!-- Typing indicator -->
-<div class="typing-indicator" id="typingIndicator" style="display: none;">
-    <span></span>
-    <span></span>
-    <span></span>
-    <p>Syncro is typing...</p>
-</div>
+        <div class="typing-indicator" id="typingIndicator" style="display: none;">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
 
         <!-- Chat Input Area -->
         <div class="input-area">
@@ -67,57 +63,7 @@
         </div>
     </div>
 
-    <!-- Link to the JavaScript file -->
-  
+    <!-- JavaScript -->
     <script src="syncro-script.js"></script>
-<!-- LEAD CAPTURE MODAL -->
-<div id="leadModal" class="lead-modal" style="display: none;">
-    <div class="modal-content">
-        <h3><i class="fas fa-gift"></i> Get Exclusive Offers!</h3>
-        <p>Share your email for special discounts and updates.</p>
-        <input type="email" id="leadEmail" placeholder="your@email.com">
-        <input type="text" id="leadName" placeholder="Your Name (Optional)">
-        <div class="modal-buttons">
-            <button onclick="submitLead()" class="submit-btn">
-                <i class="fas fa-paper-plane"></i> Get Offers
-            </button>
-            <button onclick="closeLeadModal()" class="cancel-btn">
-                Maybe Later
-            </button>
-        </div>
-    </div>
-</div>
-
-<script>
-// Lead capture logic
-function showLeadModal() {
-    // Show after 3rd message or when product mentioned
-    document.getElementById('leadModal').style.display = 'flex';
-}
-
-function submitLead() {
-    const email = document.getElementById('leadEmail').value;
-    const name = document.getElementById('leadName').value;
-    
-    // Send to your backend (simplified)
-    fetch('/api/leads', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ email, name, source: 'chat' })
-    });
-    
-    alert('Thank you! You\'ll hear from us soon.');
-    closeLeadModal();
-}
-
-function closeLeadModal() {
-    document.getElementById('leadModal').style.display = 'none';
-}
-
-// Auto-show modal logic (add to your sendToAI function)
-let messageCount = 0;
-// In sendToAI, add: messageCount++;
-// if (messageCount === 3) showLeadModal();
-</script>
 </body>
 </html>

@@ -453,3 +453,63 @@ a:focus, button:focus, input:focus {
 * {
     -webkit-tap-highlight-color: transparent;
         }
+/* FIX FOR MESSAGE LAYOUT */
+.message {
+    display: flex !important;
+    align-items: flex-start !important;
+    margin-bottom: 15px !important;
+    max-width: 85% !important;
+}
+
+.user-message {
+    align-self: flex-end !important;
+    flex-direction: row-reverse !important;
+}
+
+.bot-message {
+    align-self: flex-start !important;
+}
+
+/* Fix avatar alignment */
+.message-avatar {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+    margin-top: 5px !important;
+}
+
+.user-message .message-avatar {
+    margin-left: 10px !important;
+    margin-right: 0 !important;
+}
+
+.bot-message .message-avatar {
+    margin-right: 10px !important;
+    margin-left: 0 !important;
+}
+
+/* Fix message content to prevent vertical stacking */
+.message-content {
+    display: inline-block !important;
+    max-width: 100% !important;
+    word-wrap: break-word !important;
+    white-space: normal !important;
+}
+
+/* Fix for short messages */
+.message-content p {
+    display: inline !important;
+    margin: 0 !important;
+}
+
+/* Ensure text doesn't overflow */
+.message-content {
+    overflow-wrap: break-word !important;
+    word-break: break-word !important;
+}
+
+/* Fix input clearing */
+#userInput {
+    min-height: auto !important;
+}

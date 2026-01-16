@@ -1,17 +1,15 @@
-/* Syncro AI Chatbot Styles */
+/* Syncro AI Chatbot - Gold Theme */
 :root {
-    --bg-primary: #0f0f23;
+    --bg-primary: #0a0a0f;
     --bg-secondary: #1a1a2e;
     --bg-tertiary: #2d2d44;
     --text-primary: #e0e0e0;
     --text-secondary: #a0a0b0;
-    --accent-color: #ffd700; /* CHANGED: Cyan to Gold */
-    --accent-hover: #ffed4e; /* CHANGED: Gold hover */
-    --border-color: #3a3a5a;
+    --gold-color: #ffd700;
+    --gold-secondary: #ffaa00;
     --user-bubble: #1e3a8a;
     --bot-bubble: var(--bg-tertiary);
-    --gold-color: #ffd700; /* ADDED: Gold variable */
-    --gold-secondary: #ffaa00; /* ADDED: Secondary gold */
+    --border-color: #3a3a5a;
 }
 
 * {
@@ -22,7 +20,8 @@
 }
 
 body {
-    background-color: var(--bg-primary);
+    background: #000000;
+    background: linear-gradient(135deg, #000000, #0a0a0a, #111111);
     color: var(--text-primary);
     display: flex;
     justify-content: center;
@@ -30,45 +29,9 @@ body {
     min-height: 100vh;
     padding: 20px;
     overflow-x: hidden;
-    max-width: 100%;
 }
 
-/* TOUCH-FRIENDLY LINKS & BUTTONS */
-a, button, .btn, input[type="submit"], input[type="button"] {
-    min-height: 44px;
-    min-width: 44px;
-    padding: 12px 16px;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-}
-
-/* ===== REMOVE PRODUCT BUTTONS FROM CHAT ===== */
-.chat-container .product-buttons,
-.chat-messages .product-buttons,
-.chat-container .product-sidebar,
-.chat-messages .product-sidebar,
-.chat-container .product-item,
-.chat-messages .product-item {
-    display: none !important;
-}
-
-.chat-container .buy-button,
-.chat-container .demo-button,
-.chat-container .contact-btn,
-.chat-messages .buy-button,
-.chat-messages .demo-button,
-.chat-messages .contact-btn {
-    display: none !important;
-}
-
-.chat-sidebar,
-.product-sidebar-right,
-.right-side-buttons {
-    display: none !important;
-}
-
-/* Main Chat Container - NOW FULL SIZE */
+/* Main Chat Container */
 .chat-container {
     width: 100%;
     max-width: 800px;
@@ -84,17 +47,16 @@ a, button, .btn, input[type="submit"], input[type="button"] {
 
 /* Chat Header */
 .chat-header {
-    background-color: var(--bg-tertiary);
+    background: linear-gradient(135deg, rgba(10, 10, 10, 0.9), rgba(20, 20, 20, 0.9));
     padding: 20px;
     display: flex;
     align-items: center;
-    border-bottom: 2px solid var(--gold-color); /* CHANGED: Gold border */
-    background: linear-gradient(135deg, rgba(10, 10, 10, 0.9), rgba(20, 20, 20, 0.9)) !important; /* ADDED: Dark gradient */
+    border-bottom: 2px solid var(--gold-color);
 }
 
-/* Bot Avatar with Gold Gradient - UPDATED FOR LOGO */
+/* Bot Avatar with Logo */
 .bot-avatar {
-    background: linear-gradient(135deg, var(--gold-color) 0%, var(--gold-secondary) 100%) !important;
+    background: linear-gradient(135deg, var(--gold-color) 0%, var(--gold-secondary) 100%);
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -102,26 +64,25 @@ a, button, .btn, input[type="submit"], input[type="button"] {
     align-items: center;
     justify-content: center;
     margin-right: 15px;
-    border: 2px solid var(--gold-color) !important;
-    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5) !important;
-    padding: 3px !important; /* Space for logo */
-    overflow: hidden; /* Ensures logo stays within circle */
+    border: 2px solid var(--gold-color);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+    padding: 3px;
+    overflow: hidden;
 }
 
 .bot-avatar img.ai-logo {
-    width: 44px !important; /* Slightly smaller than container */
-    height: 44px !important;
-    border-radius: 50% !important;
-    object-fit: contain !important;
-    filter: drop-shadow(0 0 3px #000000) !important;
-    background: transparent !important; /* Remove any background */
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: contain;
+    filter: drop-shadow(0 0 3px #000000);
 }
 
 .bot-info h2 {
     font-size: 1.5rem;
     margin-bottom: 5px;
-    color: var(--gold-color) !important; /* CHANGED: Gold color */
-    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5); /* ADDED: Gold glow */
+    color: var(--gold-color);
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
 }
 
 .bot-tagline {
@@ -129,17 +90,18 @@ a, button, .btn, input[type="submit"], input[type="button"] {
     font-size: 0.9rem;
 }
 
+/* Home Button */
 .home-button {
     margin-left: auto;
-    background: linear-gradient(135deg, var(--gold-color), var(--gold-secondary)) !important; /* CHANGED: Gold gradient */
-    color: #000000 !important; /* CHANGED: Black text */
+    background: linear-gradient(135deg, var(--gold-color), var(--gold-secondary));
+    color: #000000;
     font-size: 1.3rem;
     text-decoration: none;
     padding: 10px;
     border-radius: 50%;
     transition: all 0.3s ease;
-    border: none !important;
-    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3) !important;
+    border: none;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -148,11 +110,11 @@ a, button, .btn, input[type="submit"], input[type="button"] {
 }
 
 .home-button:hover {
-    background: linear-gradient(135deg, #ffed4e, #fff9c4) !important;
-    transform: translateY(-2px) !important;
+    background: linear-gradient(135deg, #ffed4e, #fff9c4);
+    transform: translateY(-2px);
 }
 
-/* Chat Messages Area - NOW FULL WIDTH */
+/* Chat Messages Area */
 .chat-messages {
     flex: 1;
     padding: 25px;
@@ -160,8 +122,7 @@ a, button, .btn, input[type="submit"], input[type="button"] {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    width: 100%;
-    background-color: var(--bg-secondary) !important; /* ADDED: Ensure background */
+    background-color: var(--bg-secondary);
 }
 
 /* Message Bubbles */
@@ -185,63 +146,50 @@ a, button, .btn, input[type="submit"], input[type="button"] {
     align-self: flex-start;
 }
 
-/* Bot Avatar in Messages - GOLD WITH LOGO */
-.bot-message .message-avatar {
-    background: linear-gradient(135deg, var(--gold-color) 0%, var(--gold-secondary) 100%) !important;
-    border: 2px solid var(--gold-color) !important;
-    padding: 2px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    overflow: hidden !important;
-}
-
-.bot-message .message-avatar img {
-    width: 32px !important;
-    height: 32px !important;
-    border-radius: 50% !important;
-    object-fit: contain !important;
-    filter: brightness(0.95) contrast(1.1) !important;
-}
-
+/* Message Avatars */
 .message-avatar {
-    width: 36px !important;
-    height: 36px !important;
-    border-radius: 50% !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    flex-shrink: 0 !important;
-    margin: 0 12px !important;
-    overflow: hidden !important;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin: 0 12px;
+    overflow: hidden;
 }
 
-/* User avatar (no image, just emoji) */
-.user-message .message-avatar {
-    background-color: var(--user-bubble) !important;
-    color: white !important;
-    font-size: 18px !important;
-    border: 2px solid var(--user-bubble) !important;
-}
-
-/* Bot avatar (for logo image) */
-.bot-message .message-avatar {
-    background: linear-gradient(135deg, #ffd700 0%, #ffaa00 100%) !important;
-    border: 2px solid #ffd700 !important;
-    padding: 2px !important;
-}
-
+/* User Avatar */
 .user-message .message-avatar {
     background-color: var(--user-bubble);
     color: white;
+    font-size: 18px;
+    border: 2px solid var(--user-bubble);
 }
 
+/* Bot Avatar with Logo */
+.bot-message .message-avatar {
+    background: linear-gradient(135deg, var(--gold-color) 0%, var(--gold-secondary) 100%);
+    border: 2px solid var(--gold-color);
+    padding: 2px;
+}
+
+.bot-message .message-avatar img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: contain;
+    filter: brightness(0.95) contrast(1.1);
+}
+
+/* Message Content */
 .message-content {
     padding: 15px 20px;
     border-radius: 18px;
     line-height: 1.5;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-    width: 100%;
+    max-width: calc(100% - 60px);
+    word-wrap: break-word;
 }
 
 .user-message .message-content {
@@ -259,16 +207,16 @@ a, button, .btn, input[type="submit"], input[type="button"] {
 .message-content p {
     margin-bottom: 8px;
 }
+
 .message-content p:last-child {
     margin-bottom: 0;
 }
 
-/* Typing Indicator - GOLD */
+/* Typing Indicator */
 .typing-indicator {
     display: none;
     padding: 15px 25px;
     align-self: flex-start;
-    background-color: transparent !important; /* CHANGED: Transparent background */
 }
 
 .typing-indicator span {
@@ -276,7 +224,7 @@ a, button, .btn, input[type="submit"], input[type="button"] {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: var(--gold-color) !important; /* CHANGED: Gold dots */
+    background-color: var(--gold-color);
     margin: 0 3px;
     opacity: 0.7;
     animation: typingBounce 1.4s infinite ease-in-out both;
@@ -297,7 +245,6 @@ a, button, .btn, input[type="submit"], input[type="button"] {
     display: flex;
     gap: 15px;
     background-color: var(--bg-tertiary);
-    width: 100%;
 }
 
 .input-area input {
@@ -309,34 +256,34 @@ a, button, .btn, input[type="submit"], input[type="button"] {
     color: var(--text-primary);
     font-size: 1rem;
     outline: none;
-    transition: border-color 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .input-area input:focus {
-    border-color: var(--gold-color) !important; /* CHANGED: Gold focus */
-    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3) !important; /* ADDED: Gold glow */
+    border-color: var(--gold-color);
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
 }
 
-/* Send Button - GOLD */
+/* Send Button */
 .input-area button {
-    background: linear-gradient(135deg, var(--gold-color), var(--gold-secondary)) !important; /* CHANGED: Gold gradient */
-    color: #000000 !important; /* CHANGED: Black text */
-    border: none !important;
+    background: linear-gradient(135deg, var(--gold-color), var(--gold-secondary));
+    color: #000000;
+    border: none;
     width: 55px;
     height: 55px;
     border-radius: 50%;
     font-size: 1.2rem;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3) !important;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .input-area button:hover {
-    background: linear-gradient(135deg, #ffed4e, #fff9c4) !important;
-    transform: translateY(-2px) !important;
+    background: linear-gradient(135deg, #ffed4e, #fff9c4);
+    transform: translateY(-2px);
 }
 
 .input-area button:active {
@@ -351,182 +298,58 @@ a, button, .btn, input[type="submit"], input[type="button"] {
     font-size: 0.8rem;
     background-color: var(--bg-tertiary);
     border-top: 1px solid var(--border-color);
-    width: 100%;
 }
 
 /* Scrollbar */
 .chat-messages::-webkit-scrollbar {
     width: 8px;
 }
+
 .chat-messages::-webkit-scrollbar-track {
     background: var(--bg-secondary);
 }
+
 .chat-messages::-webkit-scrollbar-thumb {
-    background: var(--gold-color) !important; /* CHANGED: Gold scrollbar */
+    background: var(--gold-color);
     border-radius: 4px;
 }
 
-/* Custom AI Logo Styles */
-.ai-logo, .message-avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid var(--gold-color) !important; /* CHANGED: Gold border */
-    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3) !important; /* CHANGED: Gold glow */
+/* Chat Links */
+.chat-link {
+    color: var(--gold-color);
+    text-decoration: underline;
+    font-weight: 500;
+    word-break: break-all;
+    transition: color 0.2s;
 }
 
-/* Header logo (larger) */
-.bot-avatar .ai-logo {
-    width: 70px;
-    height: 70px;
-    border-width: 3px;
+.chat-link:hover {
+    color: #ffed4e;
+    text-decoration: none;
 }
 
-/* Remove old icon styles if they exist */
-.bot-avatar i,
-.message-sender i {
-    display: none;
-}
-
-/* Make sure image displays properly */
-.bot-avatar,
-.message-sender {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.ai-logo:hover, .message-avatar:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5) !important; /* CHANGED: Gold glow */
-    transition: all 0.3s ease;
-}
-
-/* ===== LEAD CAPTURE MODAL ===== */
-.lead-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    animation: fadeIn 0.3s ease;
-}
-
-.modal-content {
-    background: rgba(20, 20, 20, 0.95) !important; /* CHANGED: Dark background */
-    padding: 30px;
-    border-radius: 15px;
-    width: 90%;
-    max-width: 400px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    animation: slideUp 0.4s ease;
-    border: 2px solid var(--gold-color) !important; /* ADDED: Gold border */
-}
-
-.modal-content h3 {
-    color: var(--gold-color) !important; /* CHANGED: Gold text */
-    margin-bottom: 10px;
-    font-size: 22px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.modal-content p {
-    color: var(--text-secondary);
-    margin-bottom: 20px;
-    line-height: 1.5;
-}
-
-.modal-content input {
-    width: 100%;
-    padding: 14px 16px;
-    margin: 10px 0;
-    border: 2px solid var(--border-color);
-    border-radius: 8px;
-    font-size: 16px;
-    transition: all 0.3s;
-    box-sizing: border-box;
-    min-height: 48px;
-    background-color: var(--bg-secondary);
-    color: var(--text-primary);
-}
-
-.modal-content input:focus {
-    outline: none;
-    border-color: var(--gold-color) !important; /* CHANGED: Gold focus */
-    box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1) !important; /* CHANGED: Gold glow */
-}
-
-.modal-buttons {
-    display: flex;
-    gap: 15px;
-    margin-top: 25px;
-}
-
-.submit-btn, .cancel-btn {
-    flex: 1;
-    padding: 15px;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
-    min-height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    font-size: 16px;
-}
-
-.submit-btn {
-    background: linear-gradient(135deg, var(--gold-color), var(--gold-secondary)) !important; /* CHANGED: Gold gradient */
-    color: #000000 !important; /* CHANGED: Black text */
-}
-
-.cancel-btn {
-    background: var(--bg-tertiary);
-    color: var(--text-secondary);
-    border: 2px solid var(--border-color);
-}
-
-.submit-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 7px 20px rgba(255, 215, 0, 0.3) !important; /* CHANGED: Gold glow */
-}
-
-.cancel-btn:hover {
-    background: var(--border-color);
-}
-
-/* ===== MOBILE RESPONSIVE FIXES ===== */
+/* Mobile Responsive */
 @media (max-width: 768px) {
-    /* Chat container */
     .chat-container {
         width: 100%;
         height: 100vh;
-        margin: 0;
         border-radius: 0;
         max-width: 100%;
     }
     
-    /* Header */
     .chat-header {
         padding: 15px;
-        flex-wrap: wrap;
     }
     
     .bot-avatar {
         width: 40px;
         height: 40px;
-        font-size: 1.4rem;
         margin-right: 12px;
+    }
+    
+    .bot-avatar img.ai-logo {
+        width: 34px;
+        height: 34px;
     }
     
     .bot-info h2 {
@@ -537,38 +360,37 @@ a, button, .btn, input[type="submit"], input[type="button"] {
         font-size: 0.8rem;
     }
     
-    /* Chat messages */
     .chat-messages {
         padding: 15px;
         gap: 15px;
     }
     
-    /* Message bubbles */
     .message {
         max-width: 90%;
         font-size: 14px;
-        line-height: 1.4;
     }
     
     .message-avatar {
         width: 32px;
         height: 32px;
-        font-size: 0.9rem;
         margin: 0 8px;
+    }
+    
+    .bot-message .message-avatar img {
+        width: 28px;
+        height: 28px;
     }
     
     .message-content {
         padding: 12px 15px;
     }
     
-    /* Input area */
     .input-area {
         padding: 15px;
         gap: 10px;
     }
     
     .input-area input {
-        font-size: 16px;
         padding: 14px 16px;
         min-height: 48px;
     }
@@ -577,47 +399,19 @@ a, button, .btn, input[type="submit"], input[type="button"] {
         width: 48px;
         height: 48px;
         font-size: 1.1rem;
-        min-width: 48px;
-        min-height: 48px;
     }
     
-    /* Modal */
-    .modal-content {
-        width: 95%;
-        max-width: 95%;
-        padding: 20px;
-        margin: 10px;
-    }
-    
-    .modal-buttons {
-        flex-direction: column;
-        gap: 10px;
-    }
-    
-    .submit-btn, .cancel-btn {
-        width: 100%;
-    }
-    
-    /* Footer */
     .chat-footer {
         font-size: 12px;
         padding: 12px;
     }
     
-    /* Make all links and buttons touch-friendly */
-    a, button, .btn, .contact-link {
-        display: block;
-        width: 100%;
-        padding: 14px 20px;
-        margin: 8px 0;
-        text-align: center;
-        box-sizing: border-box;
-        min-height: 48px;
-        min-width: 48px;
+    .chat-link {
+        font-size: 15px;
     }
 }
 
-/* Extra small phones */
+/* Small phones */
 @media (max-width: 480px) {
     .message {
         max-width: 95%;
@@ -632,22 +426,9 @@ a, button, .btn, input[type="submit"], input[type="button"] {
         font-size: 15px;
         padding: 12px 14px;
     }
-    
-    .modal-content {
-        padding: 15px;
-    }
-    
-    .modal-content h3 {
-        font-size: 18px;
-    }
-    
-    .modal-content input {
-        padding: 12px 14px;
-        font-size: 15px;
-    }
 }
 
-/* Fix for mobile keyboard */
+/* Mobile keyboard fix */
 @media (max-height: 600px) {
     .chat-messages {
         max-height: 60vh;
@@ -663,104 +444,12 @@ a, button, .btn, input[type="submit"], input[type="button"] {
     }
 }
 
-/* Prevent text overflow on small screens */
-.message-content, .modal-content p {
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    hyphens: auto;
-}
-
-/* Ensure links are always visible and tap-friendly */
+/* Accessibility */
 a:focus, button:focus, input:focus {
-    outline: 2px solid var(--gold-color) !important; /* CHANGED: Gold focus */
+    outline: 2px solid var(--gold-color);
     outline-offset: 2px;
 }
 
-/* Smooth transitions */
 * {
     -webkit-tap-highlight-color: transparent;
-}
-
-/* Chat links */
-.chat-link {
-    color: var(--gold-color) !important; /* CHANGED: Gold links */
-    text-decoration: underline;
-    font-weight: 500;
-    word-break: break-all;
-    transition: color 0.2s;
-}
-
-.chat-link:hover {
-    color: #ffed4e !important;
-    text-decoration: none;
-}
-
-/* Mobile friendly links */
-@media (max-width: 768px) {
-    .chat-link {
-        font-size: 15px;
-        padding: 1px 0;
-    }
-}
-/* FIX MESSAGE BUBBLES URGENT */
-.message {
-    display: flex !important;
-    align-items: flex-end !important;
-    margin-bottom: 20px !important;
-    max-width: 85% !important;
-}
-
-.user-message {
-    align-self: flex-end !important;
-    flex-direction: row-reverse !important;
-}
-
-.bot-message {
-    align-self: flex-start !important;
-}
-
-.message-avatar {
-    width: 36px !important;
-    height: 36px !important;
-    border-radius: 50% !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    flex-shrink: 0 !important;
-    margin: 0 12px !important;
-    font-size: 18px !important;
-    background: linear-gradient(135deg, #ffd700 0%, #ffaa00 100%) !important;
-    border: 2px solid #ffd700 !important;
-}
-
-.message-content {
-    padding: 15px 20px !important;
-    border-radius: 18px !important;
-    line-height: 1.5 !important;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2) !important;
-    max-width: calc(100% - 60px) !important;
-    word-wrap: break-word !important;
-}
-
-.user-message .message-content {
-    background-color: #1e3a8a !important;
-    color: white !important;
-    border-bottom-right-radius: 5px !important;
-}
-
-.bot-message .message-content {
-    background-color: #2d2d44 !important;
-    color: #e0e0e0 !important;
-    border-bottom-left-radius: 5px !important;
-}
-
-/* Force visible avatars */
-.bot-avatar {
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-}
-/* REMOVE CONFLICTING/DUPLICATE RULES BELOW THIS LINE */
-/* ====== REMOVE THIS ENTIRE SECTION ====== */
-/* Delete everything from "MATCH MAIN WEBSITE GOLDEN THEME" to the end */
-/* ======================================= */
+        }

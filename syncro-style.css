@@ -618,3 +618,81 @@ a:focus, button:focus, input:focus {
 * {
     -webkit-tap-highlight-color: transparent;
     }
+/* ====== MATCH MAIN WEBSITE GOLDEN THEME ====== */
+
+/* 1. Background matching main site */
+body {
+    background: #000000 !important;
+    background: linear-gradient(135deg, #000000, #0a0a0a, #111111) !important;
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+}
+
+/* 2. Golden borders for AI logo */
+.ai-logo,
+.message-avatar {
+    border: 3px solid #ffd700 !important; /* Gold border */
+    border-radius: 50% !important;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5) !important;
+}
+
+/* 3. Golden accents */
+.chat-header {
+    border-bottom: 2px solid #ffd700 !important;
+    background: rgba(10, 10, 10, 0.9) !important;
+}
+
+.home-button {
+    background: linear-gradient(135deg, #ffd700, #ffed4e) !important;
+    color: #000000 !important;
+    border: none !important;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3) !important;
+}
+
+.home-button:hover {
+    background: linear-gradient(135deg, #ffed4e, #fff9c4) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* 4. Golden buttons */
+#sendButton {
+    background: linear-gradient(135deg, #ffd700, #ffed4e) !important;
+    color: #000000 !important;
+    border: none !important;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3) !important;
+}
+
+#sendButton:hover {
+    background: linear-gradient(135deg, #ffed4e, #fff9c4) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* 5. Golden text for headers */
+h2, .bot-info h2 {
+    color: #ffd700 !important;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5) !important;
+}
+
+/* 6. Golden input focus */
+#userInput:focus {
+    border-color: #ffd700 !important;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3) !important;
+    outline: none !important;
+}
+
+/* 7. Modal golden styling */
+.lead-modal .modal-content {
+    background: rgba(20, 20, 20, 0.95) !important;
+    border: 2px solid #ffd700 !important;
+}
+
+.submit-btn {
+    background: linear-gradient(135deg, #ffd700, #ffed4e) !important;
+    color: #000000 !important;
+}
+
+/* 8. Make paper plane icons black */
+#sendButton i,
+.submit-btn i {
+    color: #000000 !important;
+}

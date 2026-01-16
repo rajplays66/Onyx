@@ -513,3 +513,41 @@ a:focus, button:focus, input:focus {
 #userInput {
     min-height: auto !important;
 }
+/* FIX LOGO DISPLAY */
+.bot-avatar {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: visible !important;
+}
+
+.bot-avatar img.ai-logo {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 44px !important;
+    height: 44px !important;
+    object-fit: contain !important;
+    background: transparent !important;
+}
+
+/* Force logo to show */
+.ai-logo {
+    display: block !important;
+    max-width: 100% !important;
+    height: auto !important;
+}
+
+/* Fix message avatars */
+.bot-message .message-avatar {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.bot-message .message-avatar img {
+    display: block !important;
+    width: 32px !important;
+    height: 32px !important;
+    object-fit: contain !important;
+}

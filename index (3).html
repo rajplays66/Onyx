@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="description" content="Welcome to RJSyncro - The best tech company's web">
+<meta name="keywords" content="tech products,Trust,tech platform,technology, RJSyncro">
+<meta name="author" content="Your Name">
+<meta property="og:title" content="RJSyncro | Best Tech Blog">
+<meta property="og:description" content="Welcome to the best tech web - Exploring technology and innovation.">
+<meta property="og:image" content="https://your-logo-url.png">
+<title>RJSyncro | Welcome to the best tech web</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<!-- Video Banner CSS -->
+<style>
+/* ====== ANIMATED VIDEO BANNER ====== */
+.video-banner {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+}
+
+.banner-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: cover;
+    z-index: 1;
+    filter: brightness(0.8);
+}
+
+.banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner-content {
+    text-align: center;
+    z-index: 3;
+    padding: 0 20px;
+    max-width: 900px;
+}
+
+.typewriter-container {
+    display: inline-block;
+    position: relative;
+}
+
+.typewriter-text {
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: 0.15em;
+    animation: typing 3.5s steps(40, end) forwards;
+}
+
+.typewriter-text::after {
+    content: '|';
+    display: inline-block;
+    animation: blink-caret 0.75s step-end infinite,
+               hide-cursor 0.1s 3.4s forwards;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+@keyframes hide-cursor {
+    to { opacity: 0; visibility: hidden; }
+}
+
+.banner-title {
+    font-size: 4rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    color: white;
+    text-shadow: 0 0 30px rgba(255, 215, 0, 0.7);
+}
+
+.banner-title .highlight {
+    color: #ffd700;
+    text-shadow: 0 0 40px #ffd700;
+    animation: textGlow 2s infinite alternate;
+}
+
+@keyframes textGlow {
+    from { text-shadow: 0 0 30px #ffd700; }
+    to   { text-shadow: 0 0 50px #ffed4e; }
+}
+
+.banner-subtitle {
+    font-size: 1.5rem;
+    color: #e6e6e6;
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+    animation: fadeInUp 1s ease-out 3.8s both;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.banner-buttons {
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+    animation: fadeInUp 1s ease-out 4s both;
+}
+
+.banner-btn {
+    padding: 16px 35px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.banner-btn-primary {
+    background: linear-gradient(135deg, #ffd700, #ffed4e);
+    color: #000000 !important;
+    box-shadow: 0 5px 25px rgba(255, 215, 0, 0.4);
+    font-weight: 700;
+    text-shadow: none !important;
+}
+
+.banner-btn-primary i { color: #000000 !important; text-shadow: none !important; }
+
+.banner-btn-primary:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.6);
+    background: linear-gradient(135deg, #ffed4e, #fff9c4);
+    color: #000000 !important;
+}
+
+.banner-btn-secondary {
+    background: rgba(255, 215, 0, 0.1);
+    color: #ffd700;
+    border: 2px solid #ffd700;
+    backdrop-filter: blur(10px);
+}
+
+.banner-btn-secondary:hover {
+    background: rgba(255, 215, 0, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
+}
+
+.banner-stats {
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+    flex-wrap: wrap;
+    z-index: 3;
+    animation: fadeInUp 1s ease-out 4.2s both;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 25px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    min-width: 180px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    animation: float 3s ease-in-out infinite;
+}
+
+.stat-item:nth-child(1) { animation-delay: 0s; }
+.stat-item:nth-child(2) { animation-delay: 0.5s; }
+.stat-item:nth-child(3) { animation-delay: 1s; }
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-15px); }
+}
+
+.stat-item:hover {
+    transform: translateY(-10px);
+    border-color: #ffd700;
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+    background: rgba(0, 0, 0, 0.8);
+    animation-play-state: paused;
+}
+
+.stat-number {
+    display: block;
+    font-size: 3rem;
+    font-weight: 800;
+    color: #ffd700;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+}
+
+.stat-item:hover .stat-number { color: #ffed4e; transform: scale(1.1); }
+
+.stat-label {
+    font-size: 1rem;
+    color: #e6e6e6;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+.particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0; left: 0;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    width: 3px; height: 3px;
+    background: #ffd700;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #ffd700;
+    animation: floatParticle 20s infinite linear;
+}
+
+@keyframes floatParticle {
+    0%   { transform: translateY(100vh) translateX(0); opacity: 0; }
+    10%  { opacity: 0.8; }
+    90%  { opacity: 0.8; }
+    100% { transform: translateY(-100px) translateX(100px); opacity: 0; }
+}
+
+@media (max-width: 992px) {
+    .banner-title { font-size: 3rem; }
+    .banner-subtitle { font-size: 1.3rem; }
+}
+
+@media (max-width: 768px) {
+    .video-banner { height: 85vh !important; min-height: 500px !important; }
+    .banner-video {
+        object-fit: cover !important; width: 100% !important;
+        height: 100% !important; top: 0 !important; left: 0 !important;
+        transform: none !important; object-position: center center !important;
+    }
+    .banner-title { font-size: 2rem !important; padding: 0 15px; margin-bottom: 15px !important; line-height: 1.2 !important; }
+    .typewriter-text { white-space: normal; text-align: center; }
+    .typewriter-text::after { display: none; }
+    .banner-subtitle { font-size: 1rem !important; padding: 0 20px; margin-bottom: 30px !important; line-height: 1.4 !important; }
+    .banner-buttons { flex-direction: column; align-items: center; gap: 15px; margin-bottom: 40px !important; padding: 0 15px; }
+    .banner-btn { width: 220px !important; justify-content: center; padding: 14px 25px !important; min-height: 44px; font-size: 0.95rem !important; }
+    .banner-stats { gap: 15px; padding: 0 10px; }
+    .stat-item { min-width: 120px; padding: 15px; }
+    .stat-number { font-size: 2rem !important; margin-bottom: 8px !important; }
+    .stat-label { font-size: 0.8rem !important; letter-spacing: 1.5px; }
+}
+
+@media (max-width: 480px) {
+    .banner-title { font-size: 1.7rem !important; margin-bottom: 12px !important; }
+    .banner-subtitle { font-size: 0.9rem !important; margin-bottom: 25px !important; }
+    .banner-btn { width: 200px !important; padding: 12px 20px !important; font-size: 0.9rem !important; }
+    .stat-item { min-width: 100px; padding: 12px; }
+    .stat-number { font-size: 1.8rem !important; }
+    .stat-label { font-size: 0.7rem !important; }
+    .video-banner { height: 80vh !important; min-height: 450px !important; }
+}
+
+@media (min-width: 769px) {
+    .banner-video { object-fit: cover !important; }
+}
+
+.blog-section { position: relative; z-index: 5; margin-top: 0 !important; padding-top: 40px !important; }
+section { scroll-margin-top: 80px; }
+.video-banner { position: relative; z-index: 10; }
+
+@media (max-width: 768px) {
+    .blog-section { padding-top: 30px !important; }
+    .video-banner { margin-bottom: 30px; }
+    .navbar { position: fixed; width: 100%; z-index: 1000; }
+    body { padding-top: 70px; }
+}
+
+/* ====== GOLDEN EXPERTISE TAGS ====== */
+.skill-tag {
+    background: linear-gradient(135deg, #ffd700, #ffed4e) !important;
+    color: #000000 !important;
+    border: none !important;
+    padding: 10px 20px !important;
+    border-radius: 25px !important;
+    font-weight: 700 !important;
+    font-size: 0.95rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3), 0 0 10px rgba(255, 215, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.4) !important;
+    transition: all 0.3s ease !important;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2) !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+@keyframes tag-glow {
+    0%, 100% { box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3), 0 0 10px rgba(255, 215, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.4); }
+    50%       { box-shadow: 0 4px 20px rgba(255, 215, 0, 0.5), 0 0 15px rgba(255, 237, 78, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.6); }
+}
+
+.skill-tag { animation: tag-glow 3s infinite ease-in-out !important; }
+.skill-tag:nth-child(1) { animation-delay: 0s; }
+.skill-tag:nth-child(2) { animation-delay: 0.2s; }
+.skill-tag:nth-child(3) { animation-delay: 0.4s; }
+.skill-tag:nth-child(4) { animation-delay: 0.6s; }
+.skill-tag:nth-child(5) { animation-delay: 0.8s; }
+.skill-tag:nth-child(6) { animation-delay: 1s; }
+
+.skill-tag:hover {
+    transform: translateY(-5px) scale(1.05) !important;
+    background: linear-gradient(135deg, #ffed4e, #fff9c4) !important;
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5), 0 0 20px rgba(255, 237, 78, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
+    animation-play-state: paused !important;
+}
+
+.skill-tag::before, .skill-tag::after {
+    content: '';
+    position: absolute;
+    width: 15px; height: 15px;
+    border: 2px solid rgba(255, 215, 0, 0.5);
+    opacity: 0.3;
+}
+
+.skill-tag::before { top: 5px; left: 5px; border-right: none; border-bottom: none; }
+.skill-tag::after  { bottom: 5px; right: 5px; border-left: none; border-top: none; }
+
+@media (max-width: 768px) {
+    .skill-tag { padding: 8px 16px !important; font-size: 0.85rem !important; letter-spacing: 0.5px !important; }
+    .skill-tag::before, .skill-tag::after { width: 10px; height: 10px; }
+}
+
+.skills h4 { color: #ffd700 !important; text-shadow: 0 0 15px rgba(255, 215, 0, 0.5) !important; margin-bottom: 20px !important; font-size: 1.5rem !important; }
+.skills { padding: 20px; border-radius: 15px; background: rgba(0, 0, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.1); }
+</style>
+</head>
+<body>
+
+<!-- ====================================================
+     FEATURE 1: LOADING SCREEN
+     ==================================================== -->
+<div id="rj-loader">
+    <div class="loader-logo">
+        <img src="https://i.ibb.co/9J7T4Qm/Gemini-Generated-Image-be5yfgbe5yfgbe5y-removebg-preview.png" alt="RJSyncro Logo">
+        <span>RJSYNCRO</span>
+    </div>
+    <p class="loader-tagline">Syncing ideas across technology</p>
+    <div class="loader-bar-track">
+        <div class="loader-bar-fill"></div>
+    </div>
+</div>
+
+<!-- ====================================================
+     FEATURE 2: SCROLL PROGRESS BAR
+     ==================================================== -->
+<div id="scroll-progress"></div>
+
+<!-- Main Navigation -->
+<nav class="navbar">
+    <div class="container nav-container">
+        <a href="#" class="logo">
+            <img src="https://i.ibb.co/9J7T4Qm/Gemini-Generated-Image-be5yfgbe5yfgbe5y-removebg-preview.png" alt="RJSyncro Logo" class="custom-logo">
+            <span>RJSyncro</span>
+        </a>
+        <button class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#blog">Tech</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="syncro-chat.html" id="chatLink">
+                <img src="https://i.ibb.co/JWxk510V/Gemini-Generated-Image-ag7dhdag7dhdag7d-removebg-preview.png" class="nav-icon" alt="Syncro AI">Syncro AI
+            </a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li class="theme-toggle-container">
+                <button id="themeToggle" class="theme-toggle">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Animated Video Banner -->
+<section class="video-banner" id="home">
+
+    <!-- ✅ FIXED: script.js loads the right video (desktop or mobile) -->
+    <video autoplay muted loop playsinline class="banner-video">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Dark overlay -->
+    <div class="banner-overlay">
+        <div class="banner-content">
+            <h1 class="banner-title">
+                <div class="typewriter-container">
+                    <div class="typewriter-text">
+                        Welcome to <span class="highlight">RJSyncro</span>
+                    </div>
+                </div>
+            </h1>
+            <p class="banner-subtitle">
+                Syncing ideas across technology, design, and creative life.
+            </p>
+            <div class="banner-buttons">
+                <a href="#blog" class="banner-btn banner-btn-primary">
+                    <i class="fas fa-book-reader"></i> Read Tech Updates
+                </a>
+                <a href="#contact" class="banner-btn banner-btn-secondary">
+                    <i class="fas fa-paper-plane"></i> Get in Touch
+                </a>
+            </div>
+            <div class="banner-stats">
+                <a href="#articles" class="stat-item">
+                    <span class="stat-number">42+</span>
+                    <span class="stat-label">Articles Published</span>
+                </a>
+                <a href="#readers" class="stat-item">
+                    <span class="stat-number">5K+</span>
+                    <span class="stat-label">Monthly Readers</span>
+                </a>
+                <a href="#experience" class="stat-item">
+                    <span class="stat-number">3</span>
+                    <span class="stat-label">Years Writing</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Particles -->
+    <div class="particles" id="particles"></div>
+</section>
+
+<!-- Blog Section -->
+<section class="blog-section" id="blog">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Latest <span class="highlight">Posts</span></h2>
+            <p class="section-subtitle">Dive into new tech experiences</p>
+        </div>
+        <div class="blog-grid">
+            <article class="blog-card">
+                <div class="blog-card-header">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Coding" class="blog-image">
+                    <div class="blog-category">Technology</div>
+                </div>
+                <div class="blog-card-body">
+                    <h3 class="blog-title">The Future of Web Development in 2024</h3>
+                    <p class="blog-excerpt">Exploring the latest trends, frameworks, and tools that are shaping the future of web development...</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar"></i> March 15, 2024</span>
+                        <span><i class="far fa-clock"></i> 5 min read</span>
+                    </div>
+                </div>
+                <div class="blog-card-footer">
+                    <a href="#" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-card-header">
+                    <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Design" class="blog-image">
+                    <div class="blog-category">Design</div>
+                </div>
+                <div class="blog-card-body">
+                    <h3 class="blog-title">Dark UI Patterns That Actually Work</h3>
+                    <p class="blog-excerpt">A deep dive into effective dark mode user interface patterns that enhance user experience...</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar"></i> March 10, 2024</span>
+                        <span><i class="far fa-clock"></i> 7 min read</span>
+                    </div>
+                </div>
+                <div class="blog-card-footer">
+                    <a href="#" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-card-header">
+                    <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Productivity" class="blog-image">
+                    <div class="blog-category">Productivity</div>
+                </div>
+                <div class="blog-card-body">
+                    <h3 class="blog-title">Minimalism in Digital Workspaces</h3>
+                    <p class="blog-excerpt">How adopting minimalist principles can dramatically boost your digital productivity...</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar"></i> March 5, 2024</span>
+                        <span><i class="far fa-clock"></i> 6 min read</span>
+                    </div>
+                </div>
+                <div class="blog-card-footer">
+                    <a href="#" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+        </div>
+        <div class="view-all-container">
+            <a href="#" class="btn btn-secondary">
+                <i class="fas fa-list"></i> View More
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="about-section" id="about">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">About <span class="highlight">Me</span></h2>
+            <p class="section-subtitle">The person behind the surface</p>
+        </div>
+        <div class="about-content">
+            <div class="about-image">
+                <img src="https://i.ibb.co/JWR2tqNG/Gemini-Generated-Image-mamvmlmamvmlmamv.png" alt="RJ">
+            </div>
+            <div class="about-text">
+                <h3>Hey, I'm Raj</h3>
+                <p>I'm a software developer, tech researcher with a passion for exploring the intersection of technology, design and creative life. I've been researching about tech and Productivity for 2 years.</p>
+                <p>RJSyncro is one of the most trusty tech web where you can explore some techs that will match your vibe, synchronizes your time and keeps you two steps forward from others.</p>
+                <p>RJSyncro is now becoming one of the most demanding platform winning the heart and trust of peoples. Hope you will enjoy our products.</p>
+                <div class="skills">
+                    <h4>RJSyncro's Expertise:</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Trust</span>
+                        <span class="skill-tag">AI & Future</span>
+                        <span class="skill-tag">Productivity</span>
+                        <span class="skill-tag">Technology</span>
+                        <span class="skill-tag">Customer's comfort</span>
+                        <span class="skill-tag">Fashionable Gadgets</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact-section" id="contact">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Get In <span class="highlight">Touch</span></h2>
+            <p class="section-subtitle">Have reviews to share? We'd love to hear from you</p>
+        </div>
+        <div class="contact-content">
+            <div class="contact-info">
+                <h3>Contact Information</h3>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div><h4>Email</h4><p>rjsyncro@gmail.com</p></div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div><h4>Location</h4><p>Chittagong, Bangladesh</p></div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-clock"></i>
+                    <div><h4>Response Time</h4><p>Usually within 24 hours</p></div>
+                </div>
+                <div class="social-links">
+                    <h4>Follow Me</h4>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" placeholder="What is this regarding?" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" rows="5" placeholder="Your message here..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane" style="color: #000000 !important;"></i> Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <a href="#" class="logo">
+                    <img src="https://i.ibb.co/9J7T4Qm/Gemini-Generated-Image-be5yfgbe5yfgbe5y-removebg-preview.png" alt="RJSyncro Logo" class="custom-logo">
+                    <span>RJSyncro</span>
+                </a>
+                <p>Syncing technology, creativity, and thoughts.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home" class="footer-link"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#blog" class="footer-link"><i class="fas fa-wrench"></i> Tech</a></li>
+                    <li><a href="#about" class="footer-link"><i class="fas fa-info-circle"></i> About</a></li>
+                    <li><a href="syncro-chat.html" class="ai-link">
+                        <img src="https://i.ibb.co/JWxk510V/Gemini-Generated-Image-ag7dhdag7dhdag7d-removebg-preview.png" alt="Syncro AI" class="footer-ai-icon">
+                        Syncro AI
+                    </a></li>
+                    <li><a href="#contact" class="footer-link"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-newsletter">
+                <h4>Newsletter</h4>
+                <p>Subscribe to get the latest updates in your dm directly.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit" style="background: linear-gradient(135deg, #ffd700, #ffed4e) !important;">
+                        <i class="fas fa-paper-plane" style="color: #000000 !important;"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 RJSyncro. All rights reserved.</p>
+            <p>Designed with <i class="fas fa-heart"></i> and best service in mind.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Back to Top Button -->
+<button id="backToTop" class="back-to-top">
+    <i class="fas fa-chevron-up"></i>
+</button>
+
+<script src="script.js"></script>
+
+</body>
+</html>

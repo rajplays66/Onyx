@@ -1,0 +1,2620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Syncro AI | Onyx</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="https://i.ibb.co/jkd25QLn/Picsart-26-04-23-10-12-58-459.png">
+<style id="syncro-styles">
+/* =========================================================
+   SYNCRO AI — Gold & Black Theme  |  Onyx
+   ========================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+    --gold:        #ffd700;
+    --gold-light:  #ffed4e;
+    --gold-dim:    #b8960c;
+    --gold-glow:   rgba(255,215,0,0.35);
+    --black:       #000000;
+    --black-1:     #0a0a0a;
+    --black-2:     #111111;
+    --black-3:     #1a1a1a;
+    --black-4:     #222222;
+    --black-5:     #2d2d2d;
+    --border:      rgba(255,215,0,0.18);
+    --text:        #e8e0c8;
+    --text-dim:    #9a9080;
+    --user-bubble: #1a3a6e;
+    --radius:      20px;
+    --vh:          1vh;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--black);
+    color: var(--text);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    min-height: calc(var(--vh, 1vh) * 100);
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+/* =========================================================
+   SPLASH ANIMATION
+   ========================================================= */
+#syncro-splash {
+    position: fixed; inset: 0; z-index: 9999;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; background: var(--black);
+}
+.splash-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(255,215,0,0.08) 0%, transparent 70%),
+                linear-gradient(180deg, #0a0800 0%, #000000 100%);
+}
+.splash-particles { position: absolute; inset: 0; pointer-events: none; }
+.splash-particle {
+    position: absolute; border-radius: 50%;
+    background: var(--gold); box-shadow: 0 0 6px var(--gold);
+    animation: splashFloat linear infinite;
+}
+@keyframes splashFloat {
+    0%   { transform: translateY(60px) scale(0); opacity: 0; }
+    15%  { opacity: 1; transform: translateY(0) scale(1); }
+    85%  { opacity: 0.7; }
+    100% { transform: translateY(-80px) scale(0.5); opacity: 0; }
+}
+.splash-content {
+    position: relative; display: flex; flex-direction: column;
+    align-items: center;
+    animation: splashContentIn 0.8s cubic-bezier(0.22,1,0.36,1) both;
+}
+@keyframes splashContentIn {
+    from { opacity: 0; transform: translateY(30px) scale(0.92); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.splash-ring {
+    position: absolute; border-radius: 50%;
+    border: 1.5px solid transparent;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+}
+.splash-ring-1 { width:140px;height:140px; border-color: rgba(255,215,0,0.5) transparent transparent transparent; animation: ringRotate 2s linear infinite; }
+.splash-ring-2 { width:170px;height:170px; border-color: transparent rgba(255,215,0,0.3) transparent transparent; animation: ringRotate 3s linear infinite reverse; }
+.splash-ring-3 { width:200px;height:200px; border-color: rgba(255,215,0,0.15) transparent rgba(255,215,0,0.15) transparent; animation: ringRotate 4s linear infinite; }
+@keyframes ringRotate { to { transform: translate(-50%,-50%) rotate(360deg); } }
+.splash-logo-wrap {
+    width:100px;height:100px; border-radius:50%; overflow:hidden;
+    border:2.5px solid var(--gold); box-shadow:0 0 30px var(--gold-glow),0 0 60px rgba(255,215,0,0.15);
+    animation: splashLogoPulse 2s ease-in-out infinite; margin-bottom:24px;
+}
+@keyframes splashLogoPulse {
+    0%,100% { box-shadow:0 0 30px var(--gold-glow),0 0 60px rgba(255,215,0,0.15); }
+    50%      { box-shadow:0 0 45px rgba(255,215,0,0.6),0 0 80px rgba(255,215,0,0.25); }
+}
+.splash-logo { width:100%;height:100%;object-fit:cover; }
+.splash-title {
+    font-family:'Cinzel',serif; font-size:2.8rem; font-weight:700;
+    color:#fff; letter-spacing:0.12em; margin-bottom:10px;
+    text-shadow:0 0 40px rgba(255,215,0,0.4);
+}
+.splash-title span { color:var(--gold); text-shadow:0 0 20px var(--gold),0 0 40px rgba(255,215,0,0.5); }
+.splash-subtitle { font-size:0.9rem;color:var(--text-dim);letter-spacing:0.08em;margin-bottom:30px;text-align:center; }
+.splash-loader { width:200px;height:3px;background:rgba(255,215,0,0.15);border-radius:4px;overflow:hidden; }
+.splash-loader-bar { height:100%;background:linear-gradient(90deg,var(--gold-dim),var(--gold),var(--gold-light));border-radius:4px;animation:splashLoad 2.6s cubic-bezier(0.4,0,0.2,1) forwards; }
+@keyframes splashLoad { 0%{width:0%} 30%{width:40%} 70%{width:75%} 100%{width:100%} }
+#syncro-splash.splash-exit { animation:splashFadeOut 0.8s cubic-bezier(0.4,0,1,1) forwards; }
+@keyframes splashFadeOut { 0%{opacity:1;transform:scale(1)} 100%{opacity:0;transform:scale(1.06);pointer-events:none} }
+
+/* =========================================================
+   CHAT APP
+   ========================================================= */
+#chatApp {
+    opacity:0; transform:translateY(16px) scale(0.98);
+    transition:opacity 0.7s ease,transform 0.7s ease; pointer-events:none;
+}
+#chatApp.chat-enter { opacity:1;transform:translateY(0) scale(1);pointer-events:all; }
+
+.chat-container {
+    width:100%; max-width:820px;
+    height:88vh; height:calc(var(--vh,1vh)*88);
+    background:var(--black-2); border-radius:var(--radius);
+    border:1px solid var(--border); display:flex; flex-direction:column;
+    overflow:hidden; position:relative;
+    box-shadow:0 0 0 1px rgba(255,215,0,0.06),0 20px 60px rgba(0,0,0,0.7),0 0 80px rgba(255,215,0,0.04);
+}
+.chat-container::before {
+    content:''; position:absolute; top:0;left:10%;right:10%;height:1px;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent); opacity:0.6;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+.chat-header {
+    background:linear-gradient(135deg,var(--black-1) 0%,var(--black-3) 100%);
+    padding:16px 20px; display:flex; align-items:center; gap:12px;
+    border-bottom:1px solid var(--border); position:relative; flex-shrink:0;
+}
+.chat-header::after {
+    content:''; position:absolute; bottom:0;left:0;right:0;height:2px;
+    background:linear-gradient(90deg,transparent,var(--gold) 30%,var(--gold-light) 50%,var(--gold) 70%,transparent);
+}
+.bot-avatar {
+    width:50px;height:50px;min-width:50px; border-radius:50%;
+    border:2px solid var(--gold); box-shadow:0 0 16px var(--gold-glow);
+    overflow:hidden; background:#1a1400; padding:2px;
+    animation:avatarPulse 3s ease-in-out infinite;
+}
+@keyframes avatarPulse {
+    0%,100%{box-shadow:0 0 16px var(--gold-glow);}
+    50%{box-shadow:0 0 28px rgba(255,215,0,0.5);}
+}
+.bot-avatar img.ai-logo { width:100%;height:100%;object-fit:contain;border-radius:50%;display:block; }
+.bot-info { flex:1; }
+.bot-info h2 { font-family:'Cinzel',serif;font-size:1.3rem;font-weight:700;color:#fff;letter-spacing:0.05em; }
+.gold-text { color:var(--gold);text-shadow:0 0 12px rgba(255,215,0,0.5); }
+.bot-tagline { font-size:0.78rem;color:var(--text-dim);display:flex;align-items:center;gap:6px;margin-top:3px; }
+.status-dot {
+    display:inline-block;width:7px;height:7px;background:#4ade80;
+    border-radius:50%;box-shadow:0 0 6px #4ade80;animation:statusBlink 2.5s ease-in-out infinite;
+}
+@keyframes statusBlink { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
+
+.header-actions { display:flex;align-items:center;gap:8px; }
+
+.header-btn {
+    background:rgba(255,215,0,0.08); color:var(--text-dim);
+    width:36px;height:36px; border-radius:50%; border:1px solid var(--border);
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer; font-size:0.85rem; transition:all 0.3s ease;
+}
+.header-btn:hover { background:rgba(255,80,80,0.15);color:#ff6b6b;border-color:rgba(255,80,80,0.3); }
+
+.home-button {
+    background:linear-gradient(135deg,var(--gold),var(--gold-dim));
+    color:var(--black); width:40px;height:40px; border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:1rem; text-decoration:none; border:none;
+    transition:all 0.3s ease; box-shadow:0 4px 16px var(--gold-glow);
+}
+.home-button:hover { background:linear-gradient(135deg,var(--gold-light),var(--gold));transform:translateY(-2px);box-shadow:0 6px 22px rgba(255,215,0,0.5); }
+
+/* =========================================================
+   MESSAGES AREA
+   ========================================================= */
+.chat-messages {
+    flex:1; padding:20px 16px; overflow-y:auto;
+    display:flex; flex-direction:column; gap:16px;
+    background:radial-gradient(ellipse 80% 40% at 50% 0%,rgba(255,215,0,0.03) 0%,transparent 60%),var(--black-2);
+    scroll-behavior:smooth;
+}
+.chat-messages::-webkit-scrollbar{width:5px;}
+.chat-messages::-webkit-scrollbar-track{background:transparent;}
+.chat-messages::-webkit-scrollbar-thumb{background:rgba(255,215,0,0.25);border-radius:3px;}
+
+/* =========================================================
+   MESSAGE BUBBLES
+   ========================================================= */
+.message {
+    display:flex; align-items:flex-start;
+    max-width:88%; animation:msgIn 0.35s cubic-bezier(0.22,1,0.36,1) both;
+}
+@keyframes msgIn { from{opacity:0;transform:translateY(12px) scale(0.97);} to{opacity:1;transform:translateY(0) scale(1);} }
+
+.user-message { align-self:flex-end; flex-direction:row-reverse; }
+.bot-message  { align-self:flex-start; }
+
+.message-wrap { display:flex;flex-direction:column;max-width:calc(100% - 54px); }
+
+.message-content {
+    padding:13px 16px; border-radius:16px;
+    line-height:1.65; font-size:0.93rem;
+    word-wrap:break-word; overflow-wrap:break-word;
+}
+.user-message .message-content {
+    background:linear-gradient(135deg,#1a3a6e,#1e4080); color:#dce8ff;
+    border-bottom-right-radius:4px; border:1px solid rgba(100,150,255,0.2);
+}
+.bot-message .message-content {
+    background:var(--black-3); color:var(--text);
+    border-bottom-left-radius:4px; border:1px solid var(--border);
+    box-shadow:0 2px 12px rgba(0,0,0,0.3);
+}
+
+/* Markdown styles inside messages */
+.message-content p { margin-bottom:8px; }
+.message-content p:last-child { margin-bottom:0; }
+.message-content strong { color:var(--gold-light);font-weight:600; }
+.user-message .message-content strong { color:#b8d4ff; }
+.message-content em { font-style:italic;opacity:0.85; }
+.message-content ul { padding-left:18px;margin:6px 0; }
+.message-content li { margin-bottom:4px;list-style:disc; }
+.message-content code.inline-code {
+    background:rgba(255,215,0,0.12); color:var(--gold-light);
+    padding:2px 6px; border-radius:4px; font-size:0.85em; font-family:monospace;
+}
+.message-content pre {
+    background:rgba(0,0,0,0.5); border:1px solid var(--border);
+    border-radius:8px; padding:12px; overflow-x:auto; margin:8px 0;
+}
+.message-content pre code { font-family:monospace;font-size:0.85em;color:#a8e6cf; }
+
+/* Timestamps */
+.message-time {
+    font-size:0.68rem; color:var(--text-dim);
+    margin-top:4px; padding:0 4px;
+}
+.user-message .message-time { text-align:right; }
+.bot-message  .message-time { text-align:left; }
+
+/* =========================================================
+   QUICK REPLIES
+   ========================================================= */
+.quick-replies {
+    display:flex; flex-wrap:wrap; gap:8px;
+    padding:4px 0 8px 54px;
+    animation:msgIn 0.4s ease both;
+}
+.quick-reply-btn {
+    background:rgba(255,215,0,0.06); color:var(--gold);
+    border:1px solid rgba(255,215,0,0.3); border-radius:20px;
+    padding:7px 14px; font-size:0.82rem; cursor:pointer;
+    font-family:'Inter',sans-serif; transition:all 0.25s ease;
+    white-space:nowrap;
+}
+.quick-reply-btn:hover {
+    background:rgba(255,215,0,0.15); border-color:var(--gold);
+    transform:translateY(-2px); box-shadow:0 4px 12px rgba(255,215,0,0.2);
+}
+
+/* =========================================================
+   SCROLL TO BOTTOM BUTTON
+   ========================================================= */
+.scroll-bottom-btn {
+    position:absolute; bottom:130px; right:16px;
+    width:36px;height:36px; border-radius:50%;
+    background:linear-gradient(135deg,var(--gold),var(--gold-dim));
+    color:var(--black); border:none; cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    font-size:0.9rem; box-shadow:0 4px 14px var(--gold-glow);
+    transition:opacity 0.3s ease,transform 0.3s ease; z-index:10;
+}
+.scroll-bottom-btn:hover { transform:translateY(-2px); }
+
+/* =========================================================
+   TYPING INDICATOR
+   ========================================================= */
+.typing-indicator {
+    display:flex; align-items:center; gap:10px;
+    padding:10px 16px; flex-shrink:0;
+}
+.typing-avatar {
+    width:38px;height:38px;min-width:38px; border-radius:50%; overflow:hidden;
+    border:2px solid var(--gold); box-shadow:0 0 10px var(--gold-glow);
+    background:#1a1400; padding:2px;
+    display:flex;align-items:center;justify-content:center;
+}
+.typing-dots {
+    background:var(--black-3); border:1px solid var(--border);
+    border-radius:14px; padding:9px 14px;
+    display:flex; gap:5px; align-items:center;
+}
+.typing-dots span {
+    display:inline-block;width:7px;height:7px;border-radius:50%;
+    background:var(--gold);animation:typingBounce 1.3s infinite ease-in-out both;
+}
+.typing-dots span:nth-child(1){animation-delay:-0.32s;}
+.typing-dots span:nth-child(2){animation-delay:-0.16s;}
+@keyframes typingBounce { 0%,80%,100%{transform:scale(0.4);opacity:0.4;} 40%{transform:scale(1);opacity:1;} }
+.typing-label { font-size:0.75rem;color:var(--text-dim);font-style:italic; }
+
+/* =========================================================
+   INPUT AREA
+   ========================================================= */
+.input-area {
+    padding:14px 16px; border-top:1px solid var(--border);
+    display:flex; gap:10px; background:var(--black-1);
+    align-items:center; flex-shrink:0;
+}
+.input-area input {
+    flex:1; padding:13px 18px; border:1.5px solid rgba(255,215,0,0.2);
+    border-radius:50px; background:var(--black-3); color:var(--text);
+    font-size:0.95rem; outline:none; transition:all 0.3s ease;
+    font-family:'Inter',sans-serif;
+}
+.input-area input::placeholder { color:var(--text-dim); }
+.input-area input:focus { border-color:var(--gold);box-shadow:0 0 0 3px rgba(255,215,0,0.1);background:var(--black-4); }
+.input-area input:disabled { opacity:0.5;cursor:not-allowed; }
+.input-area button {
+    background:linear-gradient(135deg,var(--gold),var(--gold-dim)); color:var(--black);
+    border:none; width:48px;height:48px;min-width:48px; border-radius:50%;
+    font-size:1rem; cursor:pointer; transition:all 0.3s ease;
+    box-shadow:0 4px 16px var(--gold-glow);
+    display:flex;align-items:center;justify-content:center;
+}
+.input-area button:hover { background:linear-gradient(135deg,var(--gold-light),var(--gold));transform:translateY(-2px) scale(1.05);box-shadow:0 6px 22px rgba(255,215,0,0.5); }
+.input-area button:active { transform:scale(0.97); }
+.input-area button:disabled { opacity:0.5;cursor:not-allowed;transform:none; }
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.chat-footer {
+    padding:8px 16px; text-align:center; color:var(--text-dim);
+    font-size:0.72rem; background:var(--black-1);
+    border-top:1px solid rgba(255,215,0,0.08); letter-spacing:0.02em; flex-shrink:0;
+}
+.chat-footer i { color:var(--gold);margin-right:4px; }
+
+/* =========================================================
+   LINKS & ACCESSIBILITY
+   ========================================================= */
+.chat-link { color:var(--gold);text-decoration:underline;word-break:break-all;transition:color 0.2s; }
+.chat-link:hover { color:var(--gold-light);text-decoration:none; }
+a:focus,button:focus,input:focus { outline:2px solid var(--gold);outline-offset:2px; }
+*{ -webkit-tap-highlight-color:transparent; }
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+   ========================================================= */
+@media (max-width:768px) {
+    body { padding:0; align-items:flex-start; }
+    .chat-container {
+        width:100%; border-radius:0; border:none;
+        height:100vh; height:calc(var(--vh,1vh)*100); max-width:100%;
+    }
+    .chat-header { padding:12px 14px; }
+    .bot-avatar { width:44px;height:44px;min-width:44px; }
+    .bot-info h2 { font-size:1.1rem; }
+    .chat-messages { padding:14px 12px; gap:12px; }
+    .message { max-width:92%; }
+    .message-content { padding:11px 13px;font-size:0.9rem; }
+    .input-area { padding:10px 12px;gap:8px; }
+    .input-area input { padding:11px 14px;font-size:15px; }
+    .input-area button { width:44px;height:44px;min-width:44px;font-size:0.95rem; }
+    .quick-replies { padding-left:10px; }
+    .quick-reply-btn { font-size:0.78rem;padding:6px 12px; }
+    .splash-title { font-size:2rem; }
+    .splash-logo-wrap { width:80px;height:80px; }
+    .splash-ring-1{width:110px;height:110px;}
+    .splash-ring-2{width:135px;height:135px;}
+    .splash-ring-3{width:160px;height:160px;}
+    .scroll-bottom-btn { bottom:110px;right:12px; }
+}
+
+@media (max-width:480px) {
+    .message { max-width:96%; }
+    .message-content { padding:10px 11px;font-size:0.87rem; }
+    .bot-info .bot-tagline { display:none; }
+}
+
+/* Safe area for iPhone notch */
+@supports(padding:max(0px)) {
+    .input-area { padding-bottom:max(14px, env(safe-area-inset-bottom)); }
+}
+
+
+/* Syncro bottom nav height fix */
+@media(max-width:768px){body.syncro-page{padding-bottom:0!important}.chat-container{height:calc(100vh - 64px)!important;border-radius:0!important}}
+
+/* ============================================================
+   ONYX APP — Shared UI Layer
+   Bottom Nav · Auth Drawer · Profile Page · Notifications
+   Bookmarks · Floating Syncro Bubble · Page Transitions
+   ============================================================ */
+
+/* ── BOTTOM NAV ─────────────────────────────────────────── */
+.onyx-bottom-nav {
+    display: none; /* shown only on mobile */
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    height: 64px;
+    background: rgba(10,10,10,0.97);
+    border-top: 1px solid rgba(255,215,0,0.18);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    z-index: 9000;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 4px;
+    padding-bottom: env(safe-area-inset-bottom);
+    box-shadow: 0 -4px 24px rgba(0,0,0,0.6), 0 -1px 0 rgba(255,215,0,0.08);
+}
+
+.onyx-nav-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    text-decoration: none;
+    color: #666;
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    position: relative;
+    padding: 6px 0;
+    transition: color 0.2s ease;
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-family: 'Inter', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.onyx-nav-item i {
+    font-size: 1.25rem;
+    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), color 0.2s ease;
+}
+
+.onyx-nav-item.active {
+    color: #ffd700;
+}
+
+.onyx-nav-item.active i {
+    color: #ffd700;
+    filter: drop-shadow(0 0 6px rgba(255,215,0,0.7));
+    transform: translateY(-3px) scale(1.15);
+}
+
+/* Active pip */
+.onyx-nav-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    width: 4px; height: 4px;
+    background: #ffd700;
+    border-radius: 50%;
+    box-shadow: 0 0 6px #ffd700;
+    animation: navPip 0.3s ease both;
+}
+
+@keyframes navPip {
+    from { transform: scale(0); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+}
+
+/* Tap ripple */
+.onyx-nav-item::before {
+    content: '';
+    position: absolute;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: rgba(255,215,0,0.1);
+    transform: scale(0);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+}
+
+.onyx-nav-item:active::before {
+    transform: scale(1.4);
+    opacity: 1;
+}
+
+/* Notification badge on nav item */
+.onyx-nav-badge {
+    position: absolute;
+    top: 4px; right: 14px;
+    min-width: 16px; height: 16px;
+    background: #ff4444;
+    color: #fff;
+    font-size: 0.6rem;
+    font-weight: 700;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    padding: 0 3px;
+    border: 1.5px solid #000;
+    animation: badgePop 0.4s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+
+@keyframes badgePop {
+    from { transform: scale(0); }
+    to   { transform: scale(1); }
+}
+
+/* ── BOTTOM NAV MOBILE ONLY ──────────────────────────────── */
+@media (max-width: 768px) {
+    .onyx-bottom-nav { display: flex; }
+
+    /* Push page content above bottom nav */
+    body { padding-bottom: 70px !important; }
+
+    /* Hide top hamburger menu on mobile — bottom nav replaces it */
+    .menu-toggle { display: none !important; }
+    .nav-menu    { display: none !important; }
+
+    /* Hide old back-to-top on mobile (bottom nav covers it) */
+    .back-to-top { bottom: 80px !important; right: 16px !important; }
+}
+
+/* ── SIDE DRAWER (hamburger menu / profile options) ─────── */
+.onyx-drawer-overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(4px);
+    z-index: 9100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.onyx-drawer-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.onyx-drawer {
+    position: fixed;
+    top: 0; right: -320px;
+    width: 300px;
+    height: 100%;
+    background: linear-gradient(160deg, #0d0d0d 0%, #111108 100%);
+    border-left: 1px solid rgba(255,215,0,0.15);
+    z-index: 9200;
+    display: flex;
+    flex-direction: column;
+    transition: right 0.35s cubic-bezier(0.22,1,0.36,1);
+    box-shadow: -8px 0 40px rgba(0,0,0,0.8);
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+.onyx-drawer.open { right: 0; }
+
+/* Drawer top bar */
+.drawer-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 20px 16px;
+    border-bottom: 1px solid rgba(255,215,0,0.1);
+}
+
+.drawer-brand {
+    display: flex; align-items: center; gap: 10px;
+}
+
+.drawer-brand img {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    border: 2px solid #ffd700;
+    object-fit: cover;
+}
+
+.drawer-brand span {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #ffd700;
+    letter-spacing: 0.08em;
+}
+
+.drawer-close {
+    background: rgba(255,215,0,0.08);
+    border: 1px solid rgba(255,215,0,0.2);
+    color: #aaa;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.drawer-close:hover { background: rgba(255,80,80,0.15); color: #ff6b6b; border-color: rgba(255,80,80,0.3); }
+
+/* Drawer user section */
+.drawer-user {
+    padding: 20px;
+    border-bottom: 1px solid rgba(255,215,0,0.08);
+}
+
+.drawer-user-avatar {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    border: 2.5px solid #ffd700;
+    box-shadow: 0 0 20px rgba(255,215,0,0.3);
+    object-fit: cover;
+    margin-bottom: 12px;
+    background: #111;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem;
+    overflow: hidden;
+    animation: avatarGlow 3s ease-in-out infinite;
+}
+
+@keyframes avatarGlow {
+    0%,100% { box-shadow: 0 0 20px rgba(255,215,0,0.3); }
+    50%      { box-shadow: 0 0 35px rgba(255,215,0,0.55); }
+}
+
+.drawer-user-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 2px;
+}
+
+.drawer-user-email {
+    font-size: 0.78rem;
+    color: #888;
+}
+
+/* Drawer menu items */
+.drawer-menu {
+    flex: 1;
+    padding: 12px 0;
+    overflow-y: auto;
+}
+
+.drawer-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 20px;
+    color: #ccc;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.drawer-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(255,215,0,0.06) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.drawer-item:hover {
+    color: #ffd700;
+    border-left-color: #ffd700;
+}
+
+.drawer-item:hover::after { opacity: 1; }
+
+.drawer-item i {
+    width: 20px;
+    text-align: center;
+    font-size: 1rem;
+    color: #ffd700;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.drawer-item:hover i { opacity: 1; }
+
+.drawer-separator {
+    height: 1px;
+    background: rgba(255,215,0,0.08);
+    margin: 8px 20px;
+}
+
+.drawer-item.danger { color: #ff6b6b; }
+.drawer-item.danger i { color: #ff6b6b; }
+.drawer-item.danger:hover { border-left-color: #ff6b6b; color: #ff9999; }
+
+/* Theme toggle inside drawer */
+.drawer-theme-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    border-left: 3px solid transparent;
+}
+
+.drawer-theme-row span {
+    display: flex; align-items: center; gap: 14px;
+    color: #ccc; font-size: 0.95rem;
+}
+
+.drawer-theme-row span i {
+    width: 20px; text-align: center;
+    font-size: 1rem; color: #ffd700; opacity: 0.7;
+}
+
+.toggle-switch {
+    width: 44px; height: 24px;
+    background: #222;
+    border-radius: 12px;
+    border: 1px solid rgba(255,215,0,0.2);
+    position: relative;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    flex-shrink: 0;
+}
+
+.toggle-switch.on { background: linear-gradient(135deg, #ffd700, #ffed4e); border-color: #ffd700; }
+
+.toggle-knob {
+    position: absolute;
+    top: 2px; left: 2px;
+    width: 18px; height: 18px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+}
+
+.toggle-switch.on .toggle-knob { transform: translateX(20px); }
+
+/* ── AUTH MODAL ─────────────────────────────────────────── */
+.onyx-auth-modal {
+    position: fixed; inset: 0;
+    z-index: 9999;
+    display: flex; align-items: flex-end; justify-content: center;
+    pointer-events: none;
+}
+
+.onyx-auth-modal.open { pointer-events: all; }
+
+.auth-backdrop {
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(6px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.onyx-auth-modal.open .auth-backdrop { opacity: 1; }
+
+.auth-sheet {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    background: linear-gradient(160deg, #0d0d0d, #110f00);
+    border: 1px solid rgba(255,215,0,0.18);
+    border-bottom: none;
+    border-radius: 24px 24px 0 0;
+    padding: 32px 28px 40px;
+    transform: translateY(100%);
+    transition: transform 0.45s cubic-bezier(0.22,1,0.36,1);
+    box-shadow: 0 -8px 40px rgba(0,0,0,0.8), 0 -1px 0 rgba(255,215,0,0.12);
+    padding-bottom: max(40px, env(safe-area-inset-bottom));
+}
+
+.onyx-auth-modal.open .auth-sheet { transform: translateY(0); }
+
+.auth-handle {
+    width: 40px; height: 4px;
+    background: rgba(255,215,0,0.3);
+    border-radius: 2px;
+    margin: 0 auto 24px;
+}
+
+.auth-logo {
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    border: 2px solid #ffd700;
+    box-shadow: 0 0 20px rgba(255,215,0,0.4);
+    margin: 0 auto 16px;
+    display: block;
+    animation: authLogoPulse 2s ease-in-out infinite;
+}
+
+@keyframes authLogoPulse {
+    0%,100% { box-shadow: 0 0 20px rgba(255,215,0,0.4); }
+    50%      { box-shadow: 0 0 35px rgba(255,215,0,0.7); }
+}
+
+.auth-title {
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+}
+
+.auth-subtitle {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #777;
+    margin-bottom: 28px;
+}
+
+.auth-btn {
+    width: 100%;
+    padding: 15px 20px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.05);
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    display: flex; align-items: center; gap: 14px;
+    cursor: pointer;
+    margin-bottom: 12px;
+    transition: all 0.25s ease;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-btn::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: rgba(255,255,255,0.04);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.auth-btn:hover::before { opacity: 1; }
+.auth-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.4); }
+
+.auth-btn i { font-size: 1.2rem; width: 24px; text-align: center; }
+.auth-btn.google i { color: #ea4335; }
+.auth-btn.apple  i { color: #fff; }
+.auth-btn.email  i { color: #ffd700; }
+
+.auth-divider {
+    display: flex; align-items: center; gap: 12px;
+    margin: 16px 0;
+    color: #444;
+    font-size: 0.8rem;
+}
+.auth-divider::before, .auth-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+}
+
+/* Email form inside auth sheet */
+.auth-email-form { display: none; }
+.auth-email-form.show { display: block; }
+
+.auth-input {
+    width: 100%;
+    padding: 14px 16px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,215,0,0.2);
+    border-radius: 12px;
+    color: #fff;
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    margin-bottom: 12px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.auth-input:focus {
+    border-color: #ffd700;
+    box-shadow: 0 0 0 3px rgba(255,215,0,0.1);
+}
+
+.auth-submit {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #ffd700, #ffed4e);
+    color: #000;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 16px rgba(255,215,0,0.35);
+}
+
+.auth-submit:hover {
+    background: linear-gradient(135deg, #ffed4e, #fff9c4);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 22px rgba(255,215,0,0.5);
+}
+
+/* ── PROFILE PAGE ────────────────────────────────────────── */
+.profile-page {
+    position: fixed; inset: 0;
+    background: #000;
+    z-index: 8500;
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+    padding-bottom: 80px;
+}
+
+.profile-page.open { transform: translateX(0); }
+
+.profile-header {
+    position: sticky; top: 0;
+    background: rgba(0,0,0,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,215,0,0.12);
+    padding: 16px 20px;
+    display: flex; align-items: center; gap: 14px;
+    z-index: 10;
+}
+
+.profile-back-btn {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(255,215,0,0.08);
+    border: 1px solid rgba(255,215,0,0.2);
+    color: #ffd700;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.profile-back-btn:hover { background: rgba(255,215,0,0.15); }
+
+.profile-header h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.profile-body {
+    padding: 30px 20px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* Avatar upload area */
+.profile-avatar-section {
+    display: flex; flex-direction: column; align-items: center;
+    margin-bottom: 32px;
+    animation: profileSlideUp 0.5s cubic-bezier(0.22,1,0.36,1) 0.1s both;
+}
+
+@keyframes profileSlideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.profile-avatar-wrap {
+    position: relative;
+    width: 100px; height: 100px;
+    margin-bottom: 12px;
+}
+
+.profile-avatar-img {
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    border: 3px solid #ffd700;
+    box-shadow: 0 0 30px rgba(255,215,0,0.35);
+    object-fit: cover;
+    background: #111;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.5rem;
+    overflow: hidden;
+}
+
+.profile-avatar-edit {
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 32px; height: 32px;
+    background: linear-gradient(135deg, #ffd700, #ffed4e);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: #000;
+    font-size: 0.8rem;
+    cursor: pointer;
+    border: 2px solid #000;
+    transition: transform 0.2s ease;
+}
+
+.profile-avatar-edit:hover { transform: scale(1.1); }
+#profileAvatarInput { display: none; }
+
+.profile-username-display {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 2px;
+}
+
+.profile-email-display {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+/* Profile form */
+.profile-form-section {
+    animation: profileSlideUp 0.5s cubic-bezier(0.22,1,0.36,1) 0.2s both;
+}
+
+.profile-field {
+    margin-bottom: 20px;
+}
+
+.profile-field label {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+}
+
+.profile-input {
+    width: 100%;
+    padding: 14px 16px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,215,0,0.15);
+    border-radius: 12px;
+    color: #fff;
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.profile-input:focus {
+    border-color: #ffd700;
+    box-shadow: 0 0 0 3px rgba(255,215,0,0.1);
+}
+
+.profile-save-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #ffd700, #ffed4e);
+    color: #000;
+    font-size: 1rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 16px rgba(255,215,0,0.35);
+    margin-bottom: 16px;
+    animation: profileSlideUp 0.5s cubic-bezier(0.22,1,0.36,1) 0.3s both;
+}
+
+.profile-save-btn:hover {
+    background: linear-gradient(135deg, #ffed4e, #fff9c4);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 22px rgba(255,215,0,0.5);
+}
+
+.profile-logout-btn {
+    width: 100%;
+    padding: 15px;
+    background: rgba(255,80,80,0.08);
+    color: #ff6b6b;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border: 1px solid rgba(255,80,80,0.25);
+    border-radius: 14px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.25s ease;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    animation: profileSlideUp 0.5s cubic-bezier(0.22,1,0.36,1) 0.35s both;
+}
+
+.profile-logout-btn:hover {
+    background: rgba(255,80,80,0.15);
+    border-color: rgba(255,80,80,0.5);
+    transform: translateY(-1px);
+}
+
+/* Saved posts in profile */
+.profile-saved-section {
+    margin-top: 32px;
+    animation: profileSlideUp 0.5s cubic-bezier(0.22,1,0.36,1) 0.4s both;
+}
+
+.profile-saved-section h3 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+    display: flex; align-items: center; gap: 8px;
+}
+
+.profile-saved-section h3 i { color: #ffd700; }
+
+.saved-post-item {
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,215,0,0.08);
+    border-radius: 12px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    animation: savedItemIn 0.4s ease both;
+}
+
+@keyframes savedItemIn {
+    from { opacity: 0; transform: translateX(20px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+.saved-post-item:hover {
+    border-color: rgba(255,215,0,0.25);
+    background: rgba(255,215,0,0.04);
+    transform: translateX(4px);
+}
+
+.saved-post-item img {
+    width: 50px; height: 50px;
+    border-radius: 8px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.saved-post-info h4 {
+    font-size: 0.85rem;
+    color: #ddd;
+    margin-bottom: 2px;
+    line-height: 1.3;
+}
+
+.saved-post-info span {
+    font-size: 0.72rem;
+    color: #555;
+}
+
+.saved-empty {
+    text-align: center;
+    color: #444;
+    font-size: 0.9rem;
+    padding: 24px;
+}
+
+.saved-empty i { display: block; font-size: 2rem; color: #2a2a2a; margin-bottom: 8px; }
+
+/* ── NOTIFICATIONS PANEL ─────────────────────────────────── */
+.onyx-notif-panel {
+    position: fixed;
+    top: 0; right: -340px;
+    width: 320px;
+    height: 100%;
+    background: linear-gradient(160deg, #0a0a0a, #0e0d00);
+    border-left: 1px solid rgba(255,215,0,0.15);
+    z-index: 9200;
+    display: flex; flex-direction: column;
+    transition: right 0.35s cubic-bezier(0.22,1,0.36,1);
+    box-shadow: -8px 0 40px rgba(0,0,0,0.8);
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+.onyx-notif-panel.open { right: 0; }
+
+.notif-header {
+    padding: 20px;
+    border-bottom: 1px solid rgba(255,215,0,0.1);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-shrink: 0;
+}
+
+.notif-header h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    display: flex; align-items: center; gap: 8px;
+}
+
+.notif-header h3 i { color: #ffd700; }
+
+.notif-clear {
+    font-size: 0.75rem;
+    color: #ffd700;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: background 0.2s ease;
+}
+
+.notif-clear:hover { background: rgba(255,215,0,0.1); }
+
+.notif-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 12px;
+}
+
+.notif-item {
+    display: flex; gap: 12px; align-items: flex-start;
+    padding: 14px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,215,0,0.07);
+    border-radius: 12px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    animation: notifSlideIn 0.4s cubic-bezier(0.22,1,0.36,1) both;
+}
+
+.notif-item:nth-child(1) { animation-delay: 0s; }
+.notif-item:nth-child(2) { animation-delay: 0.07s; }
+.notif-item:nth-child(3) { animation-delay: 0.14s; }
+.notif-item:nth-child(4) { animation-delay: 0.21s; }
+
+@keyframes notifSlideIn {
+    from { opacity: 0; transform: translateX(20px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+.notif-item:hover {
+    border-color: rgba(255,215,0,0.2);
+    background: rgba(255,215,0,0.04);
+}
+
+.notif-item.unread {
+    border-left: 3px solid #ffd700;
+    background: rgba(255,215,0,0.05);
+}
+
+.notif-icon {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(255,215,0,0.1);
+    border: 1px solid rgba(255,215,0,0.2);
+    display: flex; align-items: center; justify-content: center;
+    color: #ffd700;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+}
+
+.notif-content h4 {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #ddd;
+    margin-bottom: 2px;
+    line-height: 1.3;
+}
+
+.notif-content p {
+    font-size: 0.75rem;
+    color: #666;
+    line-height: 1.4;
+}
+
+.notif-time {
+    font-size: 0.7rem;
+    color: #444;
+    margin-top: 4px;
+}
+
+/* ── FLOATING SYNCRO BUBBLE ──────────────────────────────── */
+.syncro-float-btn {
+    position: fixed;
+    bottom: 80px; right: 20px;
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ffd700, #ffed4e);
+    border: none;
+    cursor: pointer;
+    z-index: 8000;
+    box-shadow: 0 4px 20px rgba(255,215,0,0.5), 0 0 0 0 rgba(255,215,0,0.4);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    animation: floatBubble 4s ease-in-out infinite;
+    text-decoration: none;
+}
+
+@keyframes floatBubble {
+    0%,100% { transform: translateY(0); box-shadow: 0 4px 20px rgba(255,215,0,0.5), 0 0 0 0 rgba(255,215,0,0.4); }
+    50%      { transform: translateY(-8px); box-shadow: 0 12px 30px rgba(255,215,0,0.4), 0 0 0 8px rgba(255,215,0,0); }
+}
+
+.syncro-float-btn:hover {
+    transform: scale(1.12) translateY(-4px);
+    animation-play-state: paused;
+}
+
+.syncro-float-btn img {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.syncro-float-tooltip {
+    position: absolute;
+    right: 64px;
+    background: rgba(0,0,0,0.9);
+    color: #ffd700;
+    font-size: 0.75rem;
+    font-weight: 600;
+    white-space: nowrap;
+    padding: 6px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,215,0,0.3);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.syncro-float-btn:hover .syncro-float-tooltip { opacity: 1; }
+
+/* Hide on Syncro page itself */
+.syncro-page .syncro-float-btn { display: none; }
+
+/* ── BOOKMARK BUTTON ON BLOG CARDS ──────────────────────── */
+.bookmark-btn {
+    position: absolute;
+    top: 14px; left: 14px;
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,215,0,0.25);
+    color: rgba(255,215,0,0.6);
+    font-size: 0.85rem;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    z-index: 5;
+}
+
+.bookmark-btn:hover, .bookmark-btn.saved {
+    background: rgba(255,215,0,0.15);
+    border-color: #ffd700;
+    color: #ffd700;
+}
+
+.bookmark-btn.saved {
+    animation: bookmarkPop 0.4s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+
+@keyframes bookmarkPop {
+    0%  { transform: scale(1); }
+    50% { transform: scale(1.4); }
+    100%{ transform: scale(1); }
+}
+
+/* Blog card needs relative positioning for bookmark button */
+.blog-card { position: relative; overflow: hidden; }
+
+/* ── BELL BUTTON (top nav / header) ─────────────────────── */
+.notif-bell-btn {
+    background: none;
+    border: none;
+    color: #aaa;
+    font-size: 1.2rem;
+    cursor: pointer;
+    position: relative;
+    padding: 8px;
+    transition: color 0.2s ease;
+    border-radius: 50%;
+}
+
+.notif-bell-btn:hover { color: #ffd700; background: rgba(255,215,0,0.08); }
+
+.notif-bell-btn .bell-badge {
+    position: absolute;
+    top: 4px; right: 4px;
+    width: 8px; height: 8px;
+    background: #ff4444;
+    border-radius: 50%;
+    border: 1.5px solid #000;
+    animation: badgePulse 2s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+    0%,100% { box-shadow: 0 0 0 0 rgba(255,68,68,0.5); }
+    50%      { box-shadow: 0 0 0 4px rgba(255,68,68,0); }
+}
+
+/* ── TOAST NOTIFICATION ──────────────────────────────────── */
+.onyx-toast {
+    position: fixed;
+    top: 24px; left: 50%;
+    transform: translateX(-50%) translateY(-80px);
+    background: rgba(20,20,10,0.97);
+    border: 1px solid rgba(255,215,0,0.3);
+    border-radius: 40px;
+    padding: 12px 20px;
+    display: flex; align-items: center; gap: 10px;
+    color: #fff;
+    font-size: 0.88rem;
+    font-weight: 500;
+    z-index: 99999;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.6), 0 0 12px rgba(255,215,0,0.15);
+    transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+    white-space: nowrap;
+    font-family: 'Inter', sans-serif;
+}
+
+.onyx-toast.show { transform: translateX(-50%) translateY(0); }
+.onyx-toast i { color: #ffd700; font-size: 1rem; }
+
+/* ── PAGE TRANSITION ANIMATIONS ─────────────────────────── */
+
+/* Home / Hero — scale + fade (epic entrance) */
+@keyframes heroSectionIn {
+    from { opacity: 0; transform: scale(0.97); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+/* Blog cards — stagger slide up with bounce */
+@keyframes blogCardIn {
+    from { opacity: 0; transform: translateY(50px) rotate(-1deg); }
+    to   { opacity: 1; transform: translateY(0) rotate(0deg); }
+}
+
+/* About section — slide in from left (personal / storytelling) */
+@keyframes aboutSlideIn {
+    from { opacity: 0; transform: translateX(-60px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Contact section — radial reveal (reaching out feel) */
+@keyframes contactReveal {
+    from { opacity: 0; clip-path: circle(0% at 50% 50%); }
+    to   { opacity: 1; clip-path: circle(150% at 50% 50%); }
+}
+
+/* Stats — count pop in */
+@keyframes statCountIn {
+    0%   { opacity: 0; transform: translateY(20px) scale(0.8); }
+    60%  { transform: translateY(-4px) scale(1.08); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Footer — fade up gently */
+@keyframes footerFadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Apply section animations via IntersectionObserver classes */
+.section-anim-hero     { animation: heroSectionIn 0.8s cubic-bezier(0.22,1,0.36,1) both; }
+.section-anim-blog     { animation: blogCardIn 0.6s cubic-bezier(0.34,1.2,0.64,1) both; }
+.section-anim-about    { animation: aboutSlideIn 0.7s cubic-bezier(0.22,1,0.36,1) both; }
+.section-anim-contact  { animation: contactReveal 0.8s ease both; }
+.section-anim-stat     { animation: statCountIn 0.6s cubic-bezier(0.34,1.56,0.64,1) both; }
+.section-anim-footer   { animation: footerFadeUp 0.6s ease both; }
+
+/* Blog card stagger delays */
+.blog-card:nth-child(1) { animation-delay: 0s; }
+.blog-card:nth-child(2) { animation-delay: 0.12s; }
+.blog-card:nth-child(3) { animation-delay: 0.24s; }
+
+/* ── SCROLLBAR ───────────────────────────────────────────── */
+.onyx-notif-panel ::-webkit-scrollbar,
+.onyx-drawer ::-webkit-scrollbar,
+.profile-page ::-webkit-scrollbar { width: 4px; }
+
+.onyx-notif-panel ::-webkit-scrollbar-thumb,
+.onyx-drawer ::-webkit-scrollbar-thumb,
+.profile-page ::-webkit-scrollbar-thumb {
+    background: rgba(255,215,0,0.3);
+    border-radius: 2px;
+}
+
+/* ── SYNCRO PAGE — bottom nav adjustments ───────────────── */
+.syncro-page .chat-container {
+    height: calc(100vh - 64px - env(safe-area-inset-bottom, 0px));
+}
+
+@media (max-width: 768px) {
+    .syncro-page body,
+    body.syncro-page {
+        padding-bottom: 0 !important;
+    }
+    .syncro-page .chat-container {
+        height: calc(100vh - 64px);
+        border-radius: 0;
+    }
+    /* Move chat input above bottom nav */
+    .syncro-page .input-area {
+        padding-bottom: max(14px, env(safe-area-inset-bottom));
+    }
+}
+
+/* ── NAV NOTIFICATION PANEL — full height fix on mobile ─── */
+@media (max-width: 768px) {
+    .onyx-notif-panel {
+        width: 100%;
+        right: -100%;
+    }
+    .onyx-notif-panel.open { right: 0; }
+
+    .onyx-drawer { width: 82vw; max-width: 300px; }
+}
+
+
+@media (max-width: 768px) {
+    #backToTop { display: none !important; }
+}
+
+</style>
+</head>
+<body class="syncro-page">
+
+<!-- OPENING SPLASH ANIMATION -->
+<div id="syncro-splash">
+    <div class="splash-bg"></div>
+    <div class="splash-particles" id="splashParticles"></div>
+    <div class="splash-content">
+        <div class="splash-ring splash-ring-1"></div>
+        <div class="splash-ring splash-ring-2"></div>
+        <div class="splash-ring splash-ring-3"></div>
+        <div class="splash-logo-wrap">
+            <img src="https://i.ibb.co/JjZPmBpV/Picsart-26-04-22-09-03-55-835.jpg" alt="Syncro AI Logo" class="splash-logo">
+        </div>
+        <h1 class="splash-title">Syncro <span>AI</span></h1>
+        <p class="splash-subtitle">Your intelligent assistant — powered by Onyx</p>
+        <div class="splash-loader">
+            <div class="splash-loader-bar"></div>
+        </div>
+    </div>
+</div>
+
+<!-- MAIN CHAT APP -->
+<div class="chat-container" id="chatApp">
+
+    <!-- Header -->
+    <div class="chat-header">
+        <div class="bot-avatar">
+            <img src="https://i.ibb.co/JjZPmBpV/Picsart-26-04-22-09-03-55-835.jpg" alt="Syncro AI" class="ai-logo">
+        </div>
+        <div class="bot-info">
+            <h2>Syncro <span class="gold-text">AI</span></h2>
+            <p class="bot-tagline"><span class="status-dot"></span> Online · Your Onyx assistant</p>
+        </div>
+        <div class="header-actions">
+            <button id="clearChatBtn" class="header-btn" title="Clear conversation">
+                <i class="fas fa-trash-alt"></i>
+            </button>
+            <a href="index.html" class="home-button" title="Back to Home">
+                <i class="fas fa-home"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Messages -->
+    <div class="chat-messages" id="chatMessages"></div>
+
+    <!-- Scroll to bottom button -->
+    <button id="scrollBottomBtn" class="scroll-bottom-btn" style="opacity:0;">
+        <i class="fas fa-chevron-down"></i>
+    </button>
+
+    <!-- Typing indicator -->
+    <div class="typing-indicator" id="typingIndicator" style="display: none;">
+        <div class="typing-avatar">
+            <img src="https://i.ibb.co/JjZPmBpV/Picsart-26-04-22-09-03-55-835.jpg" alt="Syncro" style="width:100%;height:100%;object-fit:contain;border-radius:50%;">
+        </div>
+        <div class="typing-dots">
+            <span></span><span></span><span></span>
+        </div>
+        <span class="typing-label">Syncro is thinking...</span>
+    </div>
+
+    <!-- Input -->
+    <div class="input-area">
+        <input type="text" id="userInput" placeholder="Ask Syncro anything..." autocomplete="off">
+        <button id="sendButton" title="Send">
+            <i class="fas fa-paper-plane"></i>
+        </button>
+    </div>
+
+    <!-- Footer -->
+    <div class="chat-footer">
+        <p><i class="fas fa-shield-alt"></i> Powered by Google's Gemini AI &middot; Conversations processed securely</p>
+    </div>
+</div>
+
+<script>
+/* === syncro-script.js === */
+// SYNCRO AI | Onyx
+const API_URL = '/api/chat';
+const LOGO_URL = 'https://i.ibb.co/JjZPmBpV/Picsart-26-04-22-09-03-55-835.jpg';
+
+const SYSTEM_INSTRUCTION = `You are Syncro, the friendly AI assistant for Onyx — a tech platform by Raj (RJ) from Chittagong, Bangladesh. 
+Be helpful, friendly and professional. Use markdown in responses.
+Products: Web Templates ($49-$199), SaaS Kit ($299), AI Chat System ($199), Custom Development (custom quote).
+Contact: 📧 rjsyncro@gmail.com | 📸 instagram.com/o_rj_0`;
+
+let conversationHistory = [];
+
+// Wait for page to fully load
+window.onload = function() {
+    init();
+};
+
+// Also try DOMContentLoaded as backup
+document.addEventListener('DOMContentLoaded', function() {
+    init();
+});
+
+let initialized = false;
+function init() {
+    if (initialized) return;
+    initialized = true;
+
+    const chatMessages    = document.getElementById('chatMessages');
+    const userInput       = document.getElementById('userInput');
+    const sendButton      = document.getElementById('sendButton');
+    const typingIndicator = document.getElementById('typingIndicator');
+    const clearBtn        = document.getElementById('clearChatBtn');
+    const scrollBtn       = document.getElementById('scrollBottomBtn');
+
+    if (!chatMessages || !userInput || !sendButton) {
+        console.error('Critical elements missing!');
+        return;
+    }
+
+    // Show welcome
+    setTimeout(function() {
+        addMessage("Hello! I'm **Syncro**, the AI assistant for **Onyx**. 👋\n\nHow can I help you today?", 'bot');
+        setTimeout(showQuickReplies, 800);
+    }, 3200); // after splash ends at 2.8s
+
+    // Send button
+    sendButton.addEventListener('click', function() {
+        handleSend();
+    });
+
+    // Enter key
+    userInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            handleSend();
+        }
+    });
+
+    // Clear chat
+    if (clearBtn) {
+        clearBtn.addEventListener('click', function() {
+            if (confirm('Clear conversation?')) {
+                chatMessages.innerHTML = '';
+                conversationHistory = [];
+                setTimeout(function() {
+                    addMessage("Hello! I'm **Syncro**, the AI assistant for **Onyx**. 👋\n\nHow can I help you today?", 'bot');
+                    setTimeout(showQuickReplies, 800);
+                }, 200);
+            }
+        });
+    }
+
+    // Scroll button
+    if (scrollBtn) {
+        chatMessages.addEventListener('scroll', function() {
+            var dist = chatMessages.scrollHeight - chatMessages.scrollTop - chatMessages.clientHeight;
+            scrollBtn.style.opacity = dist > 100 ? '1' : '0';
+        });
+        scrollBtn.addEventListener('click', function() {
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        });
+    }
+
+    // ── Handle Send ──────────────────────────────────────────
+    async function handleSend(text) {
+        var message = text || userInput.value.trim();
+        if (!message) return;
+
+        var qr = document.getElementById('quickReplies');
+        if (qr) qr.remove();
+
+        if (!text) userInput.value = '';
+
+        addMessage(message, 'user');
+
+        // Show typing
+        if (typingIndicator) typingIndicator.style.display = 'flex';
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        try {
+            // Build message with history
+            var contextMsg = message;
+            if (conversationHistory.length > 0) {
+                var hist = conversationHistory.slice(-8)
+                    .map(function(m) { return (m.role === 'user' ? 'User' : 'Syncro') + ': ' + m.content; })
+                    .join('\n');
+                contextMsg = 'Previous:\n' + hist + '\n\nUser: ' + message;
+            }
+
+            conversationHistory.push({ role: 'user', content: message });
+
+            var response = await fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    message: contextMsg,
+                    system_instruction: SYSTEM_INSTRUCTION
+                })
+            });
+
+            var data = await response.json();
+
+            var reply;
+            if (!response.ok) {
+                reply = '⚠️ Server error ' + response.status + ': ' + (data.error || 'Unknown error');
+            } else {
+                reply = (data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts && data.candidates[0].content.parts[0] && data.candidates[0].content.parts[0].text)
+                    || (data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content)
+                    || data.error
+                    || JSON.stringify(data);
+            }
+
+            conversationHistory.push({ role: 'assistant', content: reply });
+            addMessage(reply, 'bot');
+
+        } catch (err) {
+            addMessage('😔 Connection error: ' + err.message, 'bot');
+        } finally {
+            if (typingIndicator) typingIndicator.style.display = 'none';
+        }
+
+        userInput.focus();
+    }
+
+    // ── Add Message ──────────────────────────────────────────
+    function addMessage(text, sender) {
+        var div = document.createElement('div');
+        div.className = 'message ' + sender + '-message';
+
+        var avatarDiv = document.createElement('div');
+        avatarDiv.className = 'message-avatar';
+
+        if (sender === 'bot') {
+            var img = document.createElement('img');
+            img.src = LOGO_URL;
+            img.alt = 'Syncro';
+            img.style.cssText = 'width:100%;height:100%;object-fit:contain;border-radius:50%;';
+            avatarDiv.style.cssText = 'width:42px;height:42px;min-width:42px;border-radius:50%;border:2px solid #ffd700;box-shadow:0 0 10px rgba(255,215,0,0.35);margin-right:10px;background:#1a1400;padding:2px;overflow:hidden;display:flex;align-items:center;justify-content:center;flex-shrink:0;';
+            avatarDiv.appendChild(img);
+        } else {
+            avatarDiv.innerHTML = '👤';
+            avatarDiv.style.cssText = 'width:38px;height:38px;min-width:38px;border-radius:50%;background:#1a3a6e;border:1.5px solid rgba(100,140,220,0.4);margin-left:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;';
+        }
+
+        var wrapDiv = document.createElement('div');
+        wrapDiv.className = 'message-wrap';
+
+        var contentDiv = document.createElement('div');
+        contentDiv.className = 'message-content';
+        contentDiv.innerHTML = renderMarkdown(text);
+
+        var timeDiv = document.createElement('div');
+        timeDiv.className = 'message-time';
+        timeDiv.textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+        wrapDiv.appendChild(contentDiv);
+        wrapDiv.appendChild(timeDiv);
+        div.appendChild(avatarDiv);
+        div.appendChild(wrapDiv);
+        chatMessages.appendChild(div);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    // ── Quick Replies ────────────────────────────────────────
+    function showQuickReplies() {
+        var existing = document.getElementById('quickReplies');
+        if (existing) existing.remove();
+
+        var container = document.createElement('div');
+        container.id = 'quickReplies';
+        container.className = 'quick-replies';
+
+        var replies = [
+            { label: '🏢 What is Onyx?',   text: 'What is Onyx?' },
+            { label: '🛍️ Products',         text: 'What products does Onyx offer?' },
+            { label: '✍️ Blog posts',        text: 'What are the latest blog posts?' },
+            { label: '📬 Contact Raj',       text: 'How can I contact Raj?' }
+        ];
+
+        replies.forEach(function(r) {
+            var btn = document.createElement('button');
+            btn.className = 'quick-reply-btn';
+            btn.textContent = r.label;
+            btn.onclick = function() { container.remove(); handleSend(r.text); };
+            container.appendChild(btn);
+        });
+
+        chatMessages.appendChild(container);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    // ── Markdown ─────────────────────────────────────────────
+    function renderMarkdown(text) {
+        var html = text
+            .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+            .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\*(.+?)\*/g, '<em>$1</em>')
+            .replace(/^[\-\*] (.+)$/gm, '<li>$1</li>')
+            .replace(/\n\n/g, '</p><p>')
+            .replace(/\n/g, '<br>');
+
+        html = html.replace(/(https?:\/\/[^\s<>"]+)/g, function(url) {
+            return '<a href="' + url + '" target="_blank" class="chat-link">' + url + '</a>';
+        });
+
+        return '<p>' + html + '</p>';
+    }
+
+    // Mobile viewport fix
+    function fixVH() {
+        document.documentElement.style.setProperty('--vh', (window.innerHeight * 0.01) + 'px');
+    }
+    window.addEventListener('resize', fixVH);
+    fixVH();
+}
+
+
+/* === onyx-app.js === */
+/* ============================================================
+   ONYX APP — Shared UI Logic
+   Bottom Nav · Auth Drawer · Profile · Notifications
+   Bookmarks · Floating Bubble · Section Animations
+   ============================================================ */
+
+(function () {
+    'use strict';
+
+    /* ── STORAGE HELPERS ─────────────────────────────────── */
+    const Store = {
+        get: (k, fallback = null) => {
+            try { const v = localStorage.getItem(k); return v !== null ? JSON.parse(v) : fallback; }
+            catch { return fallback; }
+        },
+        set: (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} },
+        remove: (k) => { try { localStorage.removeItem(k); } catch {} }
+    };
+
+    /* ── STATE ───────────────────────────────────────────── */
+    const state = {
+        user: Store.get('onyx_user', null),          // { name, email, avatar }
+        bookmarks: Store.get('onyx_bookmarks', []),  // [{ title, img, href }]
+        notifications: Store.get('onyx_notifs', getDefaultNotifs()),
+        theme: Store.get('onyx_theme', 'dark'),
+        drawerOpen: false,
+        notifOpen: false,
+        profileOpen: false,
+        authOpen: false,
+    };
+
+    function getDefaultNotifs() {
+        return [
+            { id: 1, icon: 'fa-newspaper', title: 'New blog post published', body: 'Check out the latest tech article on Onyx.', time: 'Just now', unread: true },
+            { id: 2, icon: 'fa-robot', title: 'Syncro AI is ready', body: 'Your intelligent assistant is online and waiting.', time: '2 min ago', unread: true },
+            { id: 3, icon: 'fa-star', title: 'Welcome to Onyx!', body: 'Explore templates, blog posts, and more.', time: '1 hr ago', unread: false },
+        ];
+    }
+
+    /* ── TOAST ───────────────────────────────────────────── */
+    let toastTimer;
+    function showToast(msg, icon = 'fa-check-circle') {
+        let t = document.getElementById('onyxToast');
+        if (!t) {
+            t = document.createElement('div');
+            t.id = 'onyxToast';
+            t.className = 'onyx-toast';
+            document.body.appendChild(t);
+        }
+        t.innerHTML = `<i class="fas ${icon}"></i> ${msg}`;
+        t.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
+    }
+
+    /* ── BUILD BOTTOM NAV ────────────────────────────────── */
+    function buildBottomNav() {
+        const nav = document.createElement('nav');
+        nav.className = 'onyx-bottom-nav';
+        nav.id = 'onyxBottomNav';
+
+        const isIndex = !document.body.classList.contains('syncro-page');
+        const isSyncro = document.body.classList.contains('syncro-page');
+
+        const unreadCount = state.notifications.filter(n => n.unread).length;
+
+        nav.innerHTML = `
+            <a class="onyx-nav-item ${isIndex ? 'active' : ''}" href="${isSyncro ? 'index.html' : '#home'}" id="navHome">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a class="onyx-nav-item" href="${isSyncro ? 'index.html#blog' : '#blog'}" id="navTech">
+                <i class="fas fa-newspaper"></i>
+                <span>Tech</span>
+            </a>
+            <a class="onyx-nav-item ${isSyncro ? 'active' : ''}" href="${isSyncro ? '#' : 'syncro-chat.html'}" id="navSyncro">
+                <i class="fas fa-robot"></i>
+                <span>Syncro</span>
+            </a>
+            <button class="onyx-nav-item" id="navNotif">
+                <i class="fas fa-bell"></i>
+                ${unreadCount > 0 ? `<span class="onyx-nav-badge">${unreadCount}</span>` : ''}
+                <span>Alerts</span>
+            </button>
+            <button class="onyx-nav-item" id="navMenu">
+                <i class="fas fa-bars"></i>
+                <span>Menu</span>
+            </button>
+        `;
+
+        document.body.appendChild(nav);
+
+        // Active link on scroll (index page only)
+        if (isIndex) {
+            window.addEventListener('scroll', () => {
+                const sections = ['home', 'blog', 'about', 'contact'];
+                let current = 'home';
+                sections.forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el && window.pageYOffset >= el.offsetTop - 120) current = id;
+                });
+                document.querySelectorAll('.onyx-nav-item').forEach(item => item.classList.remove('active'));
+                if (current === 'home') document.getElementById('navHome')?.classList.add('active');
+                if (current === 'blog') document.getElementById('navTech')?.classList.add('active');
+            }, { passive: true });
+        }
+
+        document.getElementById('navNotif')?.addEventListener('click', openNotifPanel);
+        document.getElementById('navMenu')?.addEventListener('click', openDrawer);
+    }
+
+    /* ── BUILD DRAWER ────────────────────────────────────── */
+    function buildDrawer() {
+        const overlay = document.createElement('div');
+        overlay.className = 'onyx-drawer-overlay';
+        overlay.id = 'drawerOverlay';
+        overlay.addEventListener('click', closeDrawer);
+
+        const drawer = document.createElement('div');
+        drawer.className = 'onyx-drawer';
+        drawer.id = 'onyxDrawer';
+        drawer.innerHTML = buildDrawerHTML();
+
+        document.body.appendChild(overlay);
+        document.body.appendChild(drawer);
+
+        bindDrawerEvents();
+    }
+
+    function buildDrawerHTML() {
+        const u = state.user;
+        const isDark = state.theme === 'dark';
+
+        return `
+        <div class="drawer-topbar">
+            <div class="drawer-brand">
+                <img src="https://i.ibb.co/jkd25QLn/Picsart-26-04-23-10-12-58-459.png" alt="Onyx">
+                <span>Onyx</span>
+            </div>
+            <button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button>
+        </div>
+
+        <div class="drawer-user" id="drawerUserSection">
+            ${u ? `
+            <div class="drawer-user-avatar" id="drawerAvatar">
+                ${u.avatar ? `<img src="${u.avatar}" alt="${u.name}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">` : u.name.charAt(0).toUpperCase()}
+            </div>
+            <div class="drawer-user-name">${u.name}</div>
+            <div class="drawer-user-email">${u.email}</div>
+            ` : `
+            <div class="drawer-user-avatar" id="drawerAvatar" style="font-size:1.8rem;">👤</div>
+            <div class="drawer-user-name">Guest</div>
+            <div class="drawer-user-email" style="color:#555;">Sign in to unlock all features</div>
+            `}
+        </div>
+
+        <div class="drawer-menu">
+            ${u ? `
+            <button class="drawer-item" id="drawerProfile">
+                <i class="fas fa-user-circle"></i> Edit Profile
+            </button>
+            <button class="drawer-item" id="drawerBookmarks">
+                <i class="fas fa-bookmark"></i> Saved Posts
+                ${state.bookmarks.length > 0 ? `<span style="margin-left:auto;font-size:0.75rem;color:#ffd700;">${state.bookmarks.length}</span>` : ''}
+            </button>
+            ` : `
+            <button class="drawer-item" id="drawerSignIn">
+                <i class="fas fa-sign-in-alt"></i> Sign In / Register
+            </button>
+            `}
+
+            <div class="drawer-separator"></div>
+
+            <a class="drawer-item" href="${document.body.classList.contains('syncro-page') ? 'index.html' : '#home'}">
+                <i class="fas fa-home"></i> Home
+            </a>
+            <a class="drawer-item" href="${document.body.classList.contains('syncro-page') ? 'index.html#blog' : '#blog'}">
+                <i class="fas fa-newspaper"></i> Tech Blog
+            </a>
+            <a class="drawer-item" href="${document.body.classList.contains('syncro-page') ? 'index.html#about' : '#about'}">
+                <i class="fas fa-user"></i> About
+            </a>
+            <a class="drawer-item" href="${document.body.classList.contains('syncro-page') ? 'index.html#contact' : '#contact'}">
+                <i class="fas fa-envelope"></i> Contact
+            </a>
+            <a class="drawer-item" href="${document.body.classList.contains('syncro-page') ? '#' : 'syncro-chat.html'}">
+                <i class="fas fa-robot"></i> Syncro AI
+            </a>
+
+            <div class="drawer-separator"></div>
+
+            <div class="drawer-theme-row">
+                <span><i class="fas fa-moon"></i> Dark Mode</span>
+                <div class="toggle-switch ${isDark ? 'on' : ''}" id="drawerThemeToggle">
+                    <div class="toggle-knob"></div>
+                </div>
+            </div>
+
+            <div class="drawer-separator"></div>
+
+            ${u ? `
+            <button class="drawer-item danger" id="drawerLogout">
+                <i class="fas fa-sign-out-alt"></i> Log Out
+            </button>
+            ` : ''}
+
+            <a class="drawer-item" href="mailto:rjsyncro@gmail.com">
+                <i class="fas fa-envelope-open-text"></i> rjsyncro@gmail.com
+            </a>
+            <a class="drawer-item" href="https://instagram.com/o_rj_0" target="_blank">
+                <i class="fab fa-instagram"></i> @o_rj_0
+            </a>
+        </div>`;
+    }
+
+    function bindDrawerEvents() {
+        document.getElementById('drawerClose')?.addEventListener('click', closeDrawer);
+
+        document.getElementById('drawerProfile')?.addEventListener('click', () => {
+            closeDrawer();
+            setTimeout(openProfile, 200);
+        });
+
+        document.getElementById('drawerBookmarks')?.addEventListener('click', () => {
+            closeDrawer();
+            setTimeout(openProfile, 200); // profile page shows saved posts
+        });
+
+        document.getElementById('drawerSignIn')?.addEventListener('click', () => {
+            closeDrawer();
+            setTimeout(openAuth, 200);
+        });
+
+        document.getElementById('drawerLogout')?.addEventListener('click', () => {
+            closeDrawer();
+            setTimeout(() => {
+                if (confirm('Log out of Onyx?')) {
+                    Store.remove('onyx_user');
+                    state.user = null;
+                    showToast('Logged out successfully', 'fa-sign-out-alt');
+                    setTimeout(() => location.reload(), 800);
+                }
+            }, 300);
+        });
+
+        document.getElementById('drawerThemeToggle')?.addEventListener('click', function () {
+            const isDark = state.theme === 'dark';
+            state.theme = isDark ? 'light' : 'dark';
+            Store.set('onyx_theme', state.theme);
+            this.classList.toggle('on', !isDark);
+            document.body.classList.toggle('light-theme', !isDark);
+            // sync with existing theme icon if present
+            const icon = document.querySelector('#themeToggle i');
+            if (icon) icon.className = isDark ? 'fas fa-moon' : 'fas fa-sun';
+            showToast(isDark ? 'Light mode on' : 'Dark mode on', isDark ? 'fa-sun' : 'fa-moon');
+        });
+    }
+
+    function openDrawer() {
+        state.drawerOpen = true;
+        document.getElementById('onyxDrawer').classList.add('open');
+        document.getElementById('drawerOverlay').classList.add('open');
+    }
+
+    function closeDrawer() {
+        state.drawerOpen = false;
+        document.getElementById('onyxDrawer')?.classList.remove('open');
+        document.getElementById('drawerOverlay')?.classList.remove('open');
+    }
+
+    /* ── BUILD AUTH MODAL ────────────────────────────────── */
+    function buildAuth() {
+        const modal = document.createElement('div');
+        modal.className = 'onyx-auth-modal';
+        modal.id = 'onyxAuthModal';
+        modal.innerHTML = `
+        <div class="auth-backdrop" id="authBackdrop"></div>
+        <div class="auth-sheet">
+            <div class="auth-handle"></div>
+            <img class="auth-logo" src="https://i.ibb.co/jkd25QLn/Picsart-26-04-23-10-12-58-459.png" alt="Onyx">
+            <h2 class="auth-title">Welcome to Onyx</h2>
+            <p class="auth-subtitle">Sign in to save posts, personalise your experience and more.</p>
+
+            <button class="auth-btn google" id="authGoogle">
+                <i class="fab fa-google"></i> Continue with Google
+            </button>
+            <button class="auth-btn apple" id="authApple">
+                <i class="fab fa-apple"></i> Continue with Apple
+            </button>
+
+            <div class="auth-divider">or</div>
+
+            <button class="auth-btn email" id="authEmailBtn">
+                <i class="fas fa-envelope"></i> Continue with Email
+            </button>
+
+            <div class="auth-email-form" id="authEmailForm">
+                <input class="auth-input" type="text" id="authName" placeholder="Your name">
+                <input class="auth-input" type="email" id="authEmail" placeholder="Email address">
+                <button class="auth-submit" id="authSubmit">Sign In / Register</button>
+            </div>
+        </div>`;
+        document.body.appendChild(modal);
+
+        document.getElementById('authBackdrop').addEventListener('click', closeAuth);
+
+        document.getElementById('authGoogle').addEventListener('click', () => simulateOAuth('Google'));
+        document.getElementById('authApple').addEventListener('click', () => simulateOAuth('Apple'));
+
+        document.getElementById('authEmailBtn').addEventListener('click', () => {
+            const form = document.getElementById('authEmailForm');
+            form.classList.toggle('show');
+        });
+
+        document.getElementById('authSubmit').addEventListener('click', () => {
+            const name = document.getElementById('authName').value.trim();
+            const email = document.getElementById('authEmail').value.trim();
+            if (!name || !email) { showToast('Please fill in all fields', 'fa-exclamation-circle'); return; }
+            if (!/\S+@\S+\.\S+/.test(email)) { showToast('Please enter a valid email', 'fa-exclamation-circle'); return; }
+            signIn({ name, email, avatar: null, provider: 'email' });
+        });
+    }
+
+    function simulateOAuth(provider) {
+        closeAuth();
+        showToast(`Connecting to ${provider}…`, 'fa-spinner');
+        setTimeout(() => {
+            const mockUser = {
+                name: provider === 'Google' ? 'Raj (RJ)' : 'Onyx User',
+                email: provider === 'Google' ? 'rjsyncro@gmail.com' : 'user@icloud.com',
+                avatar: null,
+                provider
+            };
+            signIn(mockUser);
+        }, 1200);
+    }
+
+    function signIn(user) {
+        state.user = user;
+        Store.set('onyx_user', user);
+        closeAuth();
+        showToast(`Welcome, ${user.name}! 🎉`, 'fa-user-check');
+        setTimeout(() => {
+            // Refresh drawer to show profile options
+            const drawer = document.getElementById('onyxDrawer');
+            if (drawer) drawer.innerHTML = buildDrawerHTML();
+            bindDrawerEvents();
+        }, 500);
+    }
+
+    function openAuth() {
+        state.authOpen = true;
+        document.getElementById('onyxAuthModal').classList.add('open');
+    }
+
+    function closeAuth() {
+        state.authOpen = false;
+        document.getElementById('onyxAuthModal')?.classList.remove('open');
+    }
+
+    /* ── BUILD PROFILE PAGE ──────────────────────────────── */
+    function buildProfile() {
+        const page = document.createElement('div');
+        page.className = 'profile-page';
+        page.id = 'profilePage';
+        page.innerHTML = buildProfileHTML();
+        document.body.appendChild(page);
+        bindProfileEvents();
+    }
+
+    function buildProfileHTML() {
+        const u = state.user || { name: 'Guest', email: '', avatar: null };
+        const avatarContent = u.avatar
+            ? `<img src="${u.avatar}" alt="${u.name}" style="width:100%;height:100%;object-fit:cover;">`
+            : u.name.charAt(0).toUpperCase();
+
+        const savedHTML = state.bookmarks.length > 0
+            ? state.bookmarks.map((b, i) => `
+                <div class="saved-post-item" style="animation-delay:${i * 0.07}s" onclick="window.location='${b.href}'">
+                    <img src="${b.img || 'https://i.ibb.co/jkd25QLn/Picsart-26-04-23-10-12-58-459.png'}" alt="${b.title}">
+                    <div class="saved-post-info">
+                        <h4>${b.title}</h4>
+                        <span>Saved post</span>
+                    </div>
+                    <i class="fas fa-chevron-right" style="color:#444;margin-left:auto;font-size:0.8rem;"></i>
+                </div>`).join('')
+            : `<div class="saved-empty"><i class="fas fa-bookmark"></i>No saved posts yet.<br>Tap the bookmark icon on any article.</div>`;
+
+        return `
+        <div class="profile-header">
+            <button class="profile-back-btn" id="profileBack"><i class="fas fa-arrow-left"></i></button>
+            <h2>My Profile</h2>
+        </div>
+        <div class="profile-body">
+            <div class="profile-avatar-section">
+                <div class="profile-avatar-wrap">
+                    <div class="profile-avatar-img" id="profileAvatarPreview">${avatarContent}</div>
+                    <label class="profile-avatar-edit" title="Change photo">
+                        <i class="fas fa-camera"></i>
+                        <input type="file" id="profileAvatarInput" accept="image/*">
+                    </label>
+                </div>
+                <div class="profile-username-display" id="profileNameDisplay">${u.name}</div>
+                <div class="profile-email-display">${u.email || 'Not signed in'}</div>
+            </div>
+
+            <div class="profile-form-section">
+                <div class="profile-field">
+                    <label>Display Name</label>
+                    <input class="profile-input" id="profileNameInput" type="text" value="${u.name}" placeholder="Your name">
+                </div>
+                <div class="profile-field">
+                    <label>Bio</label>
+                    <input class="profile-input" id="profileBioInput" type="text" value="${u.bio || ''}" placeholder="Short bio...">
+                </div>
+                <div class="profile-field">
+                    <label>Email</label>
+                    <input class="profile-input" id="profileEmailInput" type="email" value="${u.email || ''}" placeholder="Email address" ${u.provider ? 'readonly style="opacity:0.5"' : ''}>
+                </div>
+                <button class="profile-save-btn" id="profileSave">Save Changes</button>
+                <button class="profile-logout-btn" id="profileLogout">
+                    <i class="fas fa-sign-out-alt"></i> Log Out
+                </button>
+            </div>
+
+            <div class="profile-saved-section">
+                <h3><i class="fas fa-bookmark"></i> Saved Posts (${state.bookmarks.length})</h3>
+                <div id="savedPostsList">${savedHTML}</div>
+            </div>
+        </div>`;
+    }
+
+    function bindProfileEvents() {
+        document.getElementById('profileBack')?.addEventListener('click', closeProfile);
+
+        // Avatar upload
+        document.getElementById('profileAvatarInput')?.addEventListener('change', function () {
+            const file = this.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const src = e.target.result;
+                const preview = document.getElementById('profileAvatarPreview');
+                if (preview) preview.innerHTML = `<img src="${src}" alt="avatar" style="width:100%;height:100%;object-fit:cover;">`;
+                if (state.user) { state.user.avatar = src; Store.set('onyx_user', state.user); }
+                showToast('Profile photo updated!', 'fa-camera');
+            };
+            reader.readAsDataURL(file);
+        });
+
+        document.getElementById('profileSave')?.addEventListener('click', () => {
+            const name = document.getElementById('profileNameInput').value.trim();
+            const bio = document.getElementById('profileBioInput').value.trim();
+            const email = document.getElementById('profileEmailInput').value.trim();
+            if (!name) { showToast('Name cannot be empty', 'fa-exclamation-circle'); return; }
+            if (state.user) {
+                state.user.name = name;
+                state.user.bio = bio;
+                if (!state.user.provider) state.user.email = email;
+                Store.set('onyx_user', state.user);
+            }
+            document.getElementById('profileNameDisplay').textContent = name;
+            showToast('Profile saved! ✨', 'fa-check-circle');
+        });
+
+        document.getElementById('profileLogout')?.addEventListener('click', () => {
+            if (confirm('Log out of Onyx?')) {
+                Store.remove('onyx_user');
+                state.user = null;
+                closeProfile();
+                showToast('Logged out', 'fa-sign-out-alt');
+                setTimeout(() => location.reload(), 800);
+            }
+        });
+    }
+
+    function openProfile() {
+        if (!state.user) { openAuth(); return; }
+        state.profileOpen = true;
+        // Rebuild in case bookmarks changed
+        const page = document.getElementById('profilePage');
+        if (page) { page.innerHTML = buildProfileHTML(); bindProfileEvents(); }
+        document.getElementById('profilePage')?.classList.add('open');
+    }
+
+    function closeProfile() {
+        state.profileOpen = false;
+        document.getElementById('profilePage')?.classList.remove('open');
+    }
+
+    /* ── BUILD NOTIFICATIONS PANEL ───────────────────────── */
+    function buildNotifPanel() {
+        const overlay = document.createElement('div');
+        overlay.className = 'onyx-drawer-overlay';
+        overlay.id = 'notifOverlay';
+        overlay.addEventListener('click', closeNotifPanel);
+
+        const panel = document.createElement('div');
+        panel.className = 'onyx-notif-panel';
+        panel.id = 'notifPanel';
+        panel.innerHTML = buildNotifHTML();
+
+        document.body.appendChild(overlay);
+        document.body.appendChild(panel);
+
+        bindNotifEvents();
+    }
+
+    function buildNotifHTML() {
+        const items = state.notifications.map(n => `
+            <div class="notif-item ${n.unread ? 'unread' : ''}" data-id="${n.id}">
+                <div class="notif-icon"><i class="fas ${n.icon}"></i></div>
+                <div class="notif-content">
+                    <h4>${n.title}</h4>
+                    <p>${n.body}</p>
+                    <div class="notif-time">${n.time}</div>
+                </div>
+            </div>`).join('');
+
+        return `
+        <div class="notif-header">
+            <button onclick="document.getElementById('notifPanel').classList.remove('open');document.getElementById('notifOverlay').classList.remove('open');" style="background:rgba(255,215,0,0.08);border:1px solid rgba(255,215,0,0.2);color:#ffd700;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:0.9rem;flex-shrink:0;">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <h3><i class="fas fa-bell"></i> Notifications</h3>
+            <button class="notif-clear" id="notifClearAll">Clear all</button>
+        </div>
+        <div class="notif-list" id="notifList">
+            ${items || '<div style="text-align:center;color:#444;padding:30px;font-size:0.9rem;">No notifications</div>'}
+        </div>`;
+    }
+
+    function bindNotifEvents() {
+        document.getElementById('notifClearAll')?.addEventListener('click', () => {
+            state.notifications = [];
+            Store.set('onyx_notifs', []);
+            const list = document.getElementById('notifList');
+            if (list) list.innerHTML = '<div style="text-align:center;color:#444;padding:30px;font-size:0.9rem;">No notifications</div>';
+            // Clear badge
+            const badge = document.querySelector('#navNotif .onyx-nav-badge');
+            if (badge) badge.remove();
+            showToast('Notifications cleared', 'fa-check');
+        });
+
+        document.querySelectorAll('.notif-item').forEach(item => {
+            item.addEventListener('click', function () {
+                const id = +this.dataset.id;
+                const notif = state.notifications.find(n => n.id === id);
+                if (notif) { notif.unread = false; Store.set('onyx_notifs', state.notifications); }
+                this.classList.remove('unread');
+                updateNotifBadge();
+            });
+        });
+    }
+
+    function updateNotifBadge() {
+        const count = state.notifications.filter(n => n.unread).length;
+        const badge = document.querySelector('#navNotif .onyx-nav-badge');
+        if (count > 0) {
+            if (badge) badge.textContent = count;
+        } else {
+            badge?.remove();
+        }
+    }
+
+    function openNotifPanel() {
+        state.notifOpen = true;
+        document.getElementById('notifPanel').classList.add('open');
+        document.getElementById('notifOverlay').classList.add('open');
+    }
+
+    function closeNotifPanel() {
+        state.notifOpen = false;
+        document.getElementById('notifPanel')?.classList.remove('open');
+        document.getElementById('notifOverlay')?.classList.remove('open');
+    }
+
+    /* ── FLOATING SYNCRO BUBBLE ──────────────────────────── */
+    function buildFloatBubble() {
+        // Don't show on Syncro page
+        if (document.body.classList.contains('syncro-page')) return;
+        const btn = document.createElement('a');
+        btn.className = 'syncro-float-btn';
+        btn.href = 'syncro-chat.html';
+        btn.title = 'Chat with Syncro AI';
+        btn.innerHTML = `
+            <img src="https://i.ibb.co/JjZPmBpV/Picsart-26-04-22-09-03-55-835.jpg" alt="Syncro AI">
+            <span class="syncro-float-tooltip">Chat with Syncro</span>`;
+        document.body.appendChild(btn);
+    }
+
+    /* ── BOOKMARK BUTTONS ON BLOG CARDS ──────────────────── */
+    function initBookmarks() {
+        const cards = document.querySelectorAll('.blog-card');
+        cards.forEach(card => {
+            // Make sure card has relative positioning (CSS handles this too)
+            const btn = document.createElement('button');
+            btn.className = 'bookmark-btn';
+            btn.title = 'Save post';
+            btn.innerHTML = '<i class="fas fa-bookmark"></i>';
+
+            const title = card.querySelector('h3')?.textContent || 'Untitled';
+            const img = card.querySelector('img')?.src || '';
+            const link = card.querySelector('a')?.href || '#';
+
+            const isSaved = state.bookmarks.some(b => b.title === title);
+            if (isSaved) btn.classList.add('saved');
+
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                toggleBookmark(btn, { title, img, href: link });
+            });
+
+            card.appendChild(btn);
+        });
+    }
+
+    function toggleBookmark(btn, post) {
+        const idx = state.bookmarks.findIndex(b => b.title === post.title);
+        if (idx > -1) {
+            state.bookmarks.splice(idx, 1);
+            btn.classList.remove('saved');
+            showToast('Removed from saved', 'fa-bookmark');
+        } else {
+            state.bookmarks.push(post);
+            btn.classList.add('saved');
+            showToast('Post saved! 🔖', 'fa-bookmark');
+        }
+        Store.set('onyx_bookmarks', state.bookmarks);
+    }
+
+    /* ── SECTION ANIMATIONS ──────────────────────────────── */
+    function initSectionAnimations() {
+        const config = [
+            // Each entry: [selector, animation-class, threshold]
+            ['.video-banner, .hero',            'section-anim-hero',    0.05],
+            ['.blog-card',                       'section-anim-blog',    0.12],
+            ['.about-content, .about-text, .about-image', 'section-anim-about', 0.12],
+            ['.contact-content, .contact-form, .contact-info', 'section-anim-contact', 0.1],
+            ['.stat-item',                       'section-anim-stat',    0.2],
+            ['.footer',                          'section-anim-footer',  0.05],
+        ];
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Find which class to apply
+                    config.forEach(([sel, cls]) => {
+                        if (entry.target.matches(sel)) {
+                            entry.target.classList.add(cls);
+                        }
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+        config.forEach(([sel]) => {
+            document.querySelectorAll(sel).forEach(el => {
+                // Set invisible before animation triggers
+                el.style.opacity = '0';
+                observer.observe(el);
+            });
+        });
+    }
+
+    /* ── THEME PERSISTENCE ───────────────────────────────── */
+    function applyTheme() {
+        if (state.theme === 'light') {
+            document.body.classList.add('light-theme');
+            const icon = document.querySelector('#themeToggle i');
+            if (icon) icon.className = 'fas fa-moon';
+        }
+    }
+
+    /* ── KEYBOARD / SWIPE CLOSE ──────────────────────────── */
+    function initGestures() {
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeDrawer();
+                closeNotifPanel();
+                closeAuth();
+                closeProfile();
+            }
+        });
+
+        // Swipe right to close drawers / profile
+        let touchStartX = 0;
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+        }, { passive: true });
+
+        document.addEventListener('touchend', (e) => {
+            const dx = e.changedTouches[0].clientX - touchStartX;
+            if (dx > 70) {
+                if (state.drawerOpen) closeDrawer();
+                if (state.notifOpen) closeNotifPanel();
+                if (state.profileOpen) closeProfile();
+            }
+        }, { passive: true });
+    }
+
+    /* ── INIT ────────────────────────────────────────────── */
+    function init() {
+        applyTheme();
+        buildBottomNav();
+        buildDrawer();
+        buildAuth();
+        buildProfile();
+        buildNotifPanel();
+        buildFloatBubble();
+        initBookmarks();
+        initSectionAnimations();
+        initGestures();
+
+        // Show welcome notification for new users after 3s
+        if (!Store.get('onyx_welcomed')) {
+            setTimeout(() => {
+                showToast('Welcome to Onyx! 👋', 'fa-star');
+                Store.set('onyx_welcomed', true);
+            }, 3000);
+        }
+
+        console.log('🔥 Onyx App UI loaded');
+    }
+
+    /* Run after DOM + existing scripts are ready */
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        // Small delay to not fight with existing scripts
+        setTimeout(init, 100);
+    }
+
+})();
+
+</script>
+<script>
+(function() {
+    var splash = document.getElementById('syncro-splash');
+    var chatApp = document.getElementById('chatApp');
+    var pc = document.getElementById('splashParticles');
+    for (var i = 0; i < 40; i++) {
+        var p = document.createElement('div');
+        p.className = 'splash-particle';
+        var size = Math.random() * 4 + 1;
+        p.style.cssText = 'left:' + (Math.random()*100) + '%;top:' + (Math.random()*100) + '%;width:' + size + 'px;height:' + size + 'px;opacity:' + (Math.random()*0.6+0.2) + ';animation-duration:' + (Math.random()*8+6) + 's;animation-delay:' + (Math.random()*3) + 's;';
+        pc.appendChild(p);
+    }
+    setTimeout(function() {
+        splash.classList.add('splash-exit');
+        chatApp.classList.add('chat-enter');
+        setTimeout(function() { splash.style.display = 'none'; }, 800);
+    }, 2800);
+})();
+</script>
+</body>
+</html>

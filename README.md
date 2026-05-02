@@ -1,2 +1,0 @@
-# RJSyncro 
-Welcome to RJSyncro 

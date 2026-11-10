@@ -1,0 +1,62 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Folio – Portfolio Template</title><meta name="description" content="Folio: a clean creative portfolio template.">
+<style>
+:root{--bg:#f6f3ee;--ink:#141414;--m:#6b665d;--a:#ff5a36;--line:#dcd6ca}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+.serif{font-family:Georgia,"Times New Roman",serif}
+header{position:sticky;top:0;background:rgba(246,243,238,.9);backdrop-filter:blur(10px);z-index:20;border-bottom:1px solid var(--line)}
+.nv{display:flex;justify-content:space-between;align-items:center;height:70px}.logo{font-family:Georgia,serif;font-size:1.5rem;font-weight:700}.logo b{color:var(--a)}
+.nv nav{display:flex;gap:30px;font-size:.95rem}.nv nav a{position:relative}.nv nav a::after{content:"";position:absolute;left:0;bottom:-4px;height:2px;width:0;background:var(--a);transition:.3s}.nv nav a:hover::after{width:100%}
+.mb{display:none;background:none;border:0;font-size:1.6rem;cursor:pointer}
+.hero{padding-block:110px 80px}.hero small{letter-spacing:.2em;text-transform:uppercase;color:var(--m);font-size:.8rem}
+.hero h1{font-family:Georgia,serif;font-size:clamp(2.8rem,9vw,7rem);line-height:1;letter-spacing:-.03em;margin:22px 0 28px;font-weight:400}.hero h1 em{color:var(--a);font-style:italic}
+.hero p{max-width:520px;color:var(--m);font-size:1.15rem;margin-bottom:34px}
+.btn{display:inline-flex;gap:10px;align-items:center;padding:15px 30px;border-radius:40px;background:var(--ink);color:#fff;font-weight:600;transition:.25s;border:0;cursor:pointer;font-size:1rem}.btn:hover{background:var(--a);transform:translateY(-2px)}
+.mq{border-block:1px solid var(--line);overflow:hidden;padding:20px 0;white-space:nowrap}.mq div{display:inline-block;animation:m 22s linear infinite;font-family:Georgia,serif;font-size:2rem;font-style:italic;color:var(--m)}
+@keyframes m{to{transform:translateX(-50%)}}
+section{padding:90px 0}.st{display:flex;justify-content:space-between;align-items:end;margin-bottom:46px;flex-wrap:wrap;gap:14px}.st h2{font-family:Georgia,serif;font-size:clamp(2rem,5vw,3.4rem);font-weight:400;letter-spacing:-.02em}
+.flt{display:flex;gap:8px;flex-wrap:wrap}.flt button{padding:8px 18px;border-radius:30px;border:1px solid var(--line);background:none;cursor:pointer;font-size:.9rem;transition:.2s}.flt button.on,.flt button:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.pg{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
+.pj{display:block;transition:.35s}.pj.hide{display:none}.th{aspect-ratio:4/3;border-radius:18px;overflow:hidden;position:relative}.th i{position:absolute;inset:0;transition:.6s}.pj:hover .th i{transform:scale(1.07)}
+.th span{position:absolute;left:18px;bottom:16px;background:rgba(255,255,255,.92);padding:5px 14px;border-radius:30px;font-size:.8rem;font-weight:600}
+.pj h3{font-family:Georgia,serif;font-weight:400;font-size:1.5rem;margin-top:14px}.pj p{color:var(--m);font-size:.95rem}
+.ab{display:grid;grid-template-columns:1fr 1.3fr;gap:60px;align-items:center}.pic{aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 30% 30%,#ffb199,var(--a) 70%);max-width:380px;display:grid;place-items:center;font-family:Georgia,serif;font-size:7rem;color:#fff}
+.ab h2{font-family:Georgia,serif;font-size:clamp(2rem,4.5vw,3rem);font-weight:400;margin-bottom:18px}.ab p{color:var(--m);margin-bottom:16px;font-size:1.05rem}
+.sk{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.sk span{padding:8px 18px;border:1px solid var(--line);border-radius:30px;font-size:.9rem}
+.sv{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line)}.sv div{padding:34px 28px 34px 0;border-bottom:1px solid var(--line)}.sv b{font-family:Georgia,serif;font-size:1.5rem;font-weight:400;display:block;margin-bottom:8px}.sv p{color:var(--m)}.sv em{color:var(--a);font-style:normal;font-size:.85rem}
+.ct{background:var(--ink);color:#fff;border-radius:30px;padding:70px 50px;display:grid;grid-template-columns:1fr 1fr;gap:50px}.ct h2{font-family:Georgia,serif;font-size:clamp(2rem,5vw,3.4rem);font-weight:400;line-height:1.1}
+form{display:grid;gap:14px}input,textarea{width:100%;padding:15px 18px;border-radius:14px;border:1px solid #3a3a3a;background:#1d1d1d;color:#fff;font:inherit}input:focus,textarea:focus{outline:0;border-color:var(--a)}.ct .btn{background:var(--a)}
+.ok{display:none;color:#7ee0a0}
+footer{padding:36px 0;text-align:center;color:var(--m);font-size:.9rem}
+@media(max-width:820px){.pg,.ab,.ct,.sv{grid-template-columns:1fr}.sv div{padding-right:0}.ct{padding:44px 26px}.mb{display:block}
+.nv nav{position:absolute;top:70px;left:0;right:0;background:var(--bg);flex-direction:column;padding:20px 24px;border-bottom:1px solid var(--line);display:none}.nv nav.show{display:flex}section{padding:60px 0}.hero{padding-block:70px 50px}.pic{max-width:240px;font-size:4.5rem}}
+</style></head><body>
+<header><div class="wrap nv"><a class="logo" href="#">Alex<b>.</b></a><button class="mb" id="mb" aria-label="Menu">☰</button><nav id="nav"><a href="#work">Work</a><a href="#about">About</a><a href="#services">Services</a><a href="#contact">Contact</a></nav></div></header>
+<div class="wrap hero"><small>Designer &amp; Developer · Available for work</small>
+<h1>I design <em>digital</em> things people love.</h1><p>Hi, I'm Alex. I help brands and startups turn ideas into clear, beautiful, high-performing websites and products.</p><a class="btn" href="#work">See my work ↓</a></div>
+<div class="mq"><div>Branding ✦ Web design ✦ Development ✦ Motion ✦ Strategy ✦ Branding ✦ Web design ✦ Development ✦ Motion ✦ Strategy ✦&nbsp;</div></div>
+<section id="work"><div class="wrap"><div class="st"><h2>Selected work</h2><div class="flt" id="flt"><button class="on" data-f="all">All</button><button data-f="web">Web</button><button data-f="brand">Branding</button><button data-f="app">Apps</button></div></div>
+<div class="pg" id="pg">
+<a class="pj" data-c="web" href="#"><div class="th"><i style="background:linear-gradient(135deg,#ff5a36,#ffb199)"></i><span>Web</span></div><h3>Northwind Studio</h3><p>Website redesign · 2025</p></a>
+<a class="pj" data-c="brand" href="#"><div class="th"><i style="background:linear-gradient(135deg,#1c1c1c,#555)"></i><span>Branding</span></div><h3>Mono Coffee</h3><p>Brand identity · 2025</p></a>
+<a class="pj" data-c="app" href="#"><div class="th"><i style="background:linear-gradient(135deg,#3b6cff,#9ad0ff)"></i><span>App</span></div><h3>Pace Fitness</h3><p>Mobile app UI · 2024</p></a>
+<a class="pj" data-c="web" href="#"><div class="th"><i style="background:linear-gradient(135deg,#0f8b6d,#b6f0d6)"></i><span>Web</span></div><h3>Greenly Market</h3><p>E-commerce · 2024</p></a>
+<a class="pj" data-c="brand" href="#"><div class="th"><i style="background:linear-gradient(135deg,#b3367a,#ffc2dd)"></i><span>Branding</span></div><h3>Bloom Florals</h3><p>Logo and packaging · 2024</p></a>
+<a class="pj" data-c="app" href="#"><div class="th"><i style="background:linear-gradient(135deg,#f5a623,#ffe29a)"></i><span>App</span></div><h3>Tally Budget</h3><p>Dashboard UI · 2023</p></a></div></div></section>
+<section id="about" style="background:#efe9de"><div class="wrap ab"><div class="pic">A</div><div><h2>A little about me</h2><p>I'm a freelance designer and front-end developer with 6+ years of experience. I care about clear ideas, careful details and sites that load fast.</p><p>When I'm not working you'll find me sketching, hiking or hunting for the perfect cup of coffee.</p><div class="sk"><span>UI / UX</span><span>Branding</span><span>HTML · CSS · JS</span><span>Figma</span><span>Motion</span></div></div></div></section>
+<section id="services"><div class="wrap"><div class="st"><h2>Services</h2></div><div class="sv">
+<div><em>01</em><b>Brand identity</b><p>Logos, colour, type and guidelines that make you memorable.</p></div>
+<div><em>02</em><b>Web design</b><p>Responsive, conversion-focused designs for any business.</p></div>
+<div><em>03</em><b>Development</b><p>Fast, clean, accessible code, ready to launch.</p></div></div></div></section>
+<section id="contact" style="padding-top:0"><div class="wrap"><div class="ct"><div><h2>Let's make something great together.</h2><p style="color:#aaa;margin-top:18px">Tell me about your project. I usually reply within a day.</p></div>
+<form id="f"><input required placeholder="Your name"><input required type="email" placeholder="Email address"><textarea rows="4" required placeholder="About your project"></textarea><button class="btn" type="submit">Send message →</button><p class="ok" id="ok">Thanks! Your message is ready to be sent. Connect this form to your email service.</p></form></div></div></section>
+<footer>© <span id="y"></span> Alex Morgan. Designed with care.</footer>
+<script>
+document.getElementById('mb').onclick=()=>document.getElementById('nav').classList.toggle('show');
+document.querySelectorAll('#nav a').forEach(a=>a.onclick=()=>document.getElementById('nav').classList.remove('show'));
+document.querySelectorAll('#flt button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#flt button').forEach(x=>x.classList.remove('on'));b.classList.add('on');document.querySelectorAll('.pj').forEach(p=>p.classList.toggle('hide',b.dataset.f!=='all'&&p.dataset.c!==b.dataset.f))});
+document.getElementById('f').onsubmit=e=>{e.preventDefault();document.getElementById('ok').style.display='block';e.target.reset()};
+document.getElementById('y').textContent=new Date().getFullYear();
+</script></body></html>

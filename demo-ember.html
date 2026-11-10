@@ -1,0 +1,49 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ember – Restaurant Template</title><meta name="description" content="Ember: a warm restaurant website template with menu and reservations.">
+<style>
+:root{--bg:#120d0a;--card:#1d1612;--t:#f5ece2;--m:#b3a392;--a:#e8a24a;--line:rgba(255,255,255,.1)}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--t);line-height:1.65;overflow-x:hidden}
+a{color:inherit;text-decoration:none}.wrap{max-width:1120px;margin:0 auto;padding:0 24px}.sf{font-family:Georgia,"Times New Roman",serif}
+header{position:fixed;top:0;left:0;right:0;z-index:30;transition:.3s}header.s{background:rgba(18,13,10,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nv{display:flex;justify-content:space-between;align-items:center;height:76px}.logo{font-family:Georgia,serif;font-size:1.7rem;letter-spacing:.1em}.logo b{color:var(--a)}
+.nv nav{display:flex;gap:30px;align-items:center;font-size:.92rem;letter-spacing:.08em;text-transform:uppercase}.nv nav a:hover{color:var(--a)}
+.btn{display:inline-block;padding:14px 32px;border:1px solid var(--a);color:var(--a);letter-spacing:.1em;text-transform:uppercase;font-size:.85rem;transition:.3s;background:none;cursor:pointer;font-family:inherit}.btn:hover,.btn.f{background:var(--a);color:#120d0a}
+.mb{display:none;background:none;border:0;color:#fff;font-size:1.6rem;cursor:pointer}
+.hero{min-height:100vh;display:grid;place-items:center;text-align:center;position:relative;padding:120px 24px 60px;background:radial-gradient(60% 50% at 50% 40%,rgba(232,162,74,.22),transparent),radial-gradient(40% 40% at 85% 90%,rgba(200,70,30,.18),transparent)}
+.hero small{letter-spacing:.4em;text-transform:uppercase;color:var(--a);font-size:.8rem}
+.hero h1{font-family:Georgia,serif;font-weight:400;font-size:clamp(3rem,10vw,7rem);line-height:1;margin:22px 0;letter-spacing:-.02em}.hero h1 em{color:var(--a)}
+.hero p{max-width:520px;margin:0 auto 34px;color:var(--m);font-size:1.1rem}.hero .row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+section{padding:96px 0}.ttl{text-align:center;margin-bottom:50px}.ttl small{letter-spacing:.35em;text-transform:uppercase;color:var(--a);font-size:.78rem}.ttl h2{font-family:Georgia,serif;font-weight:400;font-size:clamp(2rem,5vw,3.2rem);margin-top:10px}
+.tabs{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:36px}.tabs button{background:none;border:0;color:var(--m);padding:10px 22px;cursor:pointer;font-size:.95rem;letter-spacing:.06em;text-transform:uppercase;border-bottom:2px solid transparent;font-family:inherit}.tabs button.on{color:var(--a);border-color:var(--a)}
+.menu{display:none;grid-template-columns:repeat(2,1fr);gap:8px 60px;max-width:900px;margin:0 auto}.menu.on{display:grid}
+.it{padding:18px 0;border-bottom:1px dashed var(--line)}.it div{display:flex;justify-content:space-between;gap:12px;font-family:Georgia,serif;font-size:1.25rem}.it b{color:var(--a);font-weight:400}.it p{color:var(--m);font-size:.92rem;margin-top:4px}
+.story{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}.ph{aspect-ratio:4/5;border-radius:6px;background:linear-gradient(160deg,#5a3a1a,#2a1a0e 60%,#120d0a);position:relative;overflow:hidden}.ph::after{content:"🍽";position:absolute;inset:0;display:grid;place-items:center;font-size:6rem;opacity:.7}
+.story h2{font-family:Georgia,serif;font-weight:400;font-size:clamp(2rem,4.5vw,3rem);margin:10px 0 18px}.story p{color:var(--m);margin-bottom:16px}
+.info{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.ic{padding:34px;background:var(--card);border:1px solid var(--line);text-align:center}.ic h3{font-family:Georgia,serif;font-weight:400;color:var(--a);margin-bottom:10px;font-size:1.3rem}.ic p{color:var(--m)}
+.res{max-width:680px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:14px}.res input,.res select{padding:15px 16px;background:var(--card);border:1px solid var(--line);color:#fff;font:inherit;width:100%}.res input:focus,.res select:focus{outline:0;border-color:var(--a)}.res .full{grid-column:1/-1}.res button{grid-column:1/-1}
+.ok{display:none;text-align:center;color:#7ee0a0;margin-top:18px}
+footer{border-top:1px solid var(--line);padding:36px 0;text-align:center;color:var(--m);font-size:.9rem}
+@media(max-width:820px){.menu,.story,.info,.res{grid-template-columns:1fr}.mb{display:block}.nv nav{position:absolute;top:76px;left:0;right:0;background:var(--bg);flex-direction:column;padding:24px;border-bottom:1px solid var(--line);display:none}.nv nav.show{display:flex}section{padding:64px 0}}
+</style></head><body>
+<header id="hd"><div class="wrap nv"><a class="logo" href="#">EM<b>B</b>ER</a><button class="mb" id="mb" aria-label="Menu">☰</button><nav id="nav"><a href="#menu">Menu</a><a href="#story">Story</a><a href="#visit">Visit</a><a class="btn" href="#book">Book a table</a></nav></div></header>
+<div class="hero"><div><small>Wood-fired kitchen · Est. 2018</small><h1>Where fire meets <em>flavor.</em></h1><p>Seasonal ingredients, cooked over open flame, served in a warm, candle-lit room.</p><div class="row"><a class="btn f" href="#book">Reserve a table</a><a class="btn" href="#menu">View menu</a></div></div></div>
+<section id="menu"><div class="wrap"><div class="ttl"><small>Our menu</small><h2>Crafted with care</h2></div>
+<div class="tabs" id="tabs"><button class="on" data-t="s">Starters</button><button data-t="m">Mains</button><button data-t="d">Desserts</button></div>
+<div class="menu on" id="s"><div class="it"><div><span>Charred Burrata</span><b>$12</b></div><p>Smoked tomato, basil oil, grilled sourdough</p></div><div class="it"><div><span>Fire-Roasted Peppers</span><b>$9</b></div><p>Garlic, herbs, sherry vinegar</p></div><div class="it"><div><span>Crispy Calamari</span><b>$13</b></div><p>Lemon aioli, pickled chili</p></div><div class="it"><div><span>Wood-Fired Flatbread</span><b>$8</b></div><p>Whipped feta, honey, thyme</p></div></div>
+<div class="menu" id="m"><div class="it"><div><span>Ember Ribeye</span><b>$34</b></div><p>Dry-aged, bone marrow butter, fries</p></div><div class="it"><div><span>Herb Roasted Chicken</span><b>$22</b></div><p>Lemon, garlic, seasonal greens</p></div><div class="it"><div><span>Grilled Salmon</span><b>$26</b></div><p>Cedar-smoked, charred broccolini</p></div><div class="it"><div><span>Wild Mushroom Risotto</span><b>$19</b></div><p>Parmesan, truffle, fresh thyme</p></div></div>
+<div class="menu" id="d"><div class="it"><div><span>Molten Chocolate Cake</span><b>$10</b></div><p>Warm center, vanilla ice cream</p></div><div class="it"><div><span>Burnt Honey Cheesecake</span><b>$9</b></div><p>Berry compote</p></div><div class="it"><div><span>Affogato</span><b>$7</b></div><p>Espresso poured over gelato</p></div><div class="it"><div><span>Seasonal Sorbet</span><b>$6</b></div><p>Ask your server for today's flavors</p></div></div></div></section>
+<section id="story" style="background:#17100c"><div class="wrap story"><div class="ph"></div><div><small style="letter-spacing:.35em;text-transform:uppercase;color:var(--a);font-size:.78rem">Our story</small><h2>Simple food, done slowly.</h2><p>Ember started with one wood oven and a simple idea: great ingredients need very little. Every dish is cooked over live fire using produce from local farms.</p><p>Come hungry, stay for the warmth.</p></div></div></section>
+<section id="visit"><div class="wrap"><div class="ttl"><small>Visit us</small><h2>Find your seat</h2></div><div class="info"><div class="ic"><h3>Hours</h3><p>Mon–Thu · 5pm–10pm<br>Fri–Sat · 5pm–12am<br>Sunday · 4pm–9pm</p></div><div class="ic"><h3>Location</h3><p>123 Main Street<br>Your City, ST 00000</p></div><div class="ic"><h3>Contact</h3><p>(000) 000-0000<br>hello@yourrestaurant.com</p></div></div></div></section>
+<section id="book" style="padding-top:0"><div class="wrap"><div class="ttl"><small>Reservations</small><h2>Book a table</h2></div>
+<form class="res" id="f"><input class="full" required placeholder="Full name"><input required type="date" id="dt"><select required><option value="">Time</option><option>5:00 PM</option><option>6:00 PM</option><option>7:00 PM</option><option>8:00 PM</option><option>9:00 PM</option></select><select required class="full"><option value="">Guests</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6+</option></select><button class="btn f" type="submit">Confirm reservation</button></form><p class="ok" id="ok">Thank you! Your request was received. Connect this form to your email or booking service.</p></div></section>
+<footer>© <span id="y"></span> Ember Kitchen. All rights reserved.</footer>
+<script>
+const hd=document.getElementById('hd');addEventListener('scroll',()=>hd.classList.toggle('s',scrollY>30));
+document.getElementById('mb').onclick=()=>document.getElementById('nav').classList.toggle('show');
+document.querySelectorAll('#nav a').forEach(a=>a.onclick=()=>document.getElementById('nav').classList.remove('show'));
+document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#tabs button').forEach(x=>x.classList.remove('on'));b.classList.add('on');document.querySelectorAll('.menu').forEach(m=>m.classList.toggle('on',m.id===b.dataset.t))});
+document.getElementById('dt').min=new Date().toISOString().slice(0,10);
+document.getElementById('f').onsubmit=e=>{e.preventDefault();document.getElementById('ok').style.display='block';e.target.reset()};
+document.getElementById('y').textContent=new Date().getFullYear();
+</script></body></html>

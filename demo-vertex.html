@@ -1,0 +1,51 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vertex – Agency Template</title><meta name="description" content="Vertex: a bold digital agency website template.">
+<style>
+:root{--bg:#0a0a0a;--t:#f2f2f2;--m:#8f8f8f;--a:#c6ff3d;--line:#222}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;background:var(--bg);color:var(--t);line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+header{position:sticky;top:0;z-index:30;background:rgba(10,10,10,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nv{display:flex;justify-content:space-between;align-items:center;height:72px}.logo{font-weight:900;font-size:1.5rem;letter-spacing:-.04em}.logo b{color:var(--a)}
+.nv nav{display:flex;gap:30px;align-items:center;font-size:.92rem;color:var(--m)}.nv nav a:hover{color:#fff}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;border-radius:50px;background:var(--a);color:#0a0a0a;font-weight:700;transition:.25s;border:0;cursor:pointer;font-size:1rem}.btn:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(198,255,61,.3)}.btn.o{background:none;color:#fff;border:1px solid #444}.btn.o:hover{border-color:var(--a);color:var(--a);box-shadow:none}
+.mb{display:none;background:none;border:0;color:#fff;font-size:1.6rem;cursor:pointer}
+.hero{padding-block:110px 70px}.hero h1{font-size:clamp(2.8rem,10vw,8rem);line-height:.95;letter-spacing:-.05em;font-weight:900}.hero h1 span{color:var(--a)}.hero h1 u{text-decoration:none;-webkit-text-stroke:2px #fff;color:transparent}
+.hero p{max-width:520px;color:var(--m);font-size:1.15rem;margin:30px 0 34px}.row{display:flex;gap:14px;flex-wrap:wrap}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-block:1px solid var(--line)}.stats div{padding:34px 24px;border-right:1px solid var(--line)}.stats div:last-child{border:0}.stats b{display:block;font-size:2.6rem;letter-spacing:-.03em;color:var(--a)}.stats span{color:var(--m);font-size:.92rem}
+section{padding:96px 0}.top{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:46px}.top h2{font-size:clamp(2rem,5vw,3.6rem);letter-spacing:-.04em;line-height:1}.top p{color:var(--m);max-width:380px}
+.sv{border-top:1px solid var(--line)}.s{display:grid;grid-template-columns:80px 1.2fr 2fr 40px;gap:20px;align-items:center;padding:30px 0;border-bottom:1px solid var(--line);transition:.3s;cursor:pointer}.s:hover{padding-left:16px;background:linear-gradient(90deg,rgba(198,255,61,.07),transparent)}
+.s em{color:var(--m);font-style:normal}.s h3{font-size:1.7rem;letter-spacing:-.02em}.s p{color:var(--m)}.s i{font-style:normal;font-size:1.6rem;color:var(--a);transition:.3s}.s:hover i{transform:translate(4px,-4px)}
+.cs{display:grid;grid-template-columns:1.4fr 1fr;gap:22px}.c{border-radius:22px;padding:34px;min-height:340px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;transition:.4s}.c:hover{transform:translateY(-6px)}
+.c small{text-transform:uppercase;letter-spacing:.15em;font-size:.75rem;opacity:.8}.c h3{font-size:2rem;letter-spacing:-.03em;margin-top:6px}
+.c1{background:linear-gradient(135deg,#c6ff3d,#7dd10f);color:#0a0a0a}.c2{background:linear-gradient(135deg,#2a2a2a,#111);border:1px solid #333}.c3{background:linear-gradient(135deg,#6b4bff,#2a1a80)}.c4{grid-column:span 2;background:linear-gradient(135deg,#ff7a3d,#d12f6a);min-height:240px}
+.cs .c:nth-child(3){grid-column:auto}
+.pr{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.p{padding:28px;border:1px solid var(--line);border-radius:20px}.p b{color:var(--a);font-size:2rem;display:block;margin-bottom:12px}.p h3{margin-bottom:8px}.p p{color:var(--m);font-size:.95rem}
+.cta{border-radius:34px;background:var(--a);color:#0a0a0a;padding:80px 40px;text-align:center}.cta h2{font-size:clamp(2.2rem,7vw,5rem);letter-spacing:-.05em;line-height:1;margin-bottom:28px}.cta .btn{background:#0a0a0a;color:#fff}
+footer{padding:40px 0;color:var(--m);font-size:.9rem;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media(max-width:860px){.stats{grid-template-columns:1fr 1fr}.stats div:nth-child(2){border-right:0}.stats div{border-bottom:1px solid var(--line)}.s{grid-template-columns:40px 1fr 30px}.s p{grid-column:2/3}.cs,.pr{grid-template-columns:1fr}.c4{grid-column:auto}.mb{display:block}
+.nv nav{position:absolute;top:72px;left:0;right:0;background:var(--bg);flex-direction:column;padding:24px;border-bottom:1px solid var(--line);display:none}.nv nav.show{display:flex}section{padding:64px 0}.hero{padding-block:70px 40px}.cta{padding:56px 24px}}
+</style></head><body>
+<header><div class="wrap nv"><a class="logo" href="#">VERTEX<b>.</b></a><button class="mb" id="mb" aria-label="Menu">☰</button><nav id="nav"><a href="#services">Services</a><a href="#work">Work</a><a href="#process">Process</a><a class="btn" href="#contact" style="color:#0a0a0a">Let's talk</a></nav></div></header>
+<div class="wrap hero"><h1>We build brands that <span>move</span> <u>markets.</u></h1><p>Vertex is a digital agency crafting websites, brands and campaigns for ambitious companies.</p><div class="row"><a class="btn" href="#contact">Start a project →</a><a class="btn o" href="#work">View our work</a></div></div>
+<div class="wrap"><div class="stats"><div><b data-n="120">0</b><span>Projects delivered</span></div><div><b data-n="45">0</b><span>Happy clients</span></div><div><b data-n="8">0</b><span>Years in business</span></div><div><b data-n="12">0</b><span>Team members</span></div></div></div>
+<section id="services"><div class="wrap"><div class="top"><h2>What we do</h2><p>Strategy, design and technology under one roof.</p></div><div class="sv">
+<div class="s"><em>01</em><h3>Brand Strategy</h3><p>Positioning, naming and visual identity.</p><i>↗</i></div>
+<div class="s"><em>02</em><h3>Web Design</h3><p>Websites and stores built to convert.</p><i>↗</i></div>
+<div class="s"><em>03</em><h3>Development</h3><p>Fast, scalable web apps and integrations.</p><i>↗</i></div>
+<div class="s"><em>04</em><h3>Marketing</h3><p>SEO, social and performance campaigns.</p><i>↗</i></div></div></div></section>
+<section id="work" style="padding-top:0"><div class="wrap"><div class="top"><h2>Selected work</h2><p>A few projects we're proud of.</p></div><div class="cs">
+<div class="c c1"><small>Fintech · Web</small><h3>Payly Redesign</h3></div><div class="c c2"><small>Retail · Brand</small><h3>Atlas Outdoors</h3></div>
+<div class="c c3"><small>SaaS · Product</small><h3>Cloudly Dashboard</h3></div><div class="c c2" style="background:linear-gradient(135deg,#1c3a2a,#0c1a12)"><small>Food · Campaign</small><h3>Fresh Bowl</h3></div>
+<div class="c c4"><small>Fashion · E-commerce</small><h3>Nova Studio Store</h3></div></div></div></section>
+<section id="process" style="padding-top:0"><div class="wrap"><div class="top"><h2>How we work</h2><p>A clear process from first call to launch.</p></div><div class="pr">
+<div class="p"><b>01</b><h3>Discover</h3><p>We learn your goals, audience and market.</p></div><div class="p"><b>02</b><h3>Design</h3><p>Concepts, feedback and a polished direction.</p></div><div class="p"><b>03</b><h3>Build</h3><p>Clean code, tested on every device.</p></div><div class="p"><b>04</b><h3>Launch</h3><p>Go live, measure and keep improving.</p></div></div></div></section>
+<section id="contact" style="padding-top:0"><div class="wrap"><div class="cta"><h2>Got a project in mind?</h2><a class="btn" href="mailto:hello@youragency.com">hello@youragency.com →</a></div></div></section>
+<div class="wrap"><footer><span>© <span id="y"></span> Vertex Agency</span><span>Instagram · LinkedIn · Dribbble</span></footer></div>
+<script>
+document.getElementById('mb').onclick=()=>document.getElementById('nav').classList.toggle('show');
+document.querySelectorAll('#nav a').forEach(a=>a.onclick=()=>document.getElementById('nav').classList.remove('show'));
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const el=e.target,n=+el.dataset.n;let c=0;const t=setInterval(()=>{c=Math.min(n,c+Math.ceil(n/40));el.textContent=c+'+';if(c>=n)clearInterval(t)},30);io.unobserve(el)}),{threshold:.4});
+document.querySelectorAll('[data-n]').forEach(e=>io.observe(e));
+document.getElementById('y').textContent=new Date().getFullYear();
+</script></body></html>
